@@ -1,0 +1,11 @@
+Requirements = (Arch == "X86_64")
++RUQueue = "cms"
++AccountingGroup = "group_rutgers.akobert"
+Executable = run_30.sh
+should_transfer_files = NO
+Output = /home/akobert/CMSSW_11_1_0_pre7/src/RData/NanoTool_UL_percentage/CondorFiles/run_$(cluster)_$(process).stdout
+Error = /home/akobert/CMSSW_11_1_0_pre7/src/RData/NanoTool_UL_percentage/CondorFiles/run_$(cluster)_$(process).stderr
+Log = /home/akobert/CMSSW_11_1_0_pre7/src/RData/NanoTool_UL_percentage/CondorFiles/run_$(cluster)_$(process).condor
+Arguments = $(cluster) $(process)
+max_materialize = 200
+Queue 116
