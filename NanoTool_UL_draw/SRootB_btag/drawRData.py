@@ -38,84 +38,98 @@ class drawRData:
 
 		self.h1_5 = self.f.Get("pass_soft")
 		self.h2_5 = self.f.Get("pass_jet_pt")
+		self.h3_5 = self.f.Get("jet_pt_soft_pass_wide4_wide")
 
 		self.g = TFile.Open(sfile2, "READ")
 		self.g.ls();
 
 		self.h1_10 = self.g.Get("pass_soft")
 		self.h2_10 = self.g.Get("pass_jet_pt")
+		self.h3_10 = self.g.Get("jet_pt_soft_pass_wide4_wide")
 		
 		self.h = TFile.Open(sfile3, "READ")
 		self.h.ls();
 
 		self.h1_15 = self.h.Get("pass_soft")
 		self.h2_15 = self.h.Get("pass_jet_pt")
+		self.h3_15 = self.h.Get("jet_pt_soft_pass_wide4_wide")
 		
 		self.i = TFile.Open(sfile4, "READ")
 		self.i.ls();
 
 		self.h1_20 = self.i.Get("pass_soft")
 		self.h2_20 = self.i.Get("pass_jet_pt")
+		self.h3_20 = self.i.Get("jet_pt_soft_pass_wide4_wide")
 		
 		self.j = TFile.Open(sfile5, "READ")
 		self.j.ls();
 
 		self.h1_25 = self.j.Get("pass_soft")
 		self.h2_25 = self.j.Get("pass_jet_pt")
+		self.h3_25 = self.j.Get("jet_pt_soft_pass_wide4_wide")
 		
 		self.k = TFile.Open(sfile6, "READ")
 		self.k.ls();
 
 		self.h1_30 = self.k.Get("pass_soft")
 		self.h2_30 = self.k.Get("pass_jet_pt")
+		self.h3_30 = self.k.Get("jet_pt_soft_pass_wide4_wide")
 		
 		self.l = TFile.Open(sfile7, "READ")
 		self.l.ls();
 
 		self.h1_50 = self.l.Get("pass_soft")
 		self.h2_50 = self.l.Get("pass_jet_pt")
+		self.h3_50 = self.l.Get("jet_pt_soft_pass_wide4_wide")
 		
 		self.bf = TFile.Open(bfile1, "READ")
 		self.bf.ls();
 
 		self.b1_5 = self.bf.Get("pass_soft")
 		self.b2_5 = self.bf.Get("pass_jet_pt")
+		self.b3_5 = self.bf.Get("jet_pt_soft_pass_wide4_wide")
 
 		self.bg = TFile.Open(bfile2, "READ")
 		self.bg.ls();
 
 		self.b1_10 = self.bg.Get("pass_soft")
 		self.b2_10 = self.bg.Get("pass_jet_pt")
+		self.b3_10 = self.bg.Get("jet_pt_soft_pass_wide4_wide")
 		
 		self.bh = TFile.Open(bfile3, "READ")
 		self.bh.ls();
 
 		self.b1_15 = self.bh.Get("pass_soft")
 		self.b2_15 = self.bh.Get("pass_jet_pt")
+		self.b3_15 = self.bh.Get("jet_pt_soft_pass_wide4_wide")
 		
 		self.bi = TFile.Open(bfile4, "READ")
 		self.bi.ls();
 
 		self.b1_20 = self.bi.Get("pass_soft")
 		self.b2_20 = self.bi.Get("pass_jet_pt")
+		self.b3_20 = self.bi.Get("jet_pt_soft_pass_wide4_wide")
 		
 		self.bj = TFile.Open(bfile5, "READ")
 		self.bj.ls();
 
 		self.b1_25 = self.bj.Get("pass_soft")
 		self.b2_25 = self.bj.Get("pass_jet_pt")
+		self.b3_25 = self.bj.Get("jet_pt_soft_pass_wide4_wide")
 		
 		self.bk = TFile.Open(bfile6, "READ")
 		self.bk.ls();
 
 		self.b1_30 = self.bk.Get("pass_soft")
 		self.b2_30 = self.bk.Get("pass_jet_pt")
+		self.b3_30 = self.bk.Get("jet_pt_soft_pass_wide4_wide")
 		
 		self.bl = TFile.Open(bfile7, "READ")
 		self.bl.ls();
 
 		self.b1_50 = self.bl.Get("pass_soft")
 		self.b2_50 = self.bl.Get("pass_jet_pt")
+		self.b3_50 = self.bl.Get("jet_pt_soft_pass_wide4_wide")
 		
 		sig_low = self.b1_20.GetXaxis().FindBin(low)
 		sig_high = self.b1_20.GetXaxis().FindBin(high)
@@ -135,7 +149,23 @@ class drawRData:
 		self.b2_30.SetLineColor(kRed)
 		self.b1_50.SetLineColor(kRed)
 		self.b2_50.SetLineColor(kRed)
+	
+		self.h3_5_highpt = self.h3_5.ProjectionY("sdm_5ddt_highpt", 6, 15)
+		self.h3_10_highpt = self.h3_10.ProjectionY("sdm_10ddt_highpt", 6, 15)
+		self.h3_15_highpt = self.h3_15.ProjectionY("sdm_15ddt_highpt", 6, 15)
+		self.h3_20_highpt = self.h3_20.ProjectionY("sdm_20ddt_highpt", 6, 15)
+		self.h3_25_highpt = self.h3_25.ProjectionY("sdm_25ddt_highpt", 6, 15)
+		self.h3_30_highpt = self.h3_30.ProjectionY("sdm_30ddt_highpt", 6, 15)
+		self.h3_50_highpt = self.h3_50.ProjectionY("sdm_50ddt_highpt", 6, 15)
 		
+		self.b3_5_highpt = self.b3_5.ProjectionY("sdm_back_5ddt_highpt", 6, 15)
+		self.b3_10_highpt = self.b3_10.ProjectionY("sdm_back_10ddt_highpt", 6, 15)
+		self.b3_15_highpt = self.b3_15.ProjectionY("sdm_back_15ddt_highpt", 6, 15)
+		self.b3_20_highpt = self.b3_20.ProjectionY("sdm_back_20ddt_highpt", 6, 15)
+		self.b3_25_highpt = self.b3_25.ProjectionY("sdm_back_25ddt_highpt", 6, 15)
+		self.b3_30_highpt = self.b3_30.ProjectionY("sdm_back_30ddt_highpt", 6, 15)
+		self.b3_50_highpt = self.b3_50.ProjectionY("sdm_back_50ddt_highpt", 6, 15)
+			
 		
 		FindAndSetMax(self.b1_5, self.h1_5)
 		FindAndSetMax(self.b1_10, self.h1_10)
@@ -153,6 +183,14 @@ class drawRData:
 		S30 = self.h1_30.Integral(sig_low, sig_high)
 		S50 = self.h1_50.Integral(sig_low, sig_high)
 		
+		S5_high = self.h3_5_highpt.Integral(sig_low, sig_high)
+		S10_high = self.h3_10_highpt.Integral(sig_low, sig_high)
+		S15_high = self.h3_15_highpt.Integral(sig_low, sig_high)
+		S20_high = self.h3_20_highpt.Integral(sig_low, sig_high)
+		S25_high = self.h3_25_highpt.Integral(sig_low, sig_high)
+		S30_high = self.h3_30_highpt.Integral(sig_low, sig_high)
+		S50_high = self.h3_50_highpt.Integral(sig_low, sig_high)
+		
 		B5 = self.b1_5.Integral(sig_low, sig_high)
 		B10 = self.b1_10.Integral(sig_low, sig_high)
 		B15 = self.b1_15.Integral(sig_low, sig_high)
@@ -160,6 +198,14 @@ class drawRData:
 		B25 = self.b1_25.Integral(sig_low, sig_high)
 		B30 = self.b1_30.Integral(sig_low, sig_high)
 		B50 = self.b1_50.Integral(sig_low, sig_high)
+		
+		B5_high = self.b3_5_highpt.Integral(sig_low, sig_high)
+		B10_high = self.b3_10_highpt.Integral(sig_low, sig_high)
+		B15_high = self.b3_15_highpt.Integral(sig_low, sig_high)
+		B20_high = self.b3_20_highpt.Integral(sig_low, sig_high)
+		B25_high = self.b3_25_highpt.Integral(sig_low, sig_high)
+		B30_high = self.b3_30_highpt.Integral(sig_low, sig_high)
+		B50_high = self.b3_50_highpt.Integral(sig_low, sig_high)
 
 		SRB5 = S5/sqrt(B5)
 		SRB10 = S10/sqrt(B10)
@@ -168,7 +214,31 @@ class drawRData:
 		SRB25 = S25/sqrt(B25)
 		SRB30 = S30/sqrt(B30)
 		SRB50 = S50/sqrt(B50)
+		
+		SRB5_high = S5_high/sqrt(B5_high)
+		SRB10_high = S10_high/sqrt(B10_high)
+		SRB15_high = S15_high/sqrt(B15_high)
+		SRB20_high = S20_high/sqrt(B20_high)
+		SRB25_high = S25_high/sqrt(B25_high)
+		SRB30_high = S30_high/sqrt(B30_high)
+		SRB50_high = S50_high/sqrt(B50_high)
 
+
+		print("S5: "+str(S5)+" B5: "+str(B5))
+		print("S10: "+str(S10)+" B10: "+str(B10))
+		print("S15: "+str(S15)+" B15: "+str(B15))
+		print("S20: "+str(S20)+" B20: "+str(B20))
+		print("S25: "+str(S25)+" B25: "+str(B25))
+		print("S30: "+str(S30)+" B30: "+str(B30))
+		print("S50: "+str(S50)+" B50: "+str(B50))
+		
+		print("S5_high: "+str(S5_high)+" B5_high: "+str(B5_high))
+		print("S10_high: "+str(S10_high)+" B10_high: "+str(B10_high))
+		print("S15_high: "+str(S15_high)+" B15_high: "+str(B15_high))
+		print("S20_high: "+str(S20_high)+" B20_high: "+str(B20_high))
+		print("S25_high: "+str(S25_high)+" B25_high: "+str(B25_high))
+		print("S30_high: "+str(S30_high)+" B30_high: "+str(B30_high))
+		print("S50_high: "+str(S50_high)+" B50_high: "+str(B50_high))
 
 		ROOT.gStyle.SetOptStat(0)
 
@@ -373,4 +443,21 @@ class drawRData:
 
 		c_srb.SaveAs("./plots/SRB_btag_"+name+".png")
 		c_srb.Close()
+		
+		self.SRB_high = TGraph(7)
+		self.SRB_high.SetPoint(1,5,SRB5_high)
+		self.SRB_high.SetPoint(2,10,SRB10_high)
+		self.SRB_high.SetPoint(3,15,SRB15_high)
+		self.SRB_high.SetPoint(4,20,SRB20_high)
+		self.SRB_high.SetPoint(5,25,SRB25_high)
+		self.SRB_high.SetPoint(6,30,SRB30_high)
+		self.SRB_high.SetPoint(7,50,SRB50_high)
+		self.SRB_high.SetTitle("Jet pT > 200: S/Root(B) For "+name+" Sample;DDT%;S/Root(B)")
+
+		c_srb_high = TCanvas()
+		c_srb_high.cd()
+		self.SRB_high.Draw("AL*")
+
+		c_srb_high.SaveAs("./plots/SRB_high_btag_"+name+".png")
+		c_srb_high.Close()
 		
