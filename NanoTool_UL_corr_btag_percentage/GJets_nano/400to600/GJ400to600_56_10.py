@@ -12,7 +12,7 @@ if __name__ == "__main__":
 
 
 	#files = [["/cms/xaastorage/NanoAOD/2018/JUNE19/UL/EGamma_RunA/branch_present", str(1.0), 1],["/cms/xaastorage/NanoAOD/2018/JUNE19/UL/EGamma_RunA/branch_missing", str(1.0), 2], ["/cms/xaastorage/NanoAOD/2018/JUNE19/UL/EGamma_RunB/", str(1.0), 1], ["/cms/xaastorage/NanoAOD/2018/JUNE19/UL/EGamma_RunC/", str(1.0), 1], ["/cms/xaastorage/NanoAOD/2018/JUNE19/UL/EGamma_RunD/", str(1.0), 1]]
-	files = ["/cms/akobert/NanoToolOutput/UL/GJets/400to600/jetToolbox_nano_mc_2018GJetsHT400to600_51.root", str(59.9 * 8260200.0/4786197.0), 1, "mc"]
+	files = ["/cms/akobert/NanoToolOutput/UL/GJets/400to600/jetToolbox_nano_mc_2018GJetsHT400to600_51.root", str(59.9 * 260200.0/4786197.0), 1, "mc"]
 
 	cutfile = "/home/akobert/CMSSW_11_1_0_pre7/src/RData/NanoTool_UL_corr_btag_percentage/RData_Cutoffs_nano.root"
 	cf = TFile(cutfile)

@@ -8,7 +8,7 @@ if __name__ == "__main__":
         newFile = open("GJ400to600_" + str(process) + "_50.py", "a+")
        	readLine = allFiles.readline()
 	oldline1 = "files = [\"/cms/xaastorage/NanoAOD/2018/JUNE19/UL/EGamma_RunA/branch_present/jetToolbox_dataA2018_0.root\", str(1.0), 1]"
-	newline1 = "files = [\""+str(readLine[:-1])+"\", str(59.9 * 8260200.0/4786197.0), 1, \"mc\"]"
+	newline1 = "files = [\""+str(readLine[:-1])+"\", str(59.9 * 260200.0/4786197.0), 1, \"mc\"]"
 	
 	oldline2 = "fname = \"DataA_present_UL_0\""
 	newline2 = "fname = \"GJ400to600_UL_nano_"+str(process)+"_50\""

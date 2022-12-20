@@ -1,0 +1,1000 @@
+ 1519  cmsenv
+ 1520  rm plots/*
+ 1521  ls
+ 1522  vim drawRData.py
+ 1523  ls plots/
+ 1524  ls
+ 1525  python drawRData_10GeV.py 
+ 1526  python drawRData_20GeV.py 
+ 1527  python drawRData_25GeV.py 
+ 1528  python drawRData_50GeV.py 
+ 1529  python drawRData_75GeV.py 
+ 1530  python drawRData_100GeV.py 
+ 1531  python drawRData_125GeV.py 
+ 1532  python drawRData_150GeV.py 
+ 1533  cd ../SRootB
+ 1534  ls
+ 1535  vim drawRData.py 
+ 1536  ls plots/
+ 1537  python drawRData_10GeV.py 
+ 1538  vim drawRData.py
+ 1539  vim drawRData_50GeV.py 
+ 1540  cd ../
+ 1541  ls
+ 1542  cd NanoTool_UL
+ 1543  ls
+ 1544  cd signalMC_nano/M10/
+ 1545  ls
+ 1546  ls input.txt 
+ 1547  cat input.txt 
+ 1548  ls
+ 1549  rm nano_Sample.py 
+ 1550  ls
+ 1551  ls ../M25/
+ 1552  diff setup.py ../M25/setup.py 
+ 1553  python setup.py 
+ 1554  ls
+ 1555  vim run.*
+ 1556  vim input.txt 
+ 1557  condor_submit run.jdl 
+ 1558  cd ../M20/
+ 1559  ls
+ 1560  rm nano_Sample.py 
+ 1561  python setup.py 
+ 1562  condor_submit run.jdl 
+ 1563  cd ../M50/
+ 1564  ls
+ 1565  rm nano_Sample.py 
+ 1566  python setup.py 
+ 1567  condor_submit run.jdl 
+ 1568  condor_q akobert
+ 1569  cd ../
+ 1570  ls
+ 1571  mkdir M75
+ 1572  cd M75/
+ 1573  ls
+ 1574  cp ../../../NanoTool_UL_btag/signalMC_nano/M75/* .
+ 1575  ls
+ 1576  rm M75_*
+ 1577  ls
+ 1578  vim *
+ 1579  ls
+ 1580  python setup.py 
+ 1581  ls
+ 1582  vim setup.py 
+ 1583  vim M75_0.py 
+ 1584  ls
+ 1585  condor_submit run.jdl 
+ 1586  cd ../
+ 1587  ls
+ 1588  mkdir M100
+ 1589  mkdir M125
+ 1590  mkdir M150
+ 1591  cd M100
+ 1592  ls
+ 1593  cp ../../../NanoTool_UL_btag/signalMC_nano/M100/* .
+ 1594  ls
+ 1595  rm M100_*
+ 1596  ls
+ 1597  vim *
+ 1598  ls
+ 1599  python setup.py 
+ 1600  condor_submit run.jdl 
+ 1601  cd ../M125/
+ 1602  ls
+ 1603  cp ../../../NanoTool_UL_btag/signalMC_nano/M125/* .
+ 1604  ls
+ 1605  rm M125_*
+ 1606  ls
+ 1607  vim *
+ 1608  ls
+ 1609  python setup.py 
+ 1610  condor_submit run.jdl 
+ 1611  cd ../M150/
+ 1612  ls
+ 1613  cp ../../../NanoTool_UL_btag/signalMC_nano/M150/* .
+ 1614  ls
+ 1615  rm M150_*
+ 1616  ls
+ 1617  vim *
+ 1618  ls
+ 1619  python setup.py 
+ 1620  condor_submit run.jdl 
+ 1621  condor_q akobert
+ 1622  cd ../../
+ 1623  ls
+ 1624  ls output/
+ 1625  condor_q akobert
+ 1626  ./merge.sh M10_UL_nano
+ 1627  ./merge.sh M20_UL_nano
+ 1628  ./merge.sh M50_UL_nano
+ 1629  ./merge.sh M75_UL_nano
+ 1630  ./merge.sh M100_UL_nano
+ 1631  ./merge.sh M125_UL_nano
+ 1632  condor_q akoberrt
+ 1633  condor_q akobert
+ 1634  ./merge.sh M150_UL_nano
+ 1635  condor_q akoberrt
+ 1636  condor_q akobert
+ 1637  ls
+ 1638  cd ../NanoTool_UL_draw/SRootB
+ 1639  ls
+ 1640  python drawRData_10GeV.py 
+ 1641  root -l ../../NanoTool_UL_percentage/GJ_UL_5.root 
+ 1642  ls
+ 1643  cd ../../NanoTool_UL_percentage/
+ 1644  ls
+ 1645  vim Analysis_Processor_nano.py
+ 1646  cat CondorFiles/logfiles_GJ100to200_nano_29135
+ 1647  cat CondorFiles/logfiles_GJ100to200_nano_2913584_0_50.log 
+ 1648  vim Analysis_Processor_nano.py
+ 1649  ls
+ 1650  rm GJ*
+ 1651  ls
+ 1652  rm M*
+ 1653  ls
+ 1654  cd GJets_nano/100to200/
+ 1655  ls
+ 1656  condor_submit run_5.jdl 
+ 1657  condor_submit run_10.jdl 
+ 1658  condor_submit run_15.jdl 
+ 1659  condor_submit run_25.jdl 
+ 1660  condor_submit run_30.jdl 
+ 1661  condor_submit run_50.jdl 
+ 1662  cd ../200to400/
+ 1663  condor_submit run_5.jdl 
+ 1664  condor_submit run_10.jdl 
+ 1665  condor_submit run_15.jdl 
+ 1666  condor_submit run_25.jdl 
+ 1667  condor_submit run_30.jdl 
+ 1668  condor_submit run_50.jdl 
+ 1669  condor_q akobert
+ 1670  cd ../400to600/
+ 1671  condor_submit run_5.jdl 
+ 1672  condor_submit run_10.jdl 
+ 1673  condor_submit run_15.jdl 
+ 1674  condor_submit run_25.jdl 
+ 1675  condor_submit run_30.jdl 
+ 1676  condor_submit run_50.jdl 
+ 1677  cd ../600toInf/
+ 1678  condor_submit run_5.jdl 
+ 1679  condor_submit run_10.jdl 
+ 1680  condor_submit run_15.jdl 
+ 1681  condor_submit run_25.jdl 
+ 1682  condor_submit run_30.jdl 
+ 1683  condor_submit run_50.jdl 
+ 1684  cd ../../
+ 1685  ls
+ 1686  cd signalMC_nano/M10
+ 1687  ls
+ 1688  condor_submit run_5.jdl 
+ 1689  condor_submit run_10.jdl 
+ 1690  condor_submit run_15.jdl 
+ 1691  condor_submit run_25.jdl 
+ 1692  condor_submit run_30.jdl 
+ 1693  condor_submit run_50.jdl 
+ 1694  cd ../M20/
+ 1695  condor_submit run_5.jdl 
+ 1696  condor_submit run_10.jdl 
+ 1697  condor_submit run_15.jdl 
+ 1698  condor_submit run_25.jdl 
+ 1699  condor_submit run_30.jdl 
+ 1700  condor_submit run_50.jdl 
+ 1701  cd ../M25
+ 1702  condor_submit run_5.jdl 
+ 1703  condor_submit run_10.jdl 
+ 1704  condor_submit run_15.jdl 
+ 1705  condor_submit run_25.jdl 
+ 1706  condor_submit run_30.jdl 
+ 1707  condor_submit run_50.jdl 
+ 1708  cd ../M50/
+ 1709  ls
+ 1710  condor_q akobert
+ 1711  condor_submit run_5.jdl 
+ 1712  condor_submit run_10.jdl 
+ 1713  condor_submit run_15.jdl 
+ 1714  condor_submit run_25.jdl 
+ 1715  condor_submit run_30.jdl 
+ 1716  condor_submit run_50.jdl 
+ 1717  cd ../M75/
+ 1718  condor_submit run_5.jdl 
+ 1719  condor_submit run_10.jdl 
+ 1720  condor_submit run_15.jdl 
+ 1721  condor_submit run_25.jdl 
+ 1722  condor_submit run_30.jdl 
+ 1723  condor_submit run_50.jdl 
+ 1724  condor_q akobert
+ 1725  cd ../M100
+ 1726  condor_submit run_5.jdl 
+ 1727  condor_submit run_10.jdl 
+ 1728  condor_submit run_15.jdl 
+ 1729  condor_submit run_25.jdl 
+ 1730  condor_submit run_30.jdl 
+ 1731  condor_submit run_50.jdl 
+ 1732  cd ../M125/
+ 1733  condor_submit run_5.jdl 
+ 1734  condor_submit run_10.jdl 
+ 1735  condor_submit run_15.jdl 
+ 1736  condor_submit run_25.jdl 
+ 1737  condor_submit run_30.jdl 
+ 1738  condor_submit run_50.jdl 
+ 1739  cd ../M150/
+ 1740  condor_submit run_5.jdl 
+ 1741  condor_submit run_10.jdl 
+ 1742  condor_submit run_15.jdl 
+ 1743  condor_submit run_25.jdl 
+ 1744  condor_submit run_30.jdl 
+ 1745  condor_submit run_50.jdl 
+ 1746  condor_q akobert
+ 1747  ls
+ 1748  cd ../../
+ 1749  ls
+ 1750  ls output/
+ 1751  ./merge_5 GJ100to200_UL_nano
+ 1752  ./merge_5.sh GJ100to200_UL_nano
+ 1753  ls
+ 1754  cp merge_5.sh merge_all.sh
+ 1755  vim merge_all.sh 
+ 1756  ./merge_all.sh GJ100to200_UL_nano
+ 1757  ./merge_all.sh GJ200to400_UL_nano
+ 1758  ./merge_all.sh GJ400to600_UL_nano
+ 1759  ./merge_all.sh GJ600toInf_UL_nano
+ 1760  ls
+ 1761  ls output/
+ 1762  ls
+ 1763  ./merge_all.sh M10_UL_nano
+ 1764  ./merge_all.sh M20_UL_nano
+ 1765  ./merge_all.sh M25_UL_nano
+ 1766  ./merge_all.sh M50_UL_nano
+ 1767  ./merge_all.sh M75_UL_nano
+ 1768  ./merge_all.sh M100_UL_nano
+ 1769  ./merge_all.sh M125_UL_nano
+ 1770  ./merge_all.sh M150_UL_nano
+ 1771  cd ../
+ 1772  ls
+ 1773  cd NanoTool_UL_draw/
+ 1774  ls
+ 1775  cd SRootB
+ 1776  ls
+ 1777  ls plots/
+ 1778  python drawRData_10GeV.py 
+ 1779  vim drawRData.py
+ 1780  cd ../
+ 1781  cd ../NanoTool_UL_percentage/
+ 1782  ls
+ 1783  ./Full_merge_5 GJ GJ
+ 1784  ./Full_merge_5.sh GJ GJ
+ 1785  ./Full_merge_10.sh GJ GJ
+ 1786  ./Full_merge_15.sh GJ GJ
+ 1787  ./Full_merge_25.sh GJ GJ
+ 1788  ./Full_merge_30.sh GJ GJ
+ 1789  ./Full_merge_50.sh GJ GJ
+ 1790  cd ../NanoTool_UL_draw/SRootB
+ 1791  vim drawRData.py
+ 1792  python drawRData_10GeV.py 
+ 1793  python drawRData_20GeV.py 
+ 1794  python drawRData_24GeV.py 
+ 1795  python drawRData_25GeV.py 
+ 1796  python drawRData_50GeV.py 
+ 1797  python drawRData_75GeV.py 
+ 1798  python drawRData_100GeV.py 
+ 1799  python drawRData_125GeV.py 
+ 1800  python drawRData_150GeV.py 
+ 1801  ls
+ 1802  ls plots/
+ 1803  cd ../SRootB_btag/
+ 1804  ls
+ 1805  vim drawRData.py
+ 1806  rm plots/
+ 1807  rm plots/*
+ 1808  ls
+ 1809  python drawRData_10GeV.py 
+ 1810  python drawRData_20GeV.py 
+ 1811  python drawRData_25GeV.py 
+ 1812  python drawRData_50GeV.py 
+ 1813  python drawRData_75GeV.py 
+ 1814  python drawRData_100GeV.py 
+ 1815  python drawRData_125GeV.py 
+ 1816  python drawRData_150GeV.py 
+ 1817  ls
+ 1818  ls plots/
+ 1819  exit
+ 1820  cd CMSSW_11_1_0_pre7/src/RData/
+ 1821  ls
+ 1822  cd NanoTool_UL_percentage/
+ 1823  ls
+ 1824  cd ../NanoTool_UL
+ 1825  ls
+ 1826  diff Analysis_Processor_nano.py ../NanoTool_UL_percentage/Analysis_Processor_nano.py
+ 1827  ls
+ 1828  vim Analysis_Processor_nano.py
+ 1829  ls
+ 1830  cd ../NanoTool_UL_percentage/
+ 1831  ls
+ 1832  cd Cutoff_Generator_nano.py 
+ 1833  vim Cutoff_Generator_nano.py 
+ 1834  cd ../NanoTool_UL_draw/SRootB
+ 1835  ls
+ 1836  vim *
+ 1837  cd ../
+ 1838  ls
+ 1839  cd ../
+ 1840  ls
+ 1841  cd NanoTool_UL_percentage/
+ 1842  ls
+ 1843  rm RData_Cutoffs_nano.root 
+ 1844  ls
+ 1845  vim Cutoff_Generator_nano.py 
+ 1846  cp ../NanoTool_UL/RData_Cutoffs_nano.root .
+ 1847  ls
+ 1848  vim CondorFiles/logfiles_M25_nano_2913
+ 1849  vim CondorFiles/logfiles_M25_nano_2913690_0_50.log 
+ 1850  vim CondorFiles/logfiles_M75_nano_2913 ../NanoTool_UL/CondorFiles/logfiles_M75_nano_2913645_0.log 
+ 1851  vim CondorFiles/logfiles_M75_nano_2913702_0_50.log ../NanoTool_UL/CondorFiles/logfiles_M75_nano_2913645_0.log 
+ 1852  ls
+ 1853  rm GJ*
+ 1854  ls
+ 1855  rm M*
+ 1856  ls
+ 1857  rm output/*
+ 1858  ls
+ 1859  rm CondorFiles/*
+ 1860  rm CondorFiles/logfiles_
+ 1861  rm CondorFiles/logfiles_*
+ 1862  rm CondorFiles/run_2913*
+ 1863  ls
+ 1864  cd GJets_nano/
+ 1865  ls
+ 1866  cd 100to200/
+ 1867  ls
+ 1868  condor_submit run_5.jdl 
+ 1869  condor_submit run_10.jdl 
+ 1870  condor_submit run_15.jdl 
+ 1871  condor_submit run_25.jdl 
+ 1872  condor_submit run_30.jdl 
+ 1873  condor_submit run_50.jdl 
+ 1874  cd ../200to400/
+ 1875  condor_submit run_5.jdl 
+ 1876  condor_submit run_10.jdl 
+ 1877  condor_submit run_15.jdl 
+ 1878  condor_submit run_120.jdl 
+ 1879  condor_submit run_20.jdl 
+ 1880  condor_submit run_25.jdl 
+ 1881  condor_submit run_30.jdl 
+ 1882  condor_submit run_50.jdl 
+ 1883  cd ../400to600/
+ 1884  condor_submit run_5.jdl 
+ 1885  condor_submit run_10.jdl 
+ 1886  condor_submit run_15.jdl 
+ 1887  condor_submit run_25.jdl 
+ 1888  condor_submit run_30.jdl 
+ 1889  condor_submit run_50.jdl 
+ 1890  cd ../600toInf/
+ 1891  condor_submit run_5.jdl 
+ 1892  condor_submit run_10.jdl 
+ 1893  condor_submit run_15.jdl 
+ 1894  condor_submit run_25.jdl 
+ 1895  condor_submit run_30.jdl 
+ 1896  condor_submit run_50.jdl 
+ 1897  condor_q akobert
+ 1898  cd ../../signalMC_nano/M10
+ 1899  condor_submit run_5.jdl 
+ 1900  condor_submit run_10.jdl 
+ 1901  condor_submit run_15.jdl 
+ 1902  condor_submit run_25.jdl 
+ 1903  condor_submit run_30.jdl 
+ 1904  condor_submit run_50.jdl 
+ 1905  cd ../M20/
+ 1906  condor_submit run_5.jdl 
+ 1907  condor_submit run_10.jdl 
+ 1908  condor_submit run_15.jdl 
+ 1909  condor_submit run_25.jdl 
+ 1910  condor_submit run_30.jdl 
+ 1911  condor_submit run_50.jdl 
+ 1912  cd ../M25
+ 1913  condor_submit run_5.jdl 
+ 1914  condor_submit run_10.jdl 
+ 1915  condor_submit run_15.jdl 
+ 1916  condor_submit run_25.jdl 
+ 1917  condor_submit run_30.jdl 
+ 1918  condor_submit run_50.jdl 
+ 1919  cd ../M50
+ 1920  condor_submit run_5.jdl 
+ 1921  condor_submit run_10.jdl 
+ 1922  condor_submit run_15.jdl 
+ 1923  condor_submit run_25.jdl 
+ 1924  condor_submit run_30.jdl 
+ 1925  condor_submit run_50.jdl 
+ 1926  cd ../M75
+ 1927  condor_submit run_5.jdl 
+ 1928  condor_submit run_10.jdl 
+ 1929  condor_submit run_15.jdl 
+ 1930  condor_submit run_25.jdl 
+ 1931  condor_submit run_30.jdl 
+ 1932  condor_submit run_50.jdl 
+ 1933  cd ../M100
+ 1934  condor_submit run_5.jdl 
+ 1935  condor_submit run_10.jdl 
+ 1936  condor_submit run_15.jdl 
+ 1937  condor_submit run_25.jdl 
+ 1938  condor_submit run_30.jdl 
+ 1939  condor_submit run_50.jdl 
+ 1940  cd ../M125/
+ 1941  condor_submit run_5.jdl 
+ 1942  condor_submit run_10.jdl 
+ 1943  condor_submit run_15.jdl 
+ 1944  condor_submit run_25.jdl 
+ 1945  condor_submit run_30.jdl 
+ 1946  condor_submit run_50.jdl 
+ 1947  cd ../M150/
+ 1948  condor_submit run_5.jdl 
+ 1949  condor_submit run_10.jdl 
+ 1950  condor_submit run_15.jdl 
+ 1951  condor_submit run_25.jdl 
+ 1952  condor_submit run_30.jdl 
+ 1953  condor_submit run_50.jdl 
+ 1954  condor_q akobert
+ 1955  quota -s
+ 1956  cd ../../
+ 1957  cd ../NanoTool_UL
+ 1958  ls
+ 1959  rm GJ* M*
+ 1960  ls
+ 1961  cd GJets_nano/100to200/
+ 1962  ls
+ 1963  condor_submit run.jdl 
+ 1964  cd ../200to400/
+ 1965  condor_submit run.jdl 
+ 1966  cd ../400to600/
+ 1967  condor_submit run.jdl 
+ 1968  cd ../600toInf/
+ 1969  condor_submit run.jdl 
+ 1970  cd ../../
+ 1971  ls
+ 1972  ls output/
+ 1973  rm output/RData_M*
+ 1974  condor_q akobert
+ 1975  ls
+ 1976  ls output/
+ 1977  cd signalMC_nano/M10
+ 1978  ls
+ 1979  condor_submit run.jdl 
+ 1980  cd ../M20/
+ 1981  condor_submit run.jdl 
+ 1982  cd ../M25/
+ 1983  condor_submit run.jdl 
+ 1984  cd ../M50/
+ 1985  condor_submit run.jdl 
+ 1986  cd ../M75
+ 1987  condor_submit run.jdl 
+ 1988  cd ../M100
+ 1989  condor_submit run.jdl 
+ 1990  cd ../M125/
+ 1991  condor_submit run.jdl 
+ 1992  cd ../M150/
+ 1993  condor_submit run.jdl 
+ 1994  condor_q akobert
+ 1995  ls
+ 1996  condor_q akobert
+ 1997  cd ../../
+ 1998  ls
+ 1999  condor_q akobert
+ 2000  exit
+ 2001  ls
+ 2002  condor_q akobert
+ 2003  quota -s
+ 2004  cd CMSSW_11_1_0_pre7/src/RData/NanoTool_UL
+ 2005  ls
+ 2006  ls output/
+ 2007  rm output/RData_flat_UL_nano_*
+ 2008  cmsenv
+ 2009  ./merge.sh GJ100to200_UL_nano
+ 2010  ./merge.sh GJ200to400_UL_nano
+ 2011  ./merge.sh GJ400to600_UL_nano
+ 2012  ./merge.sh GJ600toInf_UL_nano
+ 2013  ls
+ 2014  ls output/
+ 2015  rm output/RData_GJ*
+ 2016  ls output/
+ 2017  ./merge.sh M10_UL_nano
+ 2018  ./merge.sh M20_UL_nano
+ 2019  ./merge.sh M25_UL_nano
+ 2020  ./merge.sh M50_UL_nano
+ 2021  ./merge.sh M75_UL_nano
+ 2022  ./merge.sh M100_UL_nano
+ 2023  ./merge.sh M125_UL_nano
+ 2024  ./merge.sh M150_UL_nano
+ 2025  ls
+ 2026  jobs
+ 2027  cd ../NanoTool_UL_percentage/
+ 2028  ls
+ 2029  ls output/
+ 2030  ls
+ 2031  ./merge_all.sh GJ100to200_UL_nano
+ 2032  ./merge_all.sh GJ200to400_UL_nano
+ 2033  ./merge_all.sh GJ400to600_UL_nano
+ 2034  ./merge_all.sh GJ600toInf_UL_nano
+ 2035  ls
+ 2036  rm output/RData_GJ*
+ 2037  ls output/
+ 2038  ./merge_all.sh M10_UL_nano
+ 2039  ./merge_all.sh M20_UL_nano
+ 2040  ./merge_all.sh M25_UL_nano
+ 2041  ./merge_all.sh M50_UL_nano
+ 2042  ./merge_all.sh M75_UL_nano
+ 2043  ./merge_all.sh M100_UL_nano
+ 2044  ./merge_all.sh M125_UL_nano
+ 2045  ./merge_all.sh M150_UL_nano
+ 2046  jobs
+ 2047  ls
+ 2048  ./Full_merge_5.sh GJ GJ
+ 2049  ./Full_merge_10.sh GJ GJ
+ 2050  ./Full_merge_15.sh GJ GJ
+ 2051  ./Full_merge_25.sh GJ GJ
+ 2052  ./Full_merge_30.sh GJ GJ
+ 2053  ./Full_merge_50.sh GJ GJ
+ 2054  cd ../NanoTool_UL
+ 2055  ls
+ 2056  ./Full_merge.sh GJ GJ
+ 2057  ls
+ 2058  jobs
+ 2059  condor_q akobert
+ 2060  cd ../NanoTool_UL_draw/
+ 2061  ls
+ 2062  cd SRootB
+ 2063  ls
+ 2064  rm plots/
+ 2065  ls
+ 2066  rm plots/*
+ 2067  ls plots/
+ 2068  ls
+ 2069  python drawRData_10GeV.py 
+ 2070  python drawRData_20GeV.py 
+ 2071  python drawRData_25GeV.py 
+ 2072  python drawRData_50GeV.py 
+ 2073  python drawRData_75GeV.py 
+ 2074  python drawRData_100GeV.py 
+ 2075  python drawRData_125GeV.py 
+ 2076  python drawRData_150GeV.py 
+ 2077  jobs
+ 2078  ls
+ 2079  cd ../../NanoTool_UL_percentage/
+ 2080  ls
+ 2081  cp nano_Sample_25.py nano_Sample_20.py
+ 2082  vim nano_Sample_20.py 
+ 2083  ls
+ 2084  cp merge_25.sh merge_20.sh
+ 2085  vim merge_20.sh 
+ 2086  cp Full_merge_25.sh Full_merge_20.sh
+ 2087  vim Full_merge_20.sh 
+ 2088  rm output/RData_M*
+ 2089  ls
+ 2090  cd GJets_nano/
+ 2091  ls
+ 2092  cd 100to200/
+ 2093  ls
+ 2094  rm GJ*
+ 2095  ls
+ 2096  cp setup_25.py setup_20.py
+ 2097  cp run_25.sh run_20.sh
+ 2098  cp run_25.jdl run_20.jdl
+ 2099  vim *25*
+ 2100  cd ../
+ 2101  ls
+ 2102  cd GJets_nano/
+ 2103  ls
+ 2104  cd 100to200/
+ 2105  ls
+ 2106  vim setup_10.py 
+ 2107  vim run_10.sh 
+ 2108  vim run_*.sh
+ 2109  cd ../../
+ 2110  ls
+ 2111  cat CondorFiles/logfiles_GJ100to200_nano_2913728_0_25.log 
+ 2112  cat ../NanoTool_UL/CondorFiles/logfiles_GJ100to200_nano_2913797_0.log 
+ 2113  cd ../
+ 2114  ls
+ 2115  grep "SRB" *
+ 2116  grep "SRB" */*
+ 2117  cd Percentage_Sample/
+ 2118  ls
+ 2119  vim 10sample_percentage.py 
+ 2120  cd ../
+ 2121  ls
+ 2122  cd NanoTool_UL_percentage/
+ 2123  ls
+ 2124  cd GJets_nano/100to200/
+ 2125  ls
+ 2126  vim *20*
+ 2127  vim *25*
+ 2128  ls
+ 2129  python setup_20.py 
+ 2130  ls
+ 2131  vim GJ100to200_20_20.py 
+ 2132  condor_submit run_20.jdl 
+ 2133  cd ../200to400/
+ 2134  ls
+ 2135  rm GJ200to400_*
+ 2136  ls
+ 2137  vim run_25.jdl 
+ 2138  cp run_25.jdl run_20.jdl
+ 2139  cp run_25.sh run_20.sh
+ 2140  cp setup_25.py setup_20.py
+ 2141  ls
+ 2142  vim *20*
+ 2143  ls
+ 2144  python setup_20.py 
+ 2145  condor_submit run_20.jdl 
+ 2146  cd ../400to600/
+ 2147  ls
+ 2148  rm GJ*
+ 2149  ls
+ 2150  cp run_25.jdl run_20.jdl
+ 2151  cp run_25.sh run_20.sh
+ 2152  cp setup_25.py setup_20.py
+ 2153  vim *20*
+ 2154  python setup_20.py 
+ 2155  condor_submit run_20.jdl 
+ 2156  cd ../600toInf/
+ 2157  ls
+ 2158  rm GJ*
+ 2159  cd ../400to600/
+ 2160  ls
+ 2161  cd ../600toInf/
+ 2162  ls
+ 2163  cp setup_25.py setup_20.py
+ 2164  cp run_25.sh run_20.sh
+ 2165  cp run_25.jdl run_20.jdl
+ 2166  ls
+ 2167  vim *20*
+ 2168  ls
+ 2169  python setup_20.py 
+ 2170  condor_submit run_20.jdl 
+ 2171  condor_q akobert
+ 2172  cd ../../
+ 2173  ls
+ 2174  cd signalMC_nano/M50/
+ 2175  ls
+ 2176  rm M50_
+ 2177  rm M50_*
+ 2178  ls
+ 2179  cp setup_25.py setup_20.py
+ 2180  cp run_25.sh  run_20.sh
+ 2181  cp run_25.jdl run_20.jdl
+ 2182  ls
+ 2183  vim *20*
+ 2184  ls
+ 2185  python setup_20.py 
+ 2186  condor_submit run_20.jdl 
+ 2187  condor_q akobert
+ 2188  ls
+ 2189  vim M50_20_20.py 
+ 2190  cd ../../../NanoTool_UL
+ 2191  ls
+ 2192  vim signalMC_nano/M50/M50_25.py 
+ 2193  cd ../NanoTool_UL_percentage/
+ 2194  ls
+ 2195  condor_q akobert
+ 2196  ls
+ 2197  ls output/
+ 2198  ./merge_20.sh M50_UL_nano
+ 2199  ls output/
+ 2200  ./merge_20.sh GJ100to200_UL_nano
+ 2201  ./merge_20.sh GJ200to400_UL_nano
+ 2202  ./merge_20.sh GJ400to600_UL_nano
+ 2203  ./merge_20.sh GJ600toInf_UL_nano
+ 2204  ls
+ 2205  cat Full_merge_20.sh 
+ 2206  ./Full_merge_20.sh GJ GJ
+ 2207  condor_q akobert
+ 2208  jobs
+ 2209  ls
+ 2210  cd ../NanoTool_UL_draw/SRootB
+ 2211  ls
+ 2212  vim drawRData_50GeV.py 
+ 2213  python drawRData_50GeV.py 
+ 2214  display plots/SRB_50GeV.png 
+ 2215  cd ../../
+ 2216  ls
+ 2217  cd NanoTool_UL_percentage/
+ 2218  ls
+ 2219  cd signalMC_nano/M10
+ 2220  ls
+ 2221  rm M10_*
+ 2222  cd ../
+ 2223  ls *
+ 2224  rm */M*
+ 2225  ls
+ 2226  cd M10
+ 2227  ls
+ 2228  cp setup_25.py setup_20.py
+ 2229  cp run_25.sh run_20.sh
+ 2230  cp run_25.jdl run_20.jdl
+ 2231  cp run_25.sh run_20.sh
+ 2232  ls
+ 2233  vim *20*
+ 2234  ls
+ 2235  python setup_20.py 
+ 2236  condor_submit run_20.sh 
+ 2237  ls
+ 2238  condor_submit run_20.jdl 
+ 2239  cd ../M20/
+ 2240  ls
+ 2241  cp setup_25.py setup_20.py
+ 2242  cp run_25.sh run_20.sh
+ 2243  cp run_25.jdl run_20.jdl
+ 2244  vim *20*
+ 2245  ls
+ 2246  python setup_20.py 
+ 2247  condor_submit run_20.jdl 
+ 2248  condor_q akobert
+ 2249  cd ../M25/
+ 2250  ls
+ 2251  cp setup_25.py setup_20.py
+ 2252  cp run_25.sh run_20.sh
+ 2253  cp run_25.jdl run_20.jdl
+ 2254  ls
+ 2255  vim *20*
+ 2256  condor_submit run_20.jdl 
+ 2257  cd ../M50/
+ 2258  ls
+ 2259  cd ../M75/
+ 2260  ls
+ 2261  cp setup_25.py setup_20.py
+ 2262  cp run_25.sh run_20.sh
+ 2263  cp run_25.jdl run_20.jdl
+ 2264  vim *20*
+ 2265  ls
+ 2266  python setup_20.py 
+ 2267  ls
+ 2268  vim M75_0_20.py 
+ 2269  condor_submit run_20.sh 
+ 2270  condor_submit run_20.jdl 
+ 2271  cd ../M100
+ 2272  ls
+ 2273  cp setup_25.py setup_20.py
+ 2274  cp run_25.sh run_20.sh
+ 2275  cp run_25.jdl run_20.jdl
+ 2276  vim *20*
+ 2277  ls
+ 2278  python setup_20.py 
+ 2279  condor_submit run_20.jdl 
+ 2280  cd ../M125/
+ 2281  ls
+ 2282  cp setup_25.py setup_20.py
+ 2283  cp run_25.jdl run_20.jdl
+ 2284  cp run_25.sh run_20.sh
+ 2285  vim *20*
+ 2286  ls
+ 2287  python setup_20.py 
+ 2288  ls
+ 2289  condor_submit run_20.jdl 
+ 2290  cd ../M150/
+ 2291  ls
+ 2292  cp setup_25.py setup_20.py
+ 2293  cp run_25.jdl run_20.jdl
+ 2294  cp run_25.sh run_20.sh
+ 2295  vim *20*
+ 2296  ls
+ 2297  python setup_20.py 
+ 2298  condor_submit run_20.jdl 
+ 2299  condor_q akobert
+ 2300  cd ../../
+ 2301  ls
+ 2302  condor_q akobert
+ 2303  ls
+ 2304  ./merge_20.sh M10_UL_nano
+ 2305  ./merge_20.sh M20_UL_nano
+ 2306  ./merge_20.sh M25_UL_nano
+ 2307  ls output/
+ 2308  ls output/RData_M25
+ 2309  ls output/RData_M25*
+ 2310  cd signalMC_nano/M25/
+ 2311  ls
+ 2312  python setup_20.py 
+ 2313  condor_submit run_20.jdl 
+ 2314  ls
+ 2315  vim M25_0_20.py 
+ 2316  cd ../../
+ 2317  ls
+ 2318  condor_q akobert
+ 2319  ./merge_20.sh M50_UL_nano
+ 2320  ./merge_20.sh M75_UL_nano
+ 2321  ./merge_20.sh M100_UL_nano
+ 2322  ./merge_20.sh M125_UL_nano
+ 2323  ./merge_20.sh M150_UL_nano
+ 2324  condor_q akobert
+ 2325  ls
+ 2326  ./merge_20.sh M25_UL_nano
+ 2327  ls
+ 2328  cd ../
+ 2329  ls
+ 2330  cd NanoTool_UL_draw/SRootB
+ 2331  ls
+ 2332  vim *
+ 2333  ls
+ 2334  rm plots/*
+ 2335  python drawRData_10GeV.py 
+ 2336  python drawRData_20GeV.py 
+ 2337  python drawRData_25GeV.py 
+ 2338  python drawRData_30GeV.py 
+ 2339  python drawRData_50GeV.py 
+ 2340  python drawRData_75GeV.py 
+ 2341  python drawRData_100GeV.py 
+ 2342  python drawRData_125GeV.py 
+ 2343  python drawRData_150GeV.py 
+ 2344  ls
+ 2345  cd ../
+ 2346  ls
+ 2347  mkdir SRootB_all
+ 2348  cd SRootB_all/
+ 2349  ls
+ 2350  cp ../SRootB/* .
+ 2351  ls
+ 2352  mkdir plots
+ 2353  vim drawRData.py
+ 2354  vim ../SRootB/drawRData.py
+ 2355  vim drawRData.py
+ 2356  ls
+ 2357  vim drawRData_10GeV.py 
+ 2358  vim drawRData.py
+ 2359  vim drawRData_10GeV.py 
+ 2360  ls ../../
+ 2361  vim drawRData_10GeV.py 
+ 2362  ls
+ 2363  python drawRData_10GeV.py 
+ 2364  ls
+ 2365  display plots/SRB_10GeV_all_.png 
+ 2366  ls
+ 2367  vim drawRData.py
+ 2368  vim drawRData_10
+ 2369  vim drawRData_10GeV.py 
+ 2370  ls
+ 2371  cd ../../
+ 2372  ls
+ 2373  cd NanoTool_UL_btag_percentage/
+ 2374  ls
+ 2375  cd TTBar_nano/
+ 2376  ls
+ 2377  rm TTBar*
+ 2378  ls
+ 2379  vim *10*
+ 2380  python setup_10.py 
+ 2381  quota -s
+ 2382  ls
+ 2383  condor_submit run_10.jdl 
+ 2384  cd ../
+ 2385  ls
+ 2386  cd WGamma_nano/
+ 2387  ls
+ 2388  rm WGamma*
+ 2389  python setup_10.py 
+ 2390  condor_submit run_10.jdl 
+ 2391  cd ../ZGamma_nano/
+ 2392  ls
+ 2393  rm ZGamma*
+ 2394  python setup_10.py 
+ 2395  ls
+ 2396  condor_submit run_10.jdl 
+ 2397  cd ../
+ 2398  ls
+ 2399  cd dataA_missing_nano/
+ 2400  ls
+ 2401  vim setup.py 
+ 2402  mv setup.py setup_10.py 
+ 2403  mv run.sh run_10.sh
+ 2404  mv run.jdl run_10.jdl
+ 2405  ls
+ 2406  vim *
+ 2407  ls
+ 2408  python setup_10.py 
+ 2409  ls
+ 2410  vim dataA_missing_0_10.py 
+ 2411  rm dataA_missing_*
+ 2412  ls
+ 2413  vim input.txt 
+ 2414  vim setup_10.py 
+ 2415  python setup_10.py 
+ 2416  ls
+ 2417  vim dataA_missing_0_10.py 
+ 2418  ls
+ 2419  condor_submit run_10.jdl 
+ 2420  cd ../dataA_present_nano/
+ 2421  ls
+ 2422  mv setup.py setup_10.py 
+ 2423  mv run.sh run_10.sh
+ 2424  mv run.jdl run_10.jdl
+ 2425  ls
+ 2426  vim *
+ 2427  ls
+ 2428  python setup_10.py 
+ 2429  ls
+ 2430  vim dataA_present_0_10.py 
+ 2431  condor_submit run_10.jdl 
+ 2432  cd ../dataB_nano/
+ 2433  ls
+ 2434  mv setup.py setup_10.py 
+ 2435  mv run.sh run_10.sh
+ 2436  mv run.jdl run_10.jdl
+ 2437  ls
+ 2438  python setup_10.py 
+ 2439  ls
+ 2440  condor_submit run_10.jdl 
+ 2441  rm dataB_*
+ 2442  vim *
+ 2443  ls
+ 2444  python setup_10.py 
+ 2445  condor_submit run_10.jdl 
+ 2446  cd ../dataC_nano/
+ 2447  ls
+ 2448  mv setup.py setup_10.py 
+ 2449  mv run.jdl run_10.jdl
+ 2450  mv run.sh run_10.sh
+ 2451  vim *\
+ 2452  ls
+ 2453  python setup_10.py 
+ 2454  lx
+ 2455  ls
+ 2456  vim dataC_0_10.py 
+ 2457  ls
+ 2458  condor_submit run_10.jdl 
+ 2459  cd ../dataD_nano/
+ 2460  ls
+ 2461  mv setup.py setup_10.py 
+ 2462  mv run.jdl run_10.jdl
+ 2463  mv run.sh run_10.sh
+ 2464  ls
+ 2465  vim *
+ 2466  ls
+ 2467  python setup_10.py 
+ 2468  ls
+ 2469  vim dataD_0_10.py 
+ 2470  ls
+ 2471  condor_submit run_10.jdl 
+ 2472  condor_q akobert
+ 2473  cd ../
+ 2474  ls
+ 2475  cd ../
+ 2476  ls
+ 2477  cd NanoTool_UL_corr_btag_percentage/
+ 2478  ls
+ 2479  cp -r ../NanoTool_UL_corr_btag/* .
+ 2480  ls
+ 2481  rm *.root
+ 2482  ls
+ 2483  rm *.txt
+ 2484  ls
+ 2485  rm Cutoff_Generator_nano.pyc 
+ 2486  ls
+ 2487  rm Analysis_Processor_nano.pyc 
+ 2488  ls
+ 2489  cp ../NanoTool_UL_corr_btag/RData_Cutoffs_nano.root .
+ 2490  ls
+ 2491  ls CondorFiles/
+ 2492  ls output/
+ 2493  cd GJets_nano/
+ 2494  ls
+ 2495  cd 100to200/
+ 2496  ls
+ 2497  cd ../../
+ 2498  rm GJets_nano/*/GJ*
+ 2499  ls
+ 2500  rm WGamma_nano/WGamma*
+ 2501  rm ZGamma_nano/ZGamma*
+ 2502  rm TTBar_nano/T*
+ 2503  rm data*/data*
+ 2504  rm signalMC_nano/M*/M*
+ 2505  ls
+ 2506  vim nano_Sample.py 
+ 2507  ld
+ 2508  ls
+ 2509  mv nano_Sample.py nano_Sample_10.py 
+ 2510  ls
+ 2511  vim nano_Sample_10.py 
+ 2512  ls
+ 2513  cd TTBar_nano/
+ 2514  ls
+ 2515  vim *
+ 2516  cd ../
+ 2517  sl
+ 2518  history > hist.txt

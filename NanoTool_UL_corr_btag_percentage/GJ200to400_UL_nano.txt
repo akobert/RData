@@ -14,5 +14,5 @@ N2>0: 2.77326e+06
 -7<rho<-2: 1.68171e+06
 dR>2.2: 1.5477e+06
 All Events After Selection: 1.29784e+06
-Passing Events: 127046
-Failing Events: 1.17079e+06
+Passing Events: 637092
+Failing Events: 660748

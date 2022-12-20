@@ -1,0 +1,18 @@
+Total Events: 440039
+10% of Events: 0
+nPhoton>0: 431281
+nJet>0: 278831
+Photon pT>120: 130707
+Jet pT>120: 118603
+|Photon Eta|<1.4: 115928
+|Jet Eta|<1.4: 113337
+Tight CutBased Photon ID: 74630.8
+Jet ID>=2: 67323.3
+Softdrop Mass>0: 63555.5
+Trigger(s) Passed: 45078
+N2>0: 45078
+-7<rho<-2: 30614.3
+dR>2.2: 28925.8
+All Events After Selection: 23585.8
+Passing Events: 5526.88
+Failing Events: 18058.9

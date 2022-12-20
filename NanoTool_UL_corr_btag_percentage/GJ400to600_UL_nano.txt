@@ -1,18 +1,18 @@
-Total Events: 4.71225e+08
+Total Events: 1.48438e+07
 10% of Events: 0
-nPhoton>0: 4.30305e+08
-nJet>0: 4.30227e+08
-Photon pT>120: 1.43483e+08
-Jet pT>120: 1.43439e+08
-|Photon Eta|<1.4: 1.38172e+08
-|Jet Eta|<1.4: 1.38034e+08
-Tight CutBased Photon ID: 2.40184e+07
-Jet ID>=2: 2.3809e+07
-Softdrop Mass>0: 2.36503e+07
-Trigger(s) Passed: 1.79377e+07
-N2>0: 1.79377e+07
--7<rho<-2: 1.07277e+07
-dR>2.2: 8.41298e+06
-All Events After Selection: 6.14373e+06
-Passing Events: 543560
-Failing Events: 5.60018e+06
+nPhoton>0: 1.35548e+07
+nJet>0: 1.35523e+07
+Photon pT>120: 4.51977e+06
+Jet pT>120: 4.5184e+06
+|Photon Eta|<1.4: 4.35247e+06
+|Jet Eta|<1.4: 4.34813e+06
+Tight CutBased Photon ID: 756589
+Jet ID>=2: 749995
+Softdrop Mass>0: 744996
+Trigger(s) Passed: 565045
+N2>0: 565045
+-7<rho<-2: 337928
+dR>2.2: 265013
+All Events After Selection: 193530
+Passing Events: 90483.6
+Failing Events: 103047

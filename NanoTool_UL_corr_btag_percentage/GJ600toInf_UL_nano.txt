@@ -14,5 +14,5 @@ N2>0: 244925
 -7<rho<-2: 141158
 dR>2.2: 97412.9
 All Events After Selection: 60394.2
-Passing Events: 5191.26
-Failing Events: 55202.9
+Passing Events: 27939.8
+Failing Events: 32454.4

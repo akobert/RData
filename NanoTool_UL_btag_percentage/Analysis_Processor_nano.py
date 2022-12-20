@@ -99,9 +99,9 @@ def DataPro(sample, fname, cut_hist, percentage=20):
         #h31_w = TH2F("jet_pt_soft_fail_wide4", "Failing Jet pT vs. Softdrop Mass", 15, widebins4, 40, 0, 200)
         
 	
-	h32_w = TH2F("jet_pt_soft_pass_wide4_thin", "Thin Passing Jet pT vs. Softdrop Mass", 15, widebins4, 100, 0, 200)
-        h33_w = TH2F("jet_pt_soft_total_wide4_thin", "Thin Total Jet pT vs. Softdrop Mass", 15, widebins4, 100, 0, 200)
-        h34_w = TH2F("jet_pt_soft_fail_wide4_thin", "Thin Failing Jet pT vs. Softdrop Mass", 15, widebins4, 100, 0, 200)
+        h32_w = TH2F("jet_pt_soft_pass_wide4_wide", "Wide Passing Jet pT vs. Softdrop Mass", 15, widebins4, 40, 0, 200)
+        h33_w = TH2F("jet_pt_soft_total_wide4_wide", "Wide Total Jet pT vs. Softdrop Mass", 15, widebins4, 40, 0, 200)
+        h34_w = TH2F("jet_pt_soft_fail_wide4_wide", "Wide Failing Jet pT vs. Softdrop Mass", 15, widebins4, 40, 0, 200)
 	
 	h35_w = TH2F("jet_pt_rho_pass_wide4_thin", "Passing Jet pT vs. Rho", 15, widebins4, 28, -8, -1)
         h36_w = TH2F("jet_pt_rho_total_wide4_thin", "Total Jet pT vs. Rho", 15, widebins4, 28, -8, -1)
@@ -560,15 +560,15 @@ def DataPro(sample, fname, cut_hist, percentage=20):
         j31_w = j31_w.Clone()
         h31_w.Add(j31_w)
         
-	j32_w = Rdf_Pass.Histo2D(("pt_soft_pass_wide4_thin", "Thin Passing Jet pT vs. Softdrop Mass", 15, widebins4, 100, 0, 200), "jPt", "jM", "weight")
+        j32_w = Rdf_Pass.Histo2D(("pt_soft_pass_wide4_wide", "Wide Passing Jet pT vs. Softdrop Mass", 15, widebins4, 40, 0, 200), "jPt", "jM", "weight")
         j32_w = j32_w.Clone()
         h32_w.Add(j32_w)
 
-        j33_w = Rdf_Final.Histo2D(("pt_soft_tot_wide4_thin", "Thin Total Jet pT vs. Softdrop Mass", 15, widebins4, 100, 0, 200), "jPt", "jM", "weight")
+        j33_w = Rdf_Final.Histo2D(("pt_soft_tot_wide4_wide", "Wide Total Jet pT vs. Softdrop Mass", 15, widebins4, 40, 0, 200), "jPt", "jM", "weight")
         j33_w = j33_w.Clone()
         h33_w.Add(j33_w)
 
-        j34_w = Rdf_Fail.Histo2D(("pt_soft_pass_wide4_thin", "Thin Failing Jet pT vs. Softdrop Mass", 15, widebins4, 100, 0, 200), "jPt", "jM", "weight")
+        j34_w = Rdf_Fail.Histo2D(("pt_soft_pass_wide4_wide", "Wide Failing Jet pT vs. Softdrop Mass", 15, widebins4, 40, 0, 200), "jPt", "jM", "weight")
         j34_w = j34_w.Clone()
         h34_w.Add(j34_w)
 	
@@ -796,20 +796,20 @@ def DataPro(sample, fname, cut_hist, percentage=20):
         h31_w.SetXTitle("Jet pT")
         ofile.WriteObject(h31_w, "jet_pt_soft_fail_wide4")
         
-	h32_w.SetTitle("Thin Passing Jet pT vs. Softdrop Mass")
+        h32_w.SetTitle("Wide Passing Jet pT vs. Softdrop Mass")
         h32_w.SetYTitle("Softdrop Mass")
         h32_w.SetXTitle("Jet pT")
-        ofile.WriteObject(h32_w, "jet_pt_soft_pass_wide4_thin")
+        ofile.WriteObject(h32_w, "jet_pt_soft_pass_wide4_wide")
 
-        h33_w.SetTitle("Thin Total Jet pT vs. Softdrop Mass")
+        h33_w.SetTitle("Wide Total Jet pT vs. Softdrop Mass")
         h33_w.SetYTitle("Softdrop Mass")
         h33_w.SetXTitle("Jet pT")
-        ofile.WriteObject(h33_w, "jet_pt_soft_total_wide4_thin")
+        ofile.WriteObject(h33_w, "jet_pt_soft_total_wide4_wide")
 
-        h34_w.SetTitle("Thin Failing Jet pT vs. Softdrop Mass")
+        h34_w.SetTitle("Wide Failing Jet pT vs. Softdrop Mass")
         h34_w.SetYTitle("Softdrop Mass")
         h34_w.SetXTitle("Jet pT")
-        ofile.WriteObject(h34_w, "jet_pt_soft_fail_wide4_thin")
+        ofile.WriteObject(h34_w, "jet_pt_soft_fail_wide4_wide")
 
         h35_w.SetTitle("Passing Jet pT vs. Rho")
         h35_w.SetYTitle("Rho")
