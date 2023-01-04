@@ -13,11 +13,11 @@ def bin_num(self, val, i):
 	if i == 1:      #Rho Value
 		#if val>-2 or val<-7:
 		#       print("bin_num error, val: ", val)
-		return int(((val+8.0)*2.0)+1.0)
+		return int(((val+8.0)*2.0)+1)
 	elif i == 2:     #Pt Value
 		#if val>2000 or val<100:
 		#       print("bin_num error, val: ", val)
-		return int(((val)/50.0)+1.0)
+		return int(((val)/50.0)+1)
 
 def Proj(i, j, n2_bin, temp, t1):
 	for x in range (n2_bin):
@@ -59,25 +59,34 @@ def DataPro(sample, fname, cut_hist, percentage=20):
 
 		
 
-	h1 = TH1F("h1", "N2", 100, 0, 1)
+	h1 = TH1F("h1", "N2", 50, 0, 0.5)
 	h2 = TH1F("h2", "Softdrop Mass", 40, 0, 200)
 	h4 = TH1F("h4", "Photon pT", 50, 0, 1000)
 	h5 = TH1F("h5", "Jet pT", 40, 0, 2000)
         h5_1 = TH1F("h5_1", "Thin Jet pT", 2000, 0, 2000)
-	h6 = TH1F("h6", "Jet Eta", 50, -2.5, 2.5)
+	h6 = TH1F("h6", "Jet Eta", 70, -3.5, 3.5)
 	h7 = TH1F("h7", "Rho", 28, -8, -1)
-	h8 = TH1F("h8", "Photon Eta", 50, -2.5, 2.5)
+	h8 = TH1F("h8", "Photon Eta", 70, -3.5, 3.5)
 	h9 = TH1F("h9", "N2DDT", 100, -.5, .5)
+	
+	h1_presel = TH1F("h1_presel", "PreSel N2", 50, 0, 0.5)
+	h2_presel = TH1F("h2_presel", "PreSel Softdrop Mass", 40, 0, 200)
+	h4_presel = TH1F("h4_presel", "PreSel Photon pT", 50, 0, 1000)
+	h5_presel = TH1F("h5_presel", "PreSel Jet pT", 40, 0, 2000)
+        h5_1_presel = TH1F("h5_1_presel", "PreSel Thin Jet pT", 2000, 0, 2000)
+	h6_presel = TH1F("h6_presel", "PreSel Jet Eta", 70, -3.5, 3.5)
+	h7_presel = TH1F("h7_presel", "PreSel Rho", 28, -8, -1)
+	h8_presel = TH1F("h8_presel", "PreSel Photon Eta", 70, -3.5, 3.5)
 
-	h11 = TH2F("n2_n2ddt", "N2 vs. N2DDT", 100, 0, 1, 100, -.5, .5)
-	h14 = TH2F("n2_soft", "N2 vs. Softdrop Mass", 100, 0, 1, 40, 0, 200)
+	h11 = TH2F("n2_n2ddt", "N2 vs. N2DDT", 50, 0, 0.5, 100, -.5, .5)
+	h14 = TH2F("n2_soft", "N2 vs. Softdrop Mass", 50, 0, 0.5, 40, 0, 200)
 	h15 = TH2F("n2ddt_soft", "N2DDT vs. Softdrop Mass", 100, -.5, .5, 40, 0, 200)
 	h15_1 = TH2F("soft_n2ddt", "Softdrop Mass vs. N2DDT", 40, 0, 200, 100, -.5, .5)
 	
 	h16 = TH2F("rho_soft", "Rho vs. Softdrop Mass", 28, -8, -1, 40, 0, 200)
 	h17 = TH2F("rho_soft_pass", "Passing Rho vs. Softdrop Mass", 28, -8, -1, 40, 0, 200)
 	h18 = TH2F("rho_soft_fail", "Failing Rho vs. Softdrop Mass", 28, -8, -1, 40, 0, 200)
-	h19 = TH2F("n2_pt", "N2 vs. Jet pT", 100, 0, 1, 40, 0, 2000)
+	h19 = TH2F("n2_pt", "N2 vs. Jet pT", 50, 0, 0.5, 40, 0, 2000)
 	h20 = TH2F("n2ddt_pt", "N2DDT vs. Jet pT", 100, -.5, .5, 40, 0, 2000)
 	h20_1 = TH2F("pt_n2ddt", "Jet pT vs. N2DDT", 40, 0, 2000, 100, -.5, .5)
 
@@ -90,24 +99,33 @@ def DataPro(sample, fname, cut_hist, percentage=20):
 	h25 = TH2F("jet_pt_rho_fail", "Failing Jet pT vs. Rho", 40, 0, 2000, 28, -8, -1)
 
         ROOT.gInterpreter.Declare("Double_t widebins4[16] = {0, 120, 130, 145, 160, 180, 200, 250, 300, 400, 500, 700, 900, 1200, 1500, 2000};")
-        h29_w = TH2F("jet_pt_soft_pass_wide4", "Passing Jet pT vs. Softdrop Mass", 15, widebins4, 40, 0, 200)
-        h30_w = TH2F("jet_pt_soft_total_wide4", "Total Jet pT vs. Softdrop Mass", 15, widebins4, 40, 0, 200)
-        h31_w = TH2F("jet_pt_soft_fail_wide4", "Failing Jet pT vs. Softdrop Mass", 15, widebins4, 40, 0, 200)
+	#Rebined to 1 GeV bin width
+        #h29_w = TH2F("jet_pt_soft_pass_wide4", "Passing Jet pT vs. Softdrop Mass", 15, widebins4, 40, 0, 200)
+        #h30_w = TH2F("jet_pt_soft_total_wide4", "Total Jet pT vs. Softdrop Mass", 15, widebins4, 40, 0, 200)
+        #h31_w = TH2F("jet_pt_soft_fail_wide4", "Failing Jet pT vs. Softdrop Mass", 15, widebins4, 40, 0, 200)
+        h29_w = TH2F("jet_pt_soft_pass_wide4", "Passing Jet pT vs. Softdrop Mass", 15, widebins4, 200, 0, 200)
+        h30_w = TH2F("jet_pt_soft_total_wide4", "Total Jet pT vs. Softdrop Mass", 15, widebins4, 200, 0, 200)
+        h31_w = TH2F("jet_pt_soft_fail_wide4", "Failing Jet pT vs. Softdrop Mass", 15, widebins4, 200, 0, 200)
 
-        h32_w = TH2F("jet_pt_soft_pass_wide4_thin", "Thin Passing Jet pT vs. Softdrop Mass", 15, widebins4, 100, 0, 200)
-        h33_w = TH2F("jet_pt_soft_total_wide4_thin", "Thin Total Jet pT vs. Softdrop Mass", 15, widebins4, 100, 0, 200)
-        h34_w = TH2F("jet_pt_soft_fail_wide4_thin", "Thin Failing Jet pT vs. Softdrop Mass", 15, widebins4, 100, 0, 200)
+        h32_w = TH2F("jet_pt_soft_pass_wide4_wide", "Wide Passing Jet pT vs. Softdrop Mass", 15, widebins4, 40, 0, 200)
+        h33_w = TH2F("jet_pt_soft_total_wide4_wide", "Wide Total Jet pT vs. Softdrop Mass", 15, widebins4, 40, 0, 200)
+        h34_w = TH2F("jet_pt_soft_fail_wide4_wide", "Wide Failing Jet pT vs. Softdrop Mass", 15, widebins4, 40, 0, 200)
+
 
         h35_w = TH2F("jet_pt_rho_pass_wide4_thin", "Passing Jet pT vs. Rho", 15, widebins4, 28, -8, -1)
         h36_w = TH2F("jet_pt_rho_total_wide4_thin", "Total Jet pT vs. Rho", 15, widebins4, 28, -8, -1)
         h37_w = TH2F("jet_pt_rho_fail_wide4_thin", "Failing Jet pT vs. Rho", 15, widebins4, 28, -8, -1)
 
         ROOT.gInterpreter.Declare("Double_t widebins5[20] = {0, 120, 130, 140, 150, 160, 170, 180, 190, 200, 225, 250, 300, 400, 500, 700, 900, 1200, 1500, 2000};")
-        h38_w = TH2F("jet_pt_soft_pass_wide5", "Passing Jet pT vs. Softdrop Mass", 19, widebins5, 40, 0, 200)
-        h39_w = TH2F("jet_pt_soft_total_wide5", "Total Jet pT vs. Softdrop Mass", 19, widebins5, 40, 0, 200)
-        h40_w = TH2F("jet_pt_soft_fail_wide5", "Failing Jet pT vs. Softdrop Mass", 19, widebins5, 40, 0, 200)
+	#Rebined to 1 GeV bin width
+#      	h38_w = TH2F("jet_pt_soft_pass_wide5", "Passing Jet pT vs. Softdrop Mass", 19, widebins5, 40, 0, 200)
+ #       h39_w = TH2F("jet_pt_soft_total_wide5", "Total Jet pT vs. Softdrop Mass", 19, widebins5, 40, 0, 200)
+  #      h40_w = TH2F("jet_pt_soft_fail_wide5", "Failing Jet pT vs. Softdrop Mass", 19, widebins5, 40, 0, 200)
+      	h38_w = TH2F("jet_pt_soft_pass_wide5", "Passing Jet pT vs. Softdrop Mass", 19, widebins5, 200, 0, 200)
+        h39_w = TH2F("jet_pt_soft_total_wide5", "Total Jet pT vs. Softdrop Mass", 19, widebins5, 200, 0, 200)
+        h40_w = TH2F("jet_pt_soft_fail_wide5", "Failing Jet pT vs. Softdrop Mass", 19, widebins5, 200, 0, 200)
 
-        h50 = TH1F("ak4_eta", "AK4 Jet Eta", 50, -2.5, 2.5)
+        h50 = TH1F("ak4_eta", "AK4 Jet Eta", 70, -3.5, 3.5)
         h51 = TH1F("ak4_phi", "AK4 Jet Phi", 80, -4, 4)
         h52 = TH1F("ak4_njet", "AK4 nJet", 25, 0, 25)
         h53 = TH1F("ak4_btag", "AK4 BTag", 200, -1, 1)
@@ -119,26 +137,26 @@ def DataPro(sample, fname, cut_hist, percentage=20):
 
 
         #With PUPPI MET cut
-        h58 = TH1F("ak4_eta_met", "AK4 Jet Eta with PUPPI MET cut", 50, -2.5, 2.5)
+        h58 = TH1F("ak4_eta_met", "AK4 Jet Eta with PUPPI MET cut", 70, -3.5, 3.5)
         h59 = TH1F("ak4_phi_met", "AK4 Jet Phi with PUPPI MET cut", 80, -4, 4)
         h60 = TH1F("ak4_njet_met", "AK4 nJet with PUPPI MET cut", 25, 0, 25)
         h61 = TH1F("ak4_btag_met", "AK4 BTag with PUPPI MET cut", 200, -1, 1)
 
 	p1 = TH1F("p1", "passing softdrop mass", 40, 0, 200)
         p1_1 = TH1F("p1_1", "thin passing softdrop mass", 100, 0, 200)
-	p2 = TH1F("p2", "passing photon pt", 40, 0, 1000)
+	p2 = TH1F("p2", "passing photon pt", 50, 0, 1000)
 	p3 = TH1F("p3", "passing jet pt", 40, 0, 2000)
 	p4 = TH1F("p4", "passing rho", 28, -8, -1)
-	p5 = TH1F("p5", "passing photon eta", 50, -2.5, 2.5)
-	p6 = TH1F("p6", "passing jet eta", 50, -2.5, 2.5)
+	p5 = TH1F("p5", "passing photon eta", 70, -3.5, 3.5)
+	p6 = TH1F("p6", "passing jet eta", 70, -3.5, 3.5)
 
 	f1 = TH1F("f1", "failing softdrop mass", 40, 0, 200)
         f1_1 = TH1F("f1_1", "failing softdrop mass", 100, 0, 200)
-	f2 = TH1F("f2", "passing photon pt", 40, 0, 1000)
+	f2 = TH1F("f2", "passing photon pt", 50, 0, 1000)
 	f3 = TH1F("f3", "passing jet pt", 40, 0, 2000)
 	f4 = TH1F("f4", "passing rho", 28, -8, -1)
-	f5 = TH1F("f5", "passing photon eta", 50, -2.5, 2.5)
-	f6 = TH1F("f6", "passing jet eta", 50, -2.5, 2.5)
+	f5 = TH1F("f5", "passing photon eta", 70, -3.5, 3.5)
+	f6 = TH1F("f6", "passing jet eta", 70, -3.5, 3.5)
 
 	nocut = 0
 	npcut = 0
@@ -157,6 +175,7 @@ def DataPro(sample, fname, cut_hist, percentage=20):
 	total_events = 0
 	num_pass = 0
 	ppt_pass = 0
+	dir_prompt_pass = 0
 	jpt_pass = 0
 	peta_pass = 0
 	jeta_pass = 0
@@ -208,6 +227,14 @@ def DataPro(sample, fname, cut_hist, percentage=20):
 
 	Rdf_cflow = Rdf_PreSel.Filter("PPT(Photon_pt, nPhoton)")
 	ppt_pass += float(Rdf_cflow.Count().GetValue())
+	#Direct Prompt Photon CutFlow
+	if sample[3] == "GJ":
+		Rdf_cflow = Rdf_cflow.Filter("dir_prompt(nGenPart, GenPart_status, GenPart_genPartIdxMother, GenPart_pdgId, GenPart_phi, GenPart_eta)")
+		dir_prompt_pass += float(Rdf_cflow.Count().GetValue())
+	if sample[3] == "QCD":
+		Rdf_cflow = Rdf_cflow.Filter("!dir_prompt(nGenPart, GenPart_status, GenPart_genPartIdxMother, GenPart_pdgId, GenPart_phi, GenPart_eta)")
+		dir_prompt_pass += float(Rdf_cflow.Count().GetValue())
+
 
 	Rdf_cflow = Rdf_cflow.Filter("JPT(selectedPatJetsAK8PFPuppi_pt_nom, nselectedPatJetsAK8PFPuppi)")
 	jpt_pass += float(Rdf_cflow.Count().GetValue())
@@ -256,7 +283,30 @@ def DataPro(sample, fname, cut_hist, percentage=20):
 		
 	Rdf = Rdf.Filter("jIndex >= 0")
 	jcut += float(Rdf.Count().GetValue())
-		
+	
+        #PreSel Values defined
+        Rdf_PreSel = Rdf_PreSel.Define("jM_uncorr", "selectedPatJetsAK8PFPuppi_msoftdrop_raw[0]")
+        Rdf_PreSel = Rdf_PreSel.Define("jEta", "selectedPatJetsAK8PFPuppi_eta[0]")
+        Rdf_PreSel = Rdf_PreSel.Define("jPhi", "selectedPatJetsAK8PFPuppi_phi[0]")
+        Rdf_PreSel = Rdf_PreSel.Define("jPt", "selectedPatJetsAK8PFPuppi_pt_nom[0]")
+        Rdf_PreSel = Rdf_PreSel.Define("pPt", "Photon_pt[0]")
+        Rdf_PreSel = Rdf_PreSel.Define("pEta", "Photon_eta[0]")
+        Rdf_PreSel = Rdf_PreSel.Define("pPhi", "Photon_phi[0]")
+        Rdf_PreSel = Rdf_PreSel.Define("N2", "selectedPatJetsAK8PFPuppi_ak8PFJetsPuppiSoftDropValueMap_nb1AK8PuppiSoftDropN2[0]")
+        Rdf_PreSel = Rdf_PreSel.Define("jM", "jM_uncorr*JMC_corr(jM_uncorr,jPt,jEta)")
+        Rdf_PreSel = Rdf_PreSel.Define("Rho", "rho(jPt, jM)")
+        if sample[3] == "mc" or sample[3] == "GJ" or sample[3] == "QCD":
+                Rdf_PreSel = Rdf_PreSel.Define("xs_lumi", sample[1])
+                Rdf_PreSel = Rdf_PreSel.Define("weight", "xs_lumi*puWeight")
+        elif sample[3] == "data":
+                Rdf_PreSel = Rdf_PreSel.Define("weight", sample[1])
+
+	#Direct Prompt Filter
+	if sample[3] == "GJ":
+		Rdf = Rdf.Filter("dir_prompt(nGenPart, GenPart_status, GenPart_genPartIdxMother, GenPart_pdgId, GenPart_phi, GenPart_eta)")
+	if sample[3] == "QCD":
+		Rdf = Rdf.Filter("!dir_prompt(nGenPart, GenPart_status, GenPart_genPartIdxMother, GenPart_pdgId, GenPart_phi, GenPart_eta)")
+
 
 
 	Rdf = Rdf.Define("jM_uncorr", "selectedPatJetsAK8PFPuppi_msoftdrop_raw[jIndex]")
@@ -288,7 +338,7 @@ def DataPro(sample, fname, cut_hist, percentage=20):
         Rdf = Rdf.Define("PuppiMETpt", "PuppiMET_pt")
         Rdf = Rdf.Define("PuppiMET_Et", "PuppiMET_sumEt")
 	
-        if sample[3] == "mc":
+        if sample[3] == "mc" or sample[3] == "GJ" or sample[3] == "QCD":
                 Rdf = Rdf.Define("xs_lumi", sample[1])
                 Rdf = Rdf.Define("weight", "xs_lumi*puWeight")
         elif sample[3] == "data":
@@ -304,12 +354,12 @@ def DataPro(sample, fname, cut_hist, percentage=20):
 
 	Rdf_Final = Rdf_Trig.Filter("N2 >= 0.0 && Rho > -7 && Rho < -2  && dR >= 2.2")
 	dR_pass += float(Rdf_Final.Count().GetValue())
-		
 
         Rdf_MET = Rdf_Final.Filter("PuppiMETpt < 75") #Additional MET cut for btag testing
         Rdf_Final = Rdf_Final.Filter("PuppiMETpt < 75 && jBtag < 0.049")
 
         final += float(Rdf_Final.Count().GetValue())
+	print(final)	
 
 	Rdf_Pass = Rdf_Final.Filter("n2ddt<0")
 	pass_events += float(Rdf_Pass.Count().GetValue())
@@ -322,7 +372,7 @@ def DataPro(sample, fname, cut_hist, percentage=20):
 	fail_pass += float(Rdf_Fail.Count().GetValue())
 	fail_pass_weight += float(Rdf_Fail.Count().GetValue())*float(sample[1])
 
-	t1 = Rdf.Histo1D(("t1",  ';N^{2}_{1}', 100, 0, 1.0), "N2", "weight")
+	t1 = Rdf_Final.Histo1D(("t1",  ';N^{2}_{1}', 50, 0, 0.5), "N2", "weight")
 	t1 = t1.Clone()
 	t1.SetTitle("N2")
 	t1.SetXTitle("N2")
@@ -333,8 +383,8 @@ def DataPro(sample, fname, cut_hist, percentage=20):
 	t2.SetTitle("Softdrop Mass")
 	t2.SetXTitle("Softdrop Mass")
 	h2.Add(t2)
-#
-#
+
+
 	t4 = Rdf_Final.Histo1D(("t4", "Photon pT", 50, 0, 1000), "pPt", "weight")
 	t4 = t4.Clone()
 	t4.SetTitle("Photon pT")
@@ -353,31 +403,80 @@ def DataPro(sample, fname, cut_hist, percentage=20):
         t5_1.SetXTitle("pT")
         h5_1.Add(t5_1)
 
-	t6 = Rdf_Final.Histo1D(("t6", "Jet Eta", 50, -2.5, 2.5), "jEta", "weight")
+	t6 = Rdf_Final.Histo1D(("t6", "Jet Eta", 70, -3.5, 3.5), "jEta", "weight")
 	t6 = t6.Clone()
 	t6.SetTitle("Jet Eta")
 	t6.SetXTitle("Eta")
 	h6.Add(t6)
 
 
-	t7 = Rdf.Histo1D(("t7", "Rho", 28, -8, -1), "Rho", "weight")
+	t7 = Rdf_Final.Histo1D(("t7", "Rho", 28, -8, -1), "Rho", "weight")
 	t7 = t7.Clone()
 	t7.SetTitle("Rho")
 	t7.SetXTitle("Rho")
 	h7.Add(t7)
 
-
-	t8 = Rdf_Final.Histo1D(("t8", "Photon Eta", 50, -2.5, -2.5), "pEta", "weight")
+	t8 = Rdf_Final.Histo1D(("t8", "Photon Eta", 70, -3.5, -3.5), "pEta", "weight")
 	t8 = t8.Clone()
 	t8.SetTitle("Photon Eta")
 	t8.SetXTitle("Eta")
 	h8.Add(t8)
 		
-	t9 = Rdf.Histo1D(("t9", "N2DDT", 100, -.5, .5), "n2ddt", "weight")
+	t9 = Rdf_Final.Histo1D(("t9", "N2DDT", 100, -.5, .5), "n2ddt", "weight")
 	t9 = t9.Clone()
 	t9.SetTitle("N2DDT")
 	t9.SetXTitle("N2DDT")
 	h9.Add(t9)
+	
+	t1_presel = Rdf_PreSel.Histo1D(("t1_presel",  ';N^{2}_{1}', 50, 0, 0.5), "N2", "weight")
+	t1_presel = t1_presel.Clone()
+	t1_presel.SetTitle("N2")
+	t1_presel.SetXTitle("N2")
+	h1_presel.Add(t1_presel)
+
+	t2_presel = Rdf_PreSel.Histo1D(("t2_presel", "Softdrop Mass", 40, 0, 200), "jM", "weight")
+	t2_presel = t2_presel.Clone()
+	t2_presel.SetTitle("Softdrop Mass")
+	t2_presel.SetXTitle("Softdrop Mass")
+	h2_presel.Add(t2_presel)
+
+
+	t4_presel = Rdf_PreSel.Histo1D(("t4_presel", "Photon pT", 50, 0, 1000), "pPt", "weight")
+	t4_presel = t4_presel.Clone()
+	t4_presel.SetTitle("Photon pT")
+	t4_presel.SetXTitle("pT")
+	h4_presel.Add(t4_presel)
+		
+	t5_presel = Rdf_PreSel.Histo1D(("t5_presel", "Jet pT", 40, 0, 2000), "jPt", "weight")
+	t5_presel = t5_presel.Clone()
+	t5_presel.SetTitle("Jet pT")
+	t5_presel.SetXTitle("pT")
+	h5_presel.Add(t5_presel)
+
+        t5_1_presel = Rdf_PreSel.Histo1D(("t5_1_presel", "Thin Jet pT", 2000, 0, 2000), "jPt", "weight")
+        t5_1_presel = t5_1_presel.Clone()
+        t5_1_presel.SetTitle("Thin Jet pT")
+        t5_1_presel.SetXTitle("pT")
+        h5_1_presel.Add(t5_1_presel)
+
+	t6_presel = Rdf_PreSel.Histo1D(("t6_presel", "Jet Eta", 70, -3.5, 3.5), "jEta", "weight")
+	t6_presel = t6_presel.Clone()
+	t6_presel.SetTitle("Jet Eta")
+	t6_presel.SetXTitle("Eta")
+	h6_presel.Add(t6_presel)
+
+
+	t7_presel = Rdf_PreSel.Histo1D(("t7_presel", "Rho", 28, -8, -1), "Rho", "weight")
+	t7_presel = t7_presel.Clone()
+	t7_presel.SetTitle("Rho")
+	t7_presel.SetXTitle("Rho")
+	h7_presel.Add(t7_presel)
+
+	t8_presel = Rdf_PreSel.Histo1D(("t8_presel", "Photon Eta", 70, -3.5, -3.5), "pEta", "weight")
+	t8_presel = t8_presel.Clone()
+	t8_presel.SetTitle("Photon Eta")
+	t8_presel.SetXTitle("Eta")
+	h8_presel.Add(t8_presel)
 
 	q1 = Rdf_Pass.Histo1D(("q1", "Passing Softdrop Mass", 40, 0, 200), "jM", "weight")
 	q1 = q1.Clone()
@@ -391,7 +490,7 @@ def DataPro(sample, fname, cut_hist, percentage=20):
         q1_1.SetXTitle("Softdrop Mass")
         p1_1.Add(q1_1)
 	
-	q2 = Rdf_Pass.Histo1D(("q2", "Passing Photon pT", 40, 0, 1000), "pPt", "weight")
+	q2 = Rdf_Pass.Histo1D(("q2", "Passing Photon pT", 50, 0, 1000), "pPt", "weight")
 	q2 = q2.Clone()
 	q2.SetTitle("Passing Photon pT")
 	q2.SetXTitle("Photon pT")
@@ -409,13 +508,13 @@ def DataPro(sample, fname, cut_hist, percentage=20):
 	q4.SetXTitle("Rho")
 	p4.Add(q4)
 		
-	q5 = Rdf_Pass.Histo1D(("q5", "Passing Photon Eta", 50, -2.5, 2.5), "pEta", "weight")
+	q5 = Rdf_Pass.Histo1D(("q5", "Passing Photon Eta", 70, -3.5, 3.5), "pEta", "weight")
 	q5 = q5.Clone()
 	q5.SetTitle("Passing Photon Eta")
 	q5.SetXTitle("Photon Eta")
 	p5.Add(q5)
 		
-	q6 = Rdf_Pass.Histo1D(("q6", "Passing Jet Eta", 50, -2.5, 2.5), "jEta", "weight")
+	q6 = Rdf_Pass.Histo1D(("q6", "Passing Jet Eta", 70, -3.5, 3.5), "jEta", "weight")
 	q6 = q6.Clone()
 	q6.SetTitle("Passing Jet Eta")
 	q6.SetXTitle("Jet Eta")
@@ -423,60 +522,60 @@ def DataPro(sample, fname, cut_hist, percentage=20):
 		
 	u1 = Rdf_Fail.Histo1D(("u1", "Failing Softdrop Mass", 40, 0, 200), "jM", "weight")
 	u1 = u1.Clone()
-#		u1.Scale(1.0/9.0)
+#		u1.Scale(1/9.0)
 	u1.SetTitle("Failing Softdrop Mass")
 	u1.SetXTitle("Softdrop Mass")
 	f1.Add(u1)
 
         u1_1 = Rdf_Fail.Histo1D(("u1_1", "Failing Softdrop Mass", 100, 0, 200), "jM", "weight")
         u1_1 = u1_1.Clone()
-#               u1.Scale(1.0/9.0)
+#               u1.Scale(1/9.0)
         u1_1.SetTitle("Failing Softdrop Mass")
         u1_1.SetXTitle("Softdrop Mass")
         f1_1.Add(u1_1)
 		
-	u2 = Rdf_Fail.Histo1D(("u2", "Failing Photon pT", 40, 0, 1000), "pPt", "weight")
+	u2 = Rdf_Fail.Histo1D(("u2", "Failing Photon pT", 50, 0, 1000), "pPt", "weight")
 	u2 = u2.Clone()
-#		u2.Scale(1.0/9.0)
+#		u2.Scale(1/9.0)
 	u2.SetTitle("Failing Photon pT")
 	u2.SetXTitle("Photon pT")
 	f2.Add(u2)
 		
 	u3 = Rdf_Fail.Histo1D(("u3", "Failing Jet pT", 40, 0, 2000), "jPt", "weight")
 	u3 = u3.Clone()
-#		u3.Scale(1.0/9.0)
+#		u3.Scale(1/9.0)
 	u3.SetTitle("Failing Jet pT")
 	u3.SetXTitle("Jet pT")
 	f3.Add(u3)
 		
 	u4 = Rdf_Fail.Histo1D(("u4", "Failing Rho", 28, -8, -1), "Rho", "weight")
 	u4 = u4.Clone()
-#		u4.Scale(1.0/9.0)
+#		u4.Scale(1/9.0)
 	u4.SetTitle("Failing Rho")
 	u4.SetXTitle("Rho")
 	f4.Add(u4)
 		
-	u5 = Rdf_Fail.Histo1D(("u5", "Failing Photon Eta", 50, -2.5, 2.5), "pEta", "weight")
+	u5 = Rdf_Fail.Histo1D(("u5", "Failing Photon Eta", 70, -3.5, 3.5), "pEta", "weight")
 	u5 = u5.Clone()
-#		u5.Scale(1.0/9.0)
+#		u5.Scale(1/9.0)
 	u5.SetTitle("Failing Photon Eta")
 	u5.SetXTitle("Photon Eta")
 	f5.Add(u5)
 		
-	u6 = Rdf_Fail.Histo1D(("u6", "Failing Jet Eta", 50, -2.5, 2.5), "jEta", "weight")
+	u6 = Rdf_Fail.Histo1D(("u6", "Failing Jet Eta", 70, -3.5, 3.5), "jEta", "weight")
 	u6 = u6.Clone()
-#		u6.Scale(1.0/9.0)
+#		u6.Scale(1/9.0)
 	u6.SetTitle("Failing Jet Eta")
 	u6.SetXTitle("Jet Eta")
 	f6.Add(u6)
 		
-	j11 =  Rdf_Final.Histo2D(("n2_n2ddt", "N2 vs. N2DDT", 100, 0, 1, 100, -.5, .5), "N2", "n2ddt", "weight")
+	j11 =  Rdf_Final.Histo2D(("n2_n2ddt", "N2 vs. N2DDT", 50, 0, 0.5, 100, -.5, .5), "N2", "n2ddt", "weight")
 	j11 = j11.Clone()
 	h11.Add(j11)
 
 		
 		
-	j14 = Rdf_Final.Histo2D(("n2_soft", "N2 vs. Softdrop Mass", 100, 0, 1, 40, 0, 200), "N2", "jM", "weight")
+	j14 = Rdf_Final.Histo2D(("n2_soft", "N2 vs. Softdrop Mass", 50, 0, 0.5, 40, 0, 200), "N2", "jM", "weight")
 	j14 = j14.Clone()
 	h14.Add(j14)
 
@@ -500,7 +599,7 @@ def DataPro(sample, fname, cut_hist, percentage=20):
 	j18 = j18.Clone()
 	h18.Add(j18)
 
-	j19 = Rdf_Final.Histo2D(("n2_pt", "N2 vs. Jet pT", 100, 0, 1, 40, 0, 2000), "N2", "jPt", "weight")
+	j19 = Rdf_Final.Histo2D(("n2_pt", "N2 vs. Jet pT", 50, 0, 0.5, 40, 0, 2000), "N2", "jPt", "weight")
 	j19 = j19.Clone()
 	h19.Add(j19)
 
@@ -537,27 +636,27 @@ def DataPro(sample, fname, cut_hist, percentage=20):
 	h25.Add(j25)
 
 
-        j29_w = Rdf_Pass.Histo2D(("pt_soft_pass_wide4", "Passing Jet pT vs. Softdrop Mass", 15, widebins4, 40, 0, 200), "jPt", "jM", "weight")
+        j29_w = Rdf_Pass.Histo2D(("pt_soft_pass_wide4", "Passing Jet pT vs. Softdrop Mass", 15, widebins4, 200, 0, 200), "jPt", "jM", "weight")
         j29_w = j29_w.Clone()
         h29_w.Add(j29_w)
 
-        j30_w = Rdf_Final.Histo2D(("pt_soft_tot_wide4", "Total Jet pT vs. Softdrop Mass", 15, widebins4, 40, 0, 200), "jPt", "jM", "weight")
+        j30_w = Rdf_Final.Histo2D(("pt_soft_tot_wide4", "Total Jet pT vs. Softdrop Mass", 15, widebins4, 200, 0, 200), "jPt", "jM", "weight")
         j30_w = j30_w.Clone()
         h30_w.Add(j30_w)
 
-        j31_w = Rdf_Fail.Histo2D(("pt_soft_pass_wide4", "Failing Jet pT vs. Softdrop Mass", 15, widebins4, 40, 0, 200), "jPt", "jM", "weight")
+        j31_w = Rdf_Fail.Histo2D(("pt_soft_pass_wide4", "Failing Jet pT vs. Softdrop Mass", 15, widebins4, 200, 0, 200), "jPt", "jM", "weight")
         j31_w = j31_w.Clone()
         h31_w.Add(j31_w)
 	
-        j32_w = Rdf_Pass.Histo2D(("pt_soft_pass_wide4_thin", "Thin Passing Jet pT vs. Softdrop Mass", 15, widebins4, 100, 0, 200), "jPt", "jM", "weight")
+        j32_w = Rdf_Pass.Histo2D(("pt_soft_pass_wide4_wide", "Wide Passing Jet pT vs. Softdrop Mass", 15, widebins4, 40, 0, 200), "jPt", "jM", "weight")
         j32_w = j32_w.Clone()
         h32_w.Add(j32_w)
 
-        j33_w = Rdf_Final.Histo2D(("pt_soft_tot_wide4_thin", "Thin Total Jet pT vs. Softdrop Mass", 15, widebins4, 100, 0, 200), "jPt", "jM", "weight")
+        j33_w = Rdf_Final.Histo2D(("pt_soft_tot_wide4_wide", "Wide Total Jet pT vs. Softdrop Mass", 15, widebins4, 40, 0, 200), "jPt", "jM", "weight")
         j33_w = j33_w.Clone()
         h33_w.Add(j33_w)
 
-        j34_w = Rdf_Fail.Histo2D(("pt_soft_pass_wide4_thin", "Thin Failing Jet pT vs. Softdrop Mass", 15, widebins4, 100, 0, 200), "jPt", "jM", "weight")
+        j34_w = Rdf_Fail.Histo2D(("pt_soft_pass_wide4_wide", "Wide Failing Jet pT vs. Softdrop Mass", 15, widebins4, 40, 0, 200), "jPt", "jM", "weight")
         j34_w = j34_w.Clone()
         h34_w.Add(j34_w)
 
@@ -573,19 +672,19 @@ def DataPro(sample, fname, cut_hist, percentage=20):
         j37_w = j37_w.Clone()
         h37_w.Add(j37_w)
 	
-        j38_w = Rdf_Pass.Histo2D(("pt_soft_pass_wide5", "Passing Jet pT vs. Softdrop Mass", 19, widebins5, 40, 0, 200), "jPt", "jM", "weight")
+        j38_w = Rdf_Pass.Histo2D(("pt_soft_pass_wide5", "Passing Jet pT vs. Softdrop Mass", 19, widebins5, 200, 0, 200), "jPt", "jM", "weight")
         j38_w = j38_w.Clone()
         h38_w.Add(j38_w)
 
-        j39_w = Rdf_Final.Histo2D(("pt_soft_tot_wide5", "Total Jet pT vs. Softdrop Mass", 19, widebins5, 40, 0, 200), "jPt", "jM", "weight")
+        j39_w = Rdf_Final.Histo2D(("pt_soft_tot_wide5", "Total Jet pT vs. Softdrop Mass", 19, widebins5, 200, 0, 200), "jPt", "jM", "weight")
         j39_w = j39_w.Clone()
         h39_w.Add(j39_w)
 
-        j40_w = Rdf_Fail.Histo2D(("pt_soft_pass_wide5", "Failing Jet pT vs. Softdrop Mass", 19, widebins5, 40, 0, 200), "jPt", "jM", "weight")
+        j40_w = Rdf_Fail.Histo2D(("pt_soft_pass_wide5", "Failing Jet pT vs. Softdrop Mass", 19, widebins5, 200, 0, 200), "jPt", "jM", "weight")
         j40_w = j40_w.Clone()
         h40_w.Add(j40_w)
 
-        j50 = Rdf_Final.Histo1D(("j50", "AK4 Jet Eta", 50, -2.5, 2.5), "j4eta", "weight")
+        j50 = Rdf_Final.Histo1D(("j50", "AK4 Jet Eta", 70, -3.5, 3.5), "j4eta", "weight")
         j50 = j50.Clone()
         h50.Add(j50)
         j51 = Rdf_Final.Histo1D(("j51", "AK4 Jet Phi", 80, -4, 4), "j4phi", "weight")
@@ -611,7 +710,7 @@ def DataPro(sample, fname, cut_hist, percentage=20):
         j57 = j57.Clone()
         h57.Add(j57)
 
-        j58 = Rdf_MET.Histo1D(("j58", "AK4 Jet Eta with PUPPI MET cut", 50, -2.5, 2.5), "j4eta", "weight")
+        j58 = Rdf_MET.Histo1D(("j58", "AK4 Jet Eta with PUPPI MET cut", 70, -3.5, 3.5), "j4eta", "weight")
         j58 = j58.Clone()
         h58.Add(j58)
         j59 = Rdf_MET.Histo1D(("j59", "AK4 Jet Phi with PUPPI MET cut", 80, -4, 4), "j4phi", "weight")
@@ -641,6 +740,8 @@ def DataPro(sample, fname, cut_hist, percentage=20):
 	print("10% cut applied passed: "+str(ten_pass/total_events * 100)+"%")
 	print("Num Pho and Num Jet passed: "+str(num_pass/total_events * 100)+"%")
 	print("Photon pT passed: "+str(ppt_pass/total_events * 100)+"%")
+	if sample[3] == "QCD" or sample[3] == "GJ":
+		print("Direct Prompt Photon cut: "+str(dir_prompt_pass/total_events * 100)+"%")
 	print("Jet pT passed: "+str(jpt_pass/total_events * 100)+"%")
 	print("Photon Eta passed: "+str(peta_pass/total_events * 100)+"%")
 	print("Jet Eta passed: "+str(jeta_pass/total_events * 100)+"%")
@@ -692,6 +793,38 @@ def DataPro(sample, fname, cut_hist, percentage=20):
 	h9.SetTitle("N2DDT")
 	h9.SetXTitle("N2DDT")
 	ofile.WriteObject(h9, "n2ddt")
+	
+	h1_presel.SetTitle("N2 Presel")
+	h1_presel.SetXTitle("N2 Presel")
+	ofile.WriteObject(h1_presel, "N2_presel")
+
+	h2_presel.SetTitle("Softdrop Mass Presel")
+	h2_presel.SetXTitle("Softdrop Mass Presel")
+	ofile.WriteObject(h2_presel, "softdrop_presel")
+
+	h4_presel.SetTitle("Photon pT Presel")
+	h4_presel.SetXTitle("Photon pT Presel")
+	ofile.WriteObject(h4_presel, "photon_pt_presel")
+
+	h5_presel.SetTitle("Jet pT Presel")
+	h5_presel.SetXTitle("Jet pT Presel")
+	ofile.WriteObject(h5_presel, "jet_pt_presel")
+
+	h5_1_presel.SetTitle("Thin Jet pT Presel")
+	h5_1_presel.SetXTitle("Jet pT Presel")
+        ofile.WriteObject(h5_1_presel, "thin_jet_pt_presel")
+
+	h6_presel.SetTitle("Jet Eta Presel")
+	h6_presel.SetXTitle("Jet Eta Presel")
+	ofile.WriteObject(h6_presel, "jet_eta_presel")
+
+	h7_presel.SetTitle("Rho Presel")
+	h7_presel.SetXTitle("Rho Presel")
+	ofile.WriteObject(h7_presel, "rho_presel")
+
+	h8_presel.SetTitle("Photon Eta Presel")
+	h8_presel.SetXTitle("Photon Eta Presel")
+	ofile.WriteObject(h8_presel, "photon_eta_presel")
 	
 	h11.SetTitle("N2 vs. N2DDT")
 	h11.SetXTitle("N2")
@@ -783,20 +916,20 @@ def DataPro(sample, fname, cut_hist, percentage=20):
         h31_w.SetXTitle("Jet pT")
         ofile.WriteObject(h31_w, "jet_pt_soft_fail_wide4")
 
-        h32_w.SetTitle("Thin Passing Jet pT vs. Softdrop Mass")
+        h32_w.SetTitle("Wide Passing Jet pT vs. Softdrop Mass")
         h32_w.SetYTitle("Softdrop Mass")
         h32_w.SetXTitle("Jet pT")
-        ofile.WriteObject(h32_w, "jet_pt_soft_pass_wide4_thin")
+        ofile.WriteObject(h32_w, "jet_pt_soft_pass_wide4_wide")
 
-        h33_w.SetTitle("Thin Total Jet pT vs. Softdrop Mass")
+        h33_w.SetTitle("Wide Total Jet pT vs. Softdrop Mass")
         h33_w.SetYTitle("Softdrop Mass")
         h33_w.SetXTitle("Jet pT")
-        ofile.WriteObject(h33_w, "jet_pt_soft_total_wide4_thin")
+        ofile.WriteObject(h33_w, "jet_pt_soft_total_wide4_wide")
 
-        h34_w.SetTitle("Thin Failing Jet pT vs. Softdrop Mass")
+        h34_w.SetTitle("Wide Failing Jet pT vs. Softdrop Mass")
         h34_w.SetYTitle("Softdrop Mass")
         h34_w.SetXTitle("Jet pT")
-        ofile.WriteObject(h34_w, "jet_pt_soft_fail_wide4_thin")
+        ofile.WriteObject(h34_w, "jet_pt_soft_fail_wide4_wide")
 
         h35_w.SetTitle("Passing Jet pT vs. Rho")
         h35_w.SetYTitle("Rho")
@@ -975,6 +1108,7 @@ def DataPro(sample, fname, cut_hist, percentage=20):
 	cut_vals.SetBinContent(15,final*weighting)
 	cut_vals.SetBinContent(16,pass_pass*weighting)
 	cut_vals.SetBinContent(17,fail_pass*weighting)
+	cut_vals.SetBinContent(18,dir_prompt_pass*weighting)
 	
 	
 	ofile.Write()

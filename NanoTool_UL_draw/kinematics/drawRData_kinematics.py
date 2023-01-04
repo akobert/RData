@@ -28,7 +28,8 @@ if __name__ == "__main__":
 	ifile7 = "/home/akobert/CMSSW_11_1_0_pre7/src/RData/NanoTool_UL_corr_btag_percentage/GJ_UL_10.root"
 	ifile8 = "/home/akobert/CMSSW_11_1_0_pre7/src/RData/NanoTool_UL_corr_btag_percentage/TTBar_UL_nano_merged_10.root"
 	ifile9 = "/home/akobert/CMSSW_11_1_0_pre7/src/RData/NanoTool_UL_corr_btag_percentage/Data_UL_10.root"
+	ifile10 = "/home/akobert/CMSSW_11_1_0_pre7/src/RData/NanoTool_UL_corr_btag_percentage/QCD_UL_10.root"
 	name = "corr_btag_10"
 	ofile = "corr_btag_10_plots.root"
-	RData = drawRData(name, ifile1, ifile2, ifile3, ifile4, ifile5, ifile6, ifile7, ifile8, ifile9, ofile)
+	RData = drawRData(name, ifile1, ifile2, ifile3, ifile4, ifile5, ifile6, ifile7, ifile8, ifile9, ifile10, ofile)
 	print("Kinematic Drawing Finished")

@@ -131,6 +131,34 @@ def Cutoff(sample, rho_bin=14, pt_bin=40, n2_bin=500):
                                 return sqrt(pow(deta, 2) + pow(dphi, 2));
                         }
                         '''
+        prompt_code =   '''
+                        bool dir_prompt(int nGenPart, RVec<int> gen_status, RVec<int> gen_mother, RVec<int> gen_pdg, RVec<float> gen_phi, RVec<float> gen_eta)
+                        {
+                                for(int i=0; i < nGenPart; i++)
+                                {
+                                        if(gen_status[i] != 1 || (gen_mother[i] > 22 && gen_mother[i] != 2212))
+                                        {
+                                                continue;
+                                        }
+                                        //past this point are prompt photons
+                                        for(int j=0; j < nGenPart; j++)
+                                        {
+                                                if(j == i) //if j is examined photon skip
+                                                {
+                                                        continue;
+                                                }
+                                                if((gen_pdg[j] <= 9 || gen_pdg[i] == 21) && gen_status[j] == 23)
+                                                {
+                                                        if(deltaR(gen_eta[i], gen_eta[j], gen_phi[i], gen_phi[j]) > .4)
+                                                        {
+                                                                return true;
+                                                        }
+                                                }
+                                        }
+                                }
+                                return false;
+                        }
+                        '''
         submass_code =  '''
                         float submass(float pt1, float eta1, float phi1, float m1, float pt2, float eta2, float phi2, float m2)
                         {
@@ -222,6 +250,7 @@ def Cutoff(sample, rho_bin=14, pt_bin=40, n2_bin=500):
                         }
                         '''
 
+	ROOT.gInterpreter.Declare(prompt_code)
         ROOT.gInterpreter.Declare(match_code)
         ROOT.gInterpreter.Declare(ak4_code)
 
@@ -254,6 +283,8 @@ def Cutoff(sample, rho_bin=14, pt_bin=40, n2_bin=500):
 		Rdf_PreSel = Rdf_PreSel.Define("jIndex", "jet_index_define(nselectedPatJetsAK8PFPuppi, selectedPatJetsAK8PFPuppi_pt_nom, selectedPatJetsAK8PFPuppi_eta, selectedPatJetsAK8PFPuppi_msoftdrop_raw, selectedPatJetsAK8PFPuppi_jetId)")
         	Rdf_PreSel = Rdf_PreSel.Define("pIndex", "photon_index_define(nPhoton, Photon_pt, Photon_eta, Photon_cutBased)")
 
+		#Now Require GJets events must have direct prompt photons
+		Rdf_PreSel = Rdf_PreSel.Filter("dir_prompt(nGenPart, GenPart_status, GenPart_genPartIdxMother, GenPart_pdgId, GenPart_phi, GenPart_eta)")
 
 		Rdf = Rdf_PreSel.Filter("pIndex >= 0")
 	        Rdf = Rdf.Filter("jIndex >= 0")

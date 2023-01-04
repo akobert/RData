@@ -3,6 +3,7 @@ Total Events: 1.43781e+08
 nPhoton>0: 1.42927e+07
 nJet>0: 4.72034e+06
 Photon pT>120: 1.83205e+06
+Direct Prompt Events (If Relevant): 0
 Jet pT>120: 1.79327e+06
 |Photon Eta|<1.4: 1.63907e+06
 |Jet Eta|<1.4: 1.63137e+06
@@ -14,5 +15,5 @@ N2>0: 136214
 -7<rho<-2: 88299
 dR>2.2: 83019
 All Events After Selection: 67195
-Passing Events: 7292
-Failing Events: 59903
+Passing Events: 6615
+Failing Events: 60580

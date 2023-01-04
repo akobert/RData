@@ -18,6 +18,7 @@ cout<<"10% of Events: "<<cut_vals->GetBinContent(1)<<endl;
 cout<<"nPhoton>0: "<<cut_vals->GetBinContent(2)<<endl;
 cout<<"nJet>0: "<<cut_vals->GetBinContent(3)<<endl;
 cout<<"Photon pT>120: "<<cut_vals->GetBinContent(4)<<endl;
+cout<<"Direct Prompt Events (If Relevant): "<<cut_vals->GetBinContent(18)<<endl;
 cout<<"Jet pT>120: "<<cut_vals->GetBinContent(5)<<endl;
 cout<<"|Photon Eta|<1.4: "<<cut_vals->GetBinContent(6)<<endl;
 cout<<"|Jet Eta|<1.4: "<<cut_vals->GetBinContent(7)<<endl;

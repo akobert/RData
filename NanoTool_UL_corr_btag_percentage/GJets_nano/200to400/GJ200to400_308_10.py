@@ -12,7 +12,7 @@ if __name__ == "__main__":
 
 
 	#files = [["/cms/xaastorage/NanoAOD/2018/JUNE19/UL/EGamma_RunA/branch_present", str(1.0), 1],["/cms/xaastorage/NanoAOD/2018/JUNE19/UL/EGamma_RunA/branch_missing", str(1.0), 2], ["/cms/xaastorage/NanoAOD/2018/JUNE19/UL/EGamma_RunB/", str(1.0), 1], ["/cms/xaastorage/NanoAOD/2018/JUNE19/UL/EGamma_RunC/", str(1.0), 1], ["/cms/xaastorage/NanoAOD/2018/JUNE19/UL/EGamma_RunD/", str(1.0), 1]]
-	files = ["/cms/akobert/NanoToolOutput/UL/GJets/200to400/jetToolbox_nano_mc_2018GJetsHT200to400_376.root", str(59.9 * 2183000.0/19755305.0), 1, "mc"]
+	files = ["/cms/akobert/NanoToolOutput/UL/GJets/200to400/jetToolbox_nano_mc_2018GJetsHT200to400_376.root", str(59.9 * 2183000.0/19755305.0), 1, "GJ"]
 
 	cutfile = "/home/akobert/CMSSW_11_1_0_pre7/src/RData/NanoTool_UL_corr_btag_percentage/RData_Cutoffs_nano.root"
 	cf = TFile(cutfile)
@@ -225,6 +225,36 @@ if __name__ == "__main__":
 
         ROOT.gInterpreter.Declare(includes)
         ROOT.gInterpreter.Declare(dr_code)
+
+        prompt_code =   '''
+                        bool dir_prompt(int nGenPart, RVec<int> gen_status, RVec<int> gen_mother, RVec<int> gen_pdg, RVec<float> gen_phi, RVec<float> gen_eta)
+                        {
+                                for(int i=0; i < nGenPart; i++)
+                                {
+                                        if(gen_status[i] != 1 || (gen_mother[i] > 22 && gen_mother[i] != 2212))
+                                        {
+                                                continue;
+                                        }
+                                        //past this point are prompt photons
+                                        for(int j=0; j < nGenPart; j++)
+                                        {
+                                                if(j == i) //if j is examined photon skip
+                                                {
+                                                        continue;
+                                                }
+                                                if((gen_pdg[j] <= 9 || gen_pdg[i] == 21) && gen_status[j] == 23)
+                                                {
+                                                        if(deltaR(gen_eta[i], gen_eta[j], gen_phi[i], gen_phi[j]) > .4)
+                                                        {
+                                                                return true;
+                                                        }
+                                                }
+                                        }
+                                }
+                                return false;
+                        }
+                        '''
+        ROOT.gInterpreter.Declare(prompt_code)
 
         match_code =    '''
                         RVec<int> ak4_match(int nJet, RVec<float> ak4_eta, RVec<float> ak4_phi, float eta, float phi, RVec<float> ak4_pt, RVec<float> btag) //now returns vector in decending order of b-tag score
