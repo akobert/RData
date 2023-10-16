@@ -19,7 +19,7 @@ from drawRData import *
 
 if __name__ == "__main__":
 	print("Starting Run")
-	ifile1 = "/home/akobert/CMSSW_11_1_0_pre7/src/RData/2017/Wpeak/Data_SingleMuon_UL_10_2017.root"
+	ifile1 = "/home/akobert/CMSSW_11_1_0_pre7/src/RData/2017/Wpeak/Data_UL_10_2017.root"
 	ifile2 = "/home/akobert/CMSSW_11_1_0_pre7/src/RData/2017/Wpeak/TTBar_UL_nano_10_2017_merged.root"
 	name = "wpeak_10_2017"
 	ofile = "wpeak_10_2017_plots.root"

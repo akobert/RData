@@ -314,7 +314,8 @@ def DataPro(sample, fname, cut_hist, percentage=20):
 	Rdf = Rdf.Define("mIndex", "muon_index_define(nMuon, Muon_eta, Muon_tightId)")
 	Rdf = Rdf.Filter("mIndex >= 0")
 
-	Rdf = Rdf.Define("jM_uncorr", "selectedPatJetsAK8PFPuppi_msoftdrop_raw[jIndex]")
+	Rdf = Rdf.Define("jM_uncorr", "selectedPatJetsAK8PFPuppi_msoftdrop_raw[jIndex]*selectedPatJetsAK8PFPuppi_corr_JER[jIndex]")
+	#Rdf = Rdf.Define("jM_uncorr", "selectedPatJetsAK8PFPuppi_msoftdrop_raw[jIndex]")
 	Rdf = Rdf.Define("jEta", "selectedPatJetsAK8PFPuppi_eta[jIndex]")
 	Rdf = Rdf.Define("jPhi", "selectedPatJetsAK8PFPuppi_phi[jIndex]")
 	Rdf = Rdf.Define("jPt", "selectedPatJetsAK8PFPuppi_pt_nom[jIndex]")

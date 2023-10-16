@@ -252,7 +252,7 @@ class drawRData_Fit:
 		func = TF1("func", fitf, FitLimLow, FitLimHigh, 3)
 		func.SetParameters(Par0, Par1, Par2)
 		func.SetParNames("GaussAmp", "GaussSigma", "GaussMean")
-		func.SetParLimits(1, 1, 20)
+		func.SetParLimits(1, 1, 40)
 		func.SetParLimits(2, 70, 90)
 		
 		f2 = TCanvas()

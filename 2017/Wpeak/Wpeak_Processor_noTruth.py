@@ -66,6 +66,7 @@ def DataPro(sample, fname, cut_hist, percentage=20):
 	h2 = TH1F("h2", "Softdrop Mass", 40, 0, 200)
 	h2_1 = TH1F("h2_1", "Thin Softdrop Mass", 100, 0, 200)
 	h2_2 = TH1F("h2_2", "Thin (Uncorrected) Softdrop Mass", 100, 0, 200)
+	h2_3 = TH1F("h2_3", "Softdrop Mass (Alternate Binning)", 27, 40, 138)
 #	h4 = TH1F("h4", "Photon pT", 100, 0, 2000)
 	h5 = TH1F("h5", "Jet pT", 40, 0, 2000)
         h5_1 = TH1F("h5_1", "Thin Jet pT", 2000, 0, 2000)
@@ -113,6 +114,7 @@ def DataPro(sample, fname, cut_hist, percentage=20):
 
         h56 = TH1F("PuppiMETPT", "PuppiMET pT", 500, 0, 500)
         h57 = TH1F("METplusMUON", "PuppiMET pT + Muon pT", 700, 0, 700)
+        h57_1 = TH1F("METplusMUON_pre", "PuppiMET pT + Muon pT (Pre MET+pT Cut)", 700, 0, 700) #Pre MET+pT Cut
 
 
 #	h65 = TH2F("eta_pho_pt", "Eta vs. Photon pT", 70, -3.5, 3.5, 100, 0, 2000)
@@ -238,7 +240,10 @@ def DataPro(sample, fname, cut_hist, percentage=20):
 	Rdf = Rdf.Define("jIndex", "jet_index_define(nFatJet, FatJet_pt_nom, FatJet_eta, FatJet_msoftdrop_raw, FatJet_jetId)")
 	Rdf = Rdf.Filter("jIndex >= 0")
 
-	Rdf = Rdf.Define("jM_uncorr", "FatJet_msoftdrop_raw[jIndex]")
+	if sample[3] == "data":
+		Rdf = Rdf.Define("jM_uncorr", "FatJet_msoftdrop_raw[jIndex]")
+	else:
+		Rdf = Rdf.Define("jM_uncorr", "FatJet_msoftdrop_raw[jIndex]*FatJet_corr_JER[jIndex]")
 	Rdf = Rdf.Define("jEta", "FatJet_eta[jIndex]")
 	Rdf = Rdf.Define("jPhi", "FatJet_phi[jIndex]")
 	Rdf = Rdf.Define("jPt", "FatJet_pt_nom[jIndex]")
@@ -288,7 +293,13 @@ def DataPro(sample, fname, cut_hist, percentage=20):
 #        Rdf_Final = Rdf_Final.Filter("PuppiMETpt < 75 && jBtag < 0.0532")
 	#Muon Cut on min missing ET and medium b-tag WP
 	#Requre min AK8 jet pT
-        Rdf_Final = Rdf.Filter("PuppiMETpt > 40 && MET_mPt > 220 && jBtag > 0.3040 && Rho < -2 && Rho > -7")
+        Rdf_Final = Rdf.Filter("PuppiMETpt > 40 && jBtag > 0.3040 && Rho < -2 && Rho > -7")
+	
+	j57_1 = Rdf_Final.Histo1D(("j57_1", "PuppiMET pT + Muon pT (Pre MET+pT Cut)", 700, 0, 700), "MET_mPt", "weight")
+        j57_1 = j57_1.Clone()
+        h57_1.Add(j57_1)
+
+        Rdf_Final = Rdf.Filter("MET_mPt > 220")
 
         final += float(Rdf_Final.Count().GetValue())
 #	print(final)	
@@ -329,6 +340,11 @@ def DataPro(sample, fname, cut_hist, percentage=20):
 	t2_2.SetXTitle("Softdrop Mass")
 	h2_2.Add(t2_2)
 
+	t2_3 = Rdf_Final.Histo1D(("t2_3", "Softdrop Mass", 27, 40, 138), "jM", "weight")
+	t2_3 = t2_3.Clone()
+	t2_3.SetTitle("Softdrop Mass (Alternate Binning)")
+	t2_3.SetXTitle("Softdrop Mass")
+	h2_3.Add(t2_3)
 
 #	t4 = Rdf_Final.Histo1D(("t4", "Photon pT", 100, 0, 2000), "pPt", "weight")
 #	t4 = t4.Clone()
@@ -704,6 +720,10 @@ def DataPro(sample, fname, cut_hist, percentage=20):
 	h2_2.SetTitle("Thin (Uncorrected) Softdrop Mass")
 	h2_2.SetXTitle("Softdrop Mass")
 	ofile.WriteObject(h2_2, "thin_uncorr_softdrop")
+	
+	h2_3.SetTitle("Softdrop Mass (Alternate Binning)")
+	h2_3.SetXTitle("Softdrop Mass")
+	ofile.WriteObject(h2_3, "softdrop_alt")
 
 #	h4.SetTitle("Photon pT")
 #	h4.SetXTitle("Photon pT")
@@ -874,6 +894,10 @@ def DataPro(sample, fname, cut_hist, percentage=20):
 	h57.SetTitle("PuppiMET pT + Muon pT")
         h57.SetXTitle("MET + Muon pT")
         ofile.WriteObject(h57, "METplusMUON")
+	
+	h57_1.SetTitle("PuppiMET pT + Muon pT (Pre MET+pT Cut)")
+        h57_1.SetXTitle("MET + Muon pT")
+        ofile.WriteObject(h57_1, "METplusMUON_pre")
 
         
 #	h65.SetTitle("Eta vs. Photon pT")

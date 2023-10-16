@@ -281,7 +281,10 @@ def DataPro(sample, fname):
 	jcut += float(Rdf.Count().GetValue())
 	
 	
-	Rdf = Rdf.Define("jM_uncorr", "FatJet_msoftdrop_raw[jIndex]")
+	if sample[3] == "data":
+		Rdf = Rdf.Define("jM_uncorr", "FatJet_msoftdrop_raw[jIndex]")
+	else:
+		Rdf = Rdf.Define("jM_uncorr", "FatJet_msoftdrop_raw[jIndex]*FatJet_corr_JER[jIndex]")
 	Rdf = Rdf.Define("jEta", "FatJet_eta[jIndex]")
 	Rdf = Rdf.Define("jPhi", "FatJet_phi[jIndex]")
 	Rdf = Rdf.Define("jPt", "FatJet_pt_nom[jIndex]")

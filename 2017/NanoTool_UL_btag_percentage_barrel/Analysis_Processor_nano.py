@@ -61,11 +61,11 @@ def DataPro(sample, fname, cut_hist, percentage=20):
 
 	h1 = TH1F("h1", "N2", 50, 0, 0.5)
 	h2 = TH1F("h2", "Softdrop Mass", 40, 0, 200)
-        h2_1 = TH1F("h2_1", "Thin Softdrop Mass", 100, 0, 200)
-        h2_2 = TH1F("h2_2", "Thin (Uncorrected) Softdrop Mass", 100, 0, 200)
+        h2_1 = TH1F("h2_1", "Thin Softdrop Mass", 200, 0, 200)
+        h2_2 = TH1F("h2_2", "Thin (Uncorrected) Softdrop Mass", 200, 0, 200)
 	h4 = TH1F("h4", "Photon pT", 100, 0, 2000)
 	h5 = TH1F("h5", "Jet pT", 40, 0, 2000)
-        h5_1 = TH1F("h5_1", "Thin Jet pT", 2000, 0, 2000)
+        h5_1 = TH1F("h5_1", "Thin Jet pT", 400, 0, 2000)
 	h6 = TH1F("h6", "Jet Eta", 70, -3.5, 3.5)
 	h7 = TH1F("h7", "Rho", 28, -8, -1)
 	h8 = TH1F("h8", "Photon Eta", 70, -3.5, 3.5)
@@ -94,10 +94,6 @@ def DataPro(sample, fname, cut_hist, percentage=20):
 	h25 = TH2F("jet_pt_rho_fail", "Failing Jet pT vs. Rho", 40, 0, 2000, 28, -8, -1)
 
         ROOT.gInterpreter.Declare("Double_t widebins4[16] = {0, 120, 130, 145, 160, 180, 200, 250, 300, 400, 500, 700, 900, 1200, 1500, 2000};")
-	#Rebined to 1 GeV bin width
-        #h29_w = TH2F("jet_pt_soft_pass_wide4", "Passing Jet pT vs. Softdrop Mass", 15, widebins4, 40, 0, 200)
-        #h30_w = TH2F("jet_pt_soft_total_wide4", "Total Jet pT vs. Softdrop Mass", 15, widebins4, 40, 0, 200)
-        #h31_w = TH2F("jet_pt_soft_fail_wide4", "Failing Jet pT vs. Softdrop Mass", 15, widebins4, 40, 0, 200)
         h29_w = TH2F("jet_pt_soft_pass_wide4", "Passing Jet pT vs. Softdrop Mass", 15, widebins4, 200, 0, 200)
         h30_w = TH2F("jet_pt_soft_total_wide4", "Total Jet pT vs. Softdrop Mass", 15, widebins4, 200, 0, 200)
         h31_w = TH2F("jet_pt_soft_fail_wide4", "Failing Jet pT vs. Softdrop Mass", 15, widebins4, 200, 0, 200)
@@ -127,6 +123,8 @@ def DataPro(sample, fname, cut_hist, percentage=20):
         h45_w = TH2F("jet_pt_soft_total_wide7_wide", "Total Jet pT vs. Softdrop Mass", 7, widebins7, 40, 0, 200)
         h46_w = TH2F("jet_pt_soft_fail_wide7_wide", "Failing Jet pT vs. Softdrop Mass", 7, widebins7, 40, 0, 200)
 
+	h47 = TH1F("h47", "Number of Good Reconstructed Primary Verticies", 70, 0, 70)
+
         h50 = TH1F("ak4_eta", "AK4 Jet Eta", 70, -3.5, 3.5)
         h51 = TH1F("ak4_phi", "AK4 Jet Phi", 80, -4, 4)
         h52 = TH1F("ak4_njet", "AK4 nJet", 25, 0, 25)
@@ -152,23 +150,148 @@ def DataPro(sample, fname, cut_hist, percentage=20):
 	h90 = TH1F("h90", "AK4 Jet pT", 200, 0, 2000)
 
 	p1 = TH1F("p1", "passing softdrop mass", 40, 0, 200)
-        p1_1 = TH1F("p1_1", "thin passing softdrop mass", 100, 0, 200)
-	p1_2 = TH1F("p1_2", "thin (uncorrected) passing softdrop mass", 100, 0, 200)
+        p1_1 = TH1F("p1_1", "thin passing softdrop mass", 200, 0, 200)
+	p1_2 = TH1F("p1_2", "thin (uncorrected) passing softdrop mass", 200, 0, 200)
 	p2 = TH1F("p2", "passing photon pt", 50, 0, 1000)
 	p3 = TH1F("p3", "passing jet pt", 40, 0, 2000)
+        p3_1 = TH1F("p3_1", "Thin Passing Jet pT", 400, 0, 2000)
 	p4 = TH1F("p4", "passing rho", 28, -8, -1)
 	p5 = TH1F("p5", "passing photon eta", 70, -3.5, 3.5)
 	p6 = TH1F("p6", "passing jet eta", 70, -3.5, 3.5)
 
 	f1 = TH1F("f1", "failing softdrop mass", 40, 0, 200)
-        f1_1 = TH1F("f1_1", "failing softdrop mass", 100, 0, 200)
-	f1_2 = TH1F("f1_2", "failing (uncorrected) softdrop mass", 100, 0, 200)
+        f1_1 = TH1F("f1_1", "thin failing softdrop mass", 200, 0, 200)
+	f1_2 = TH1F("f1_2", "thin failing (uncorrected) softdrop mass", 200, 0, 200)
 	f2 = TH1F("f2", "failing photon pt", 100, 0, 2000)
 	f3 = TH1F("f3", "failing jet pt", 40, 0, 2000)
+        f3_1 = TH1F("f3_1", "Thin Failing Jet pT", 400, 0, 2000)
 	f4 = TH1F("f4", "failing rho", 28, -8, -1)
 	f5 = TH1F("f5", "failing photon eta", 70, -3.5, 3.5)
 	f6 = TH1F("f6", "failing jet eta", 70, -3.5, 3.5)
+	
+	# Systematics Histograms
+        if sample[3] == "mc" or sample[3] == "GJ" or sample[3] == "QCD":
+		h2_puUp = TH1F("h2_puUp", "Softdrop Mass PileUp Up", 40, 0, 200)
+        	h2_1_puUp = TH1F("h2_1_puUp", "Thin Softdrop Mass PileUp Up", 200, 0, 200)
+        	h2_2_puUp = TH1F("h2_2_puUp", "Thin (Uncorrected) Softdrop Mass PileUp Up", 200, 0, 200)
+		h5_puUp = TH1F("h5_puUp", "Jet pT PileUp Up", 40, 0, 2000)
+        	h5_1_puUp = TH1F("h5_1_puUp", "Thin Jet pT PileUp Up", 400, 0, 2000)
+		h6_puUp = TH1F("h6_puUp", "Number of Good Reconstructed Primary Verticies PileUp Up", 70, 0, 70)
+		h2_puDown = TH1F("h2_puDown", "Softdrop Mass PileUp Down", 40, 0, 200)
+        	h2_1_puDown = TH1F("h2_1_puDown", "Thin Softdrop Mass PileUp Down", 200, 0, 200)
+        	h2_2_puDown = TH1F("h2_2_puDown", "Thin (Uncorrected) Softdrop Mass PileUp Down", 200, 0, 200)
+		h5_puDown = TH1F("h5_puDown", "Jet pT PileUp Down", 40, 0, 2000)
+        	h5_1_puDown = TH1F("h5_1_puDown", "Thin Jet pT PileUp Down", 400, 0, 2000)
+		h6_puDown = TH1F("h6_puDown", "Number of Good Reconstructed Primary Verticies PileUp Down", 70, 0, 70)
+		
+		h2_jerUp = TH1F("h2_jerUp", "Softdrop Mass JER Up", 40, 0, 200)
+        	h2_1_jerUp = TH1F("h2_1_jerUp", "Thin Softdrop Mass JER Up", 200, 0, 200)
+        	h2_2_jerUp = TH1F("h2_2_jerUp", "Thin (Uncorrected) Softdrop Mass JER Up", 200, 0, 200)
+		h5_jerUp = TH1F("h5_jerUp", "Jet pT JER Up", 40, 0, 2000)
+        	h5_1_jerUp = TH1F("h5_1_jerUp", "Thin Jet pT JER Up", 400, 0, 2000)
+		h2_jerDown = TH1F("h2_jerDown", "Softdrop Mass JER Down", 40, 0, 200)
+        	h2_1_jerDown = TH1F("h2_1_jerDown", "Thin Softdrop Mass JER Down", 200, 0, 200)
+        	h2_2_jerDown = TH1F("h2_2_jerDown", "Thin (Uncorrected) Softdrop Mass JER Down", 200, 0, 200)
+		h5_jerDown = TH1F("h5_jerDown", "Jet pT JER Down", 40, 0, 2000)
+        	h5_1_jerDown = TH1F("h5_1_jerDown", "Thin Jet pT JER Down", 400, 0, 2000)
 
+		h2_jesUp = TH1F("h2_jesUp", "Softdrop Mass JES Up", 40, 0, 200)
+        	h2_1_jesUp = TH1F("h2_1_jesUp", "Thin Softdrop Mass JES Up", 200, 0, 200)
+        	h2_2_jesUp = TH1F("h2_2_jesUp", "Thin (Uncorrected) Softdrop Mass JES Up", 200, 0, 200)
+		h5_jesUp = TH1F("h5_jesUp", "Jet pT JES Up", 40, 0, 2000)
+        	h5_1_jesUp = TH1F("h5_1_jesUp", "Thin Jet pT JES Up", 400, 0, 2000)
+		h2_jesDown = TH1F("h2_jesDown", "Softdrop Mass JES Down", 40, 0, 200)
+        	h2_1_jesDown = TH1F("h2_1_jesDown", "Thin Softdrop Mass JES Down", 200, 0, 200)
+        	h2_2_jesDown = TH1F("h2_2_jesDown", "Thin (Uncorrected) Softdrop Mass JES Down", 200, 0, 200)
+		h5_jesDown = TH1F("h5_jesDown", "Jet pT JES Down", 40, 0, 2000)
+        	h5_1_jesDown = TH1F("h5_1_jesDown", "Thin Jet pT JES Down", 400, 0, 2000)
+
+		p1_puUp = TH1F("p1_puUp", "passing softdrop mass PileUp Up", 40, 0, 200)
+	        p1_1_puUp = TH1F("p1_1_puUp", "thin passing softdrop mass PileUp Up", 200, 0, 200)
+		p1_2_puUp = TH1F("p1_2_puUp", "thin (uncorrected) passing softdrop mass PileUp Up", 200, 0, 200)
+		p3_puUp = TH1F("p3_puUp", "passing jet pt PileUp Up", 40, 0, 2000)
+	        p3_1_puUp = TH1F("p3_1_puUp", "Thin Passing Jet pT PileUp Up", 400, 0, 2000)
+		f1_puUp = TH1F("f1_puUp", "failing softdrop mass PileUp Up", 40, 0, 200)
+	        f1_1_puUp = TH1F("f1_1_puUp", "failing softdrop mass PileUp Up", 200, 0, 200)
+		f1_2_puUp = TH1F("f1_2_puUp", "failing (uncorrected) softdrop mass PileUp Up", 200, 0, 200)
+		f3_puUp = TH1F("f3_puUp", "failing jet pt PileUp Up", 40, 0, 2000)
+	        f3_1_puUp = TH1F("f3_1_puUp", "Thin Failinging Jet pT PileUp Up", 400, 0, 2000)
+		p1_puDown = TH1F("p1_puDown", "passing softdrop mass PileUp Down", 40, 0, 200)
+	        p1_1_puDown = TH1F("p1_1_puDown", "thin passing softdrop mass PileUp Down", 200, 0, 200)
+		p1_2_puDown = TH1F("p1_2_puDown", "thin (uncorrected) passing softdrop mass PileUp Down", 200, 0, 200)
+		p3_puDown = TH1F("p3_puDown", "passing jet pt PileUp Down", 40, 0, 2000)
+	        p3_1_puDown = TH1F("p3_1_puDown", "Thin Passing Jet pT PileUp Down", 400, 0, 2000)
+		f1_puDown = TH1F("f1_puDown", "failing softdrop mass PileUp Down", 40, 0, 200)
+	        f1_1_puDown = TH1F("f1_1_puDown", "failing softdrop mass PileUp Down", 200, 0, 200)
+		f1_2_puDown = TH1F("f1_2_puDown", "failing (uncorrected) softdrop mass PileUp Down", 200, 0, 200)
+		f3_puDown = TH1F("f3_puDown", "failing jet pt PileUp Down", 40, 0, 2000)
+	        f3_1_puDown = TH1F("f3_1_puDown", "Thin Failinging Jet pT PileUp Down", 400, 0, 2000)
+
+		p1_jerUp = TH1F("p1_jerUp", "passing softdrop mass JER Up", 40, 0, 200)
+	        p1_1_jerUp = TH1F("p1_1_jerUp", "thin passing softdrop mass JER Up", 200, 0, 200)
+		p1_2_jerUp = TH1F("p1_2_jerUp", "thin (uncorrected) passing softdrop mass JER Up", 200, 0, 200)
+		p3_jerUp = TH1F("p3_jerUp", "passing jet pt JER Up", 40, 0, 2000)
+	        p3_1_jerUp = TH1F("p3_1_jerUp", "Thin Passing Jet pT JER Up", 400, 0, 2000)
+		f1_jerUp = TH1F("f1_jerUp", "failing softdrop mass JER Up", 40, 0, 200)
+	        f1_1_jerUp = TH1F("f1_1_jerUp", "failing softdrop mass JER Up", 200, 0, 200)
+		f1_2_jerUp = TH1F("f1_2_jerUp", "failing (uncorrected) softdrop mass JER Up", 200, 0, 200)
+		f3_jerUp = TH1F("f3_jerUp", "failing jet pt JER Up", 40, 0, 2000)
+	        f3_1_jerUp = TH1F("f3_1_jerUp", "Thin Failinging Jet pT JER Up", 400, 0, 2000)
+		p1_jerDown = TH1F("p1_jerDown", "passing softdrop mass JER Down", 40, 0, 200)
+	        p1_1_jerDown = TH1F("p1_1_jerDown", "thin passing softdrop mass JER Down", 200, 0, 200)
+		p1_2_jerDown = TH1F("p1_2_jerDown", "thin (uncorrected) passing softdrop mass JER Down", 200, 0, 200)
+		p3_jerDown = TH1F("p3_jerDown", "passing jet pt JER Down", 40, 0, 2000)
+	        p3_1_jerDown = TH1F("p3_1_jerDown", "Thin Passing Jet pT JER Down", 400, 0, 2000)
+		f1_jerDown = TH1F("f1_jerDown", "failing softdrop mass JER Down", 40, 0, 200)
+	        f1_1_jerDown = TH1F("f1_1_jerDown", "failing softdrop mass JER Down", 200, 0, 200)
+		f1_2_jerDown = TH1F("f1_2_jerDown", "failing (uncorrected) softdrop mass JER Down", 200, 0, 200)
+		f3_jerDown = TH1F("f3_jerDown", "failing jet pt JER Down", 40, 0, 2000)
+	        f3_1_jerDown = TH1F("f3_1_jerDown", "Thin Failinging Jet pT JER Down", 400, 0, 2000)
+
+		p1_jesUp = TH1F("p1_jesUp", "passing softdrop mass JES Up", 40, 0, 200)
+	        p1_1_jesUp = TH1F("p1_1_jesUp", "thin passing softdrop mass JES Up", 200, 0, 200)
+		p1_2_jesUp = TH1F("p1_2_jesUp", "thin (uncorrected) passing softdrop mass JES Up", 200, 0, 200)
+		p3_jesUp = TH1F("p3_jesUp", "passing jet pt JES Up", 40, 0, 2000)
+	        p3_1_jesUp = TH1F("p3_1_jesUp", "Thin Passing Jet pT JES Up", 400, 0, 2000)
+		f1_jesUp = TH1F("f1_jesUp", "failing softdrop mass JES Up", 40, 0, 200)
+	        f1_1_jesUp = TH1F("f1_1_jesUp", "failing softdrop mass JES Up", 200, 0, 200)
+		f1_2_jesUp = TH1F("f1_2_jesUp", "failing (uncorrected) softdrop mass JES Up", 200, 0, 200)
+		f3_jesUp = TH1F("f3_jesUp", "failing jet pt JES Up", 40, 0, 2000)
+	        f3_1_jesUp = TH1F("f3_1_jesUp", "Thin Failinging Jet pT JES Up", 400, 0, 2000)
+		p1_jesDown = TH1F("p1_jesDown", "passing softdrop mass JES Down", 40, 0, 200)
+	        p1_1_jesDown = TH1F("p1_1_jesDown", "thin passing softdrop mass JES Down", 200, 0, 200)
+		p1_2_jesDown = TH1F("p1_2_jesDown", "thin (uncorrected) passing softdrop mass JES Down", 200, 0, 200)
+		p3_jesDown = TH1F("p3_jesDown", "passing jet pt JES Down", 40, 0, 2000)
+	        p3_1_jesDown = TH1F("p3_1_jesDown", "Thin Passing Jet pT JES Down", 400, 0, 2000)
+		f1_jesDown = TH1F("f1_jesDown", "failing softdrop mass JES Down", 40, 0, 200)
+	        f1_1_jesDown = TH1F("f1_1_jesDown", "failing softdrop mass JES Down", 200, 0, 200)
+		f1_2_jesDown = TH1F("f1_2_jesDown", "failing (uncorrected) softdrop mass JES Down", 200, 0, 200)
+		f3_jesDown = TH1F("f3_jesDown", "failing jet pt JES Down", 40, 0, 2000)
+	        f3_1_jesDown = TH1F("f3_1_jesDown", "Thin Failinging Jet pT JES Down", 400, 0, 2000)
+
+
+		h41_w_puUp = TH2F("jet_pt_soft_pass_wide6_wide_puUp", "Passing Jet pT vs. Softdrop Mass PileUp Up", 7, widebins6, 40, 0, 200)
+        	h42_w_puUp = TH2F("jet_pt_soft_total_wide6_wide_puUp", "Total Jet pT vs. Softdrop Mass PileUp Up", 7, widebins6, 40, 0, 200)
+        	h43_w_puUp = TH2F("jet_pt_soft_fail_wide6_wide_puUp", "Failing Jet pT vs. Softdrop Mass PileUp Up", 7, widebins6, 40, 0, 200)
+		h41_w_puDown = TH2F("jet_pt_soft_pass_wide6_wide_puDown", "Passing Jet pT vs. Softdrop Mass PileUp Down", 7, widebins6, 40, 0, 200)
+        	h42_w_puDown = TH2F("jet_pt_soft_total_wide6_wide_puDown", "Total Jet pT vs. Softdrop Mass PileUp Down", 7, widebins6, 40, 0, 200)
+        	h43_w_puDown = TH2F("jet_pt_soft_fail_wide6_wide_puDown", "Failing Jet pT vs. Softdrop Mass PileUp Down", 7, widebins6, 40, 0, 200)
+		
+		h41_w_jerUp = TH2F("jet_pt_soft_pass_wide6_wide_jerUp", "Passing Jet pT vs. Softdrop Mass JER Up", 7, widebins6, 40, 0, 200)
+        	h42_w_jerUp = TH2F("jet_pt_soft_total_wide6_wide_jerUp", "Total Jet pT vs. Softdrop Mass JER Up", 7, widebins6, 40, 0, 200)
+        	h43_w_jerUp = TH2F("jet_pt_soft_fail_wide6_wide_jerUp", "Failing Jet pT vs. Softdrop Mass JER Up", 7, widebins6, 40, 0, 200)
+		h41_w_jerDown = TH2F("jet_pt_soft_pass_wide6_wide_jerDown", "Passing Jet pT vs. Softdrop Mass JER Down", 7, widebins6, 40, 0, 200)
+        	h42_w_jerDown = TH2F("jet_pt_soft_total_wide6_wide_jerDown", "Total Jet pT vs. Softdrop Mass JER Down", 7, widebins6, 40, 0, 200)
+        	h43_w_jerDown = TH2F("jet_pt_soft_fail_wide6_wide_jerDown", "Failing Jet pT vs. Softdrop Mass JER Down", 7, widebins6, 40, 0, 200)
+		
+		h41_w_jesUp = TH2F("jet_pt_soft_pass_wide6_wide_jesUp", "Passing Jet pT vs. Softdrop Mass JES Up", 7, widebins6, 40, 0, 200)
+        	h42_w_jesUp = TH2F("jet_pt_soft_total_wide6_wide_jesUp", "Total Jet pT vs. Softdrop Mass JES Up", 7, widebins6, 40, 0, 200)
+        	h43_w_jesUp = TH2F("jet_pt_soft_fail_wide6_wide_jesUp", "Failing Jet pT vs. Softdrop Mass JES Up", 7, widebins6, 40, 0, 200)
+		h41_w_jesDown = TH2F("jet_pt_soft_pass_wide6_wide_jesDown", "Passing Jet pT vs. Softdrop Mass JES Down", 7, widebins6, 40, 0, 200)
+        	h42_w_jesDown = TH2F("jet_pt_soft_total_wide6_wide_jesDown", "Total Jet pT vs. Softdrop Mass JES Down", 7, widebins6, 40, 0, 200)
+        	h43_w_jesDown = TH2F("jet_pt_soft_fail_wide6_wide_jesDown", "Failing Jet pT vs. Softdrop Mass JES Down", 7, widebins6, 40, 0, 200)
+		
+		
 	nocut = 0
 	npcut = 0
 	njcut = 0
@@ -176,7 +299,7 @@ def DataPro(sample, fname, cut_hist, percentage=20):
 	jcut = 0
 	nsubcut = 0
 
-	trigcut = 0
+	#trigcut = 0
 
 	final = 0
 
@@ -210,15 +333,6 @@ def DataPro(sample, fname, cut_hist, percentage=20):
 	
 	Chain.Add(sample[0])
 
-#		for path, subdirs, files in os.walk(F[0]):
-#			for name in files:
-#				File = os.path.join(path, name)
-#				if (File.endswith(".root")):
-#					print os.path.join(path, name) 
-#					#n = RDF(File).Count()
-					#print n.GetValue()
-#					Chain.Add(File)
-	
 	Rdf_noCut = RDF(Chain)
 	nocut += float(Rdf_noCut.Count().GetValue())
 	total_events += float(Rdf_noCut.Count().GetValue())
@@ -226,16 +340,16 @@ def DataPro(sample, fname, cut_hist, percentage=20):
 	
 	
 	if sample[3] == "data": #Take 10% of Data
-                Rdf_noCut = Rdf_noCut.Filter("rdfentry_ % 10 == 0")
+                Rdf_noCut = Rdf_noCut.Filter("rdfentry_ % 10 == 0", "10% of Data Cut")
                 ten_pass += float(Rdf_noCut.Count().GetValue())
-	Rdf_noCut = Rdf_noCut.Filter("(HLT_Photon200 >0.0)")
+	Rdf_noCut = Rdf_noCut.Filter("(HLT_Photon200 >0.0)", "Trigger Cut")
 
 	trig_pass += float(Rdf_noCut.Count().GetValue())
 
-	Rdf_PreSel = Rdf_noCut.Filter("nPhoton > 0.")
+	Rdf_PreSel = Rdf_noCut.Filter("nPhoton > 0.", "Number of Photons Cut")
 	npcut += float(Rdf_PreSel.Count().GetValue())
 
-	Rdf_PreSel = Rdf_PreSel.Filter("nFatJet > 0.")
+	Rdf_PreSel = Rdf_PreSel.Filter("nFatJet > 0.", "Number of Jets Cut")
 	njcut += float(Rdf_PreSel.Count().GetValue())
 	num_pass += float(Rdf_PreSel.Count().GetValue())
 
@@ -288,24 +402,29 @@ def DataPro(sample, fname, cut_hist, percentage=20):
 	
 	#Direct Prompt Filter
 	if sample[3] == "GJ":
-		Rdf_PreSel = Rdf_PreSel.Filter("dir_prompt(nGenPart, GenPart_status, GenPart_genPartIdxMother, GenPart_pdgId, GenPart_phi, GenPart_eta)")
+		Rdf_PreSel = Rdf_PreSel.Filter("dir_prompt(nGenPart, GenPart_status, GenPart_genPartIdxMother, GenPart_pdgId, GenPart_phi, GenPart_eta)", "Direct Prompt Photon Required")
 	if sample[3] == "QCD":
-		Rdf_PreSel = Rdf_PreSel.Filter("!dir_prompt(nGenPart, GenPart_status, GenPart_genPartIdxMother, GenPart_pdgId, GenPart_phi, GenPart_eta)")
+		Rdf_PreSel = Rdf_PreSel.Filter("!dir_prompt(nGenPart, GenPart_status, GenPart_genPartIdxMother, GenPart_pdgId, GenPart_phi, GenPart_eta)", "Direct Prompt Photon Rejected")
+
 	#Trigger Filter
 	Rdf_PreSel = Rdf_PreSel.Filter("(HLT_Photon200 >0.0)")
 
-	trigcut += float(Rdf_PreSel.Count().GetValue())
+#	trigcut += float(Rdf_PreSel.Count().GetValue())
 
-	Rdf = Rdf_PreSel.Filter("pIndex >= 0")
+	Rdf = Rdf_PreSel.Filter("pIndex >= 0", "Photon Cuts")
 	pcut += float(Rdf.Count().GetValue())
 	
 		
-	Rdf = Rdf.Filter("jIndex >= 0")
+	Rdf = Rdf.Filter("jIndex >= 0", "Jet Cuts")
 	jcut += float(Rdf.Count().GetValue())
-	
-	
 
-	Rdf = Rdf.Define("jM_uncorr", "FatJet_msoftdrop_raw[jIndex]")
+	if sample[3] == "data":
+		Rdf = Rdf.Define("jM_uncorr", "FatJet_msoftdrop_raw[jIndex]")
+	else:
+		Rdf = Rdf.Define("jM_uncorr", "FatJet_msoftdrop_raw[jIndex]*FatJet_corr_JER[jIndex]")
+
+#	print("Test1")	
+#        print(float(Rdf.Count().GetValue()))
 	Rdf = Rdf.Define("jEta", "FatJet_eta[jIndex]")
 	Rdf = Rdf.Define("jPhi", "FatJet_phi[jIndex]")
 	Rdf = Rdf.Define("jPt", "FatJet_pt_nom[jIndex]")
@@ -322,6 +441,7 @@ def DataPro(sample, fname, cut_hist, percentage=20):
 	Rdf = Rdf.Define("dR", "deltaR(jEta, pEta, jPhi, pPhi)")
         Rdf = Rdf.Define("pCut", "Photon_cutBased[pIndex]")
 
+	Rdf = Rdf.Define("PV_Good", "PV_npvsGood")
         Rdf = Rdf.Define("nj4", "nJet")
         Rdf = Rdf.Define("ak4_nomatch", "ak4_match(nj4, Jet_eta, Jet_phi, jEta, jPhi, Jet_pt, Jet_btagDeepFlavB)") #AK4 IDs that do NOT match the boosted AK8 jet sorted by btag score
 
@@ -336,31 +456,148 @@ def DataPro(sample, fname, cut_hist, percentage=20):
 	Rdf = Rdf.Define("jHT", "HT(Jet_pt, Jet_eta)")
 	Rdf = Rdf.Define("jHT_AK8", "HT_AK8(FatJet_pt_nom, FatJet_eta)")
 	Rdf = Rdf.Define("jPt_AK4", "Jet_pt[0]")
-	
+
+#	print("Test2")	
+#        print(float(Rdf.Count().GetValue()))
         if sample[3] == "mc" or sample[3] == "GJ" or sample[3] == "QCD":
                 Rdf = Rdf.Define("xs_lumi", sample[1])
                 Rdf = Rdf.Define("weight", "xs_lumi*puWeight")
+		# Pileup Systematic Weights
+                Rdf = Rdf.Define("weight_Up", "xs_lumi*puWeightUp")
+                Rdf = Rdf.Define("weight_Down", "xs_lumi*puWeightDown")
         elif sample[3] == "data":
                 Rdf = Rdf.Define("weight", sample[1])
 
-	
 
-	Rdf_Final = Rdf.Filter("N2 >= 0.0 && Rho > -7 && Rho < -2  && dR >= 2.2")
+	
+	
+	Rdf_Final = Rdf.Filter("N2 >= 0.0", "N2>0 Cut")
+	Rdf_Final = Rdf_Final.Filter("Rho > -7 && Rho < -2", "Rho Cut")
+	Rdf_Final = Rdf_Final.Filter("dR >= 2.2", "dR Cut")
 	dR_pass += float(Rdf_Final.Count().GetValue())
 
         Rdf_MET = Rdf_Final.Filter("PuppiMETpt < 75") #Additional MET cut for btag testing
-        Rdf_Final = Rdf_Final.Filter("PuppiMETpt < 75 && jBtag < 0.0532")
+        Rdf_Final = Rdf_Final.Filter("PuppiMETpt < 75 && jBtag < 0.0532", "TTBar Veto")
 
         final += float(Rdf_Final.Count().GetValue())
 #	print(final)	
 
-	Rdf_Pass = Rdf_Final.Filter("n2ddt<0")
+
+	# Systematics
+        if sample[3] == "mc" or sample[3] == "GJ" or sample[3] == "QCD":
+		Rdf_Final = Rdf_Final.Define("jPt_jerUp", "FatJet_pt_jerUp[jIndex]")
+		Rdf_Final = Rdf_Final.Define("jPt_jerDown", "FatJet_pt_jerDown[jIndex]")
+		Rdf_Final = Rdf_Final.Define("jM_uncorr_jerUp", "jM_uncorr * (jPt_jerUp / jPt)")
+		Rdf_Final = Rdf_Final.Define("jM_uncorr_jerDown", "jM_uncorr * (jPt_jerDown / jPt)")
+		Rdf_Final = Rdf_Final.Define("jM_jerUp", "jM * (jPt_jerUp / jPt)")
+		Rdf_Final = Rdf_Final.Define("jM_jerDown", "jM * (jPt_jerDown / jPt)")
+	
+		# JES Correlated Factors
+		jes_mass_comment = '''
+		Rdf_Final = Rdf_Final.Define("jM_jesAbsBiasUp", "pow(((FatJet_msoftdrop_jesAbsoluteMPFBiasUp[jIndex] - jM_uncorr)/(1.0 * jM_uncorr)),2)")
+		Rdf_Final = Rdf_Final.Define("jM_jesAbsScaleUp", "pow(((FatJet_msoftdrop_jesAbsoluteScaleUp[jIndex] - jM_uncorr)/(1.0 * jM_uncorr)),2)")
+		Rdf_Final = Rdf_Final.Define("jM_jesFlavQCDUp", "pow(((FatJet_msoftdrop_jesFlavorQCDUp[jIndex] - jM_uncorr)/(1.0 * jM_uncorr)),2)")
+		Rdf_Final = Rdf_Final.Define("jM_jesFragUp", "pow(((FatJet_msoftdrop_jesFragmentationUp[jIndex] - jM_uncorr)/(1.0 * jM_uncorr)),2)")
+		Rdf_Final = Rdf_Final.Define("jM_jesPileDataMCUp", "pow(((FatJet_msoftdrop_jesPileUpDataMCUp[jIndex] - jM_uncorr)/(2.0 * jM_uncorr)),2)")
+		Rdf_Final = Rdf_Final.Define("jM_jesPilePtBBUp", "pow(((FatJet_msoftdrop_jesPileUpPtBBUp[jIndex] - jM_uncorr)/(2.0 * jM_uncorr)),2)")
+		Rdf_Final = Rdf_Final.Define("jM_jesPilePtEC1Up", "pow(((FatJet_msoftdrop_jesPileUpPtEC1Up[jIndex] - jM_uncorr)/(2.0 * jM_uncorr)),2)")
+		Rdf_Final = Rdf_Final.Define("jM_jesPilePtEC2Up", "pow(((FatJet_msoftdrop_jesPileUpPtEC2Up[jIndex] - jM_uncorr)/(2.0 * jM_uncorr)),2)")
+		Rdf_Final = Rdf_Final.Define("jM_jesPilePtHFUp", "pow(((FatJet_msoftdrop_jesPileUpPtHFUp[jIndex] - jM_uncorr)/(2.0 * jM_uncorr)),2)")
+		Rdf_Final = Rdf_Final.Define("jM_jesPilePtRefUp", "pow(((FatJet_msoftdrop_jesPileUpPtRefUp[jIndex] - jM_uncorr)/(2.0 * jM_uncorr)),2)")
+		Rdf_Final = Rdf_Final.Define("jM_jesRelFSRUp", "pow(((FatJet_msoftdrop_jesRelativeFSRUp[jIndex] - jM_uncorr)/(2.0 * jM_uncorr)),2)")
+		Rdf_Final = Rdf_Final.Define("jM_jesRelJERHFUp", "pow(((FatJet_msoftdrop_jesRelativeJERHFUp[jIndex] - jM_uncorr)/(2.0 * jM_uncorr)),2)")
+		Rdf_Final = Rdf_Final.Define("jM_jesRelPtBBUp", "pow(((FatJet_msoftdrop_jesRelativePtBBUp[jIndex] - jM_uncorr)/(2.0 * jM_uncorr)),2)")
+		Rdf_Final = Rdf_Final.Define("jM_jesRelPtHFUp", "pow(((FatJet_msoftdrop_jesRelativePtHFUp[jIndex] - jM_uncorr)/(2.0 * jM_uncorr)),2)")
+		Rdf_Final = Rdf_Final.Define("jM_jesRelBalUp", "pow(((FatJet_msoftdrop_jesRelativeBalUp[jIndex] - jM_uncorr)/(2.0 * jM_uncorr)),2)")
+		Rdf_Final = Rdf_Final.Define("jM_jesPionECALUp", "pow(((FatJet_msoftdrop_jesSinglePionECALUp[jIndex] - jM_uncorr)/(1.0 * jM_uncorr)),2)")
+		Rdf_Final = Rdf_Final.Define("jM_jesPionHCALUp", "pow(((FatJet_msoftdrop_jesSinglePionHCALUp[jIndex] - jM_uncorr)/(1.0 * jM_uncorr)),2)")
+		'''
+		Rdf_Final = Rdf_Final.Define("jPt_jesAbsBiasUp", "pow(((FatJet_pt_jesAbsoluteMPFBiasUp[jIndex] - jPt)/(1.0 * jPt)),2)")
+		Rdf_Final = Rdf_Final.Define("jPt_jesAbsScaleUp", "pow(((FatJet_pt_jesAbsoluteScaleUp[jIndex] - jPt)/(1.0 * jPt)),2)")
+		Rdf_Final = Rdf_Final.Define("jPt_jesFlavQCDUp", "pow(((FatJet_pt_jesFlavorQCDUp[jIndex] - jPt)/(1.0 * jPt)),2)")
+		Rdf_Final = Rdf_Final.Define("jPt_jesFragUp", "pow(((FatJet_pt_jesFragmentationUp[jIndex] - jPt)/(1.0 * jPt)),2)")
+		Rdf_Final = Rdf_Final.Define("jPt_jesPileDataMCUp", "pow(((FatJet_pt_jesPileUpDataMCUp[jIndex] - jPt)/(2.0 * jPt)),2)")
+		Rdf_Final = Rdf_Final.Define("jPt_jesPilePtBBUp", "pow(((FatJet_pt_jesPileUpPtBBUp[jIndex] - jPt)/(2.0 * jPt)),2)")
+		Rdf_Final = Rdf_Final.Define("jPt_jesPilePtEC1Up", "pow(((FatJet_pt_jesPileUpPtEC1Up[jIndex] - jPt)/(2.0 * jPt)),2)")
+		Rdf_Final = Rdf_Final.Define("jPt_jesPilePtEC2Up", "pow(((FatJet_pt_jesPileUpPtEC2Up[jIndex] - jPt)/(2.0 * jPt)),2)")
+		Rdf_Final = Rdf_Final.Define("jPt_jesPilePtHFUp", "pow(((FatJet_pt_jesPileUpPtHFUp[jIndex] - jPt)/(2.0 * jPt)),2)")
+		Rdf_Final = Rdf_Final.Define("jPt_jesPilePtRefUp", "pow(((FatJet_pt_jesPileUpPtRefUp[jIndex] - jPt)/(2.0 * jPt)),2)")
+		Rdf_Final = Rdf_Final.Define("jPt_jesRelFSRUp", "pow(((FatJet_pt_jesRelativeFSRUp[jIndex] - jPt)/(2.0 * jPt)),2)")
+		Rdf_Final = Rdf_Final.Define("jPt_jesRelJERHFUp", "pow(((FatJet_pt_jesRelativeJERHFUp[jIndex] - jPt)/(2.0 * jPt)),2)")
+		Rdf_Final = Rdf_Final.Define("jPt_jesRelPtBBUp", "pow(((FatJet_pt_jesRelativePtBBUp[jIndex] - jPt)/(2.0 * jPt)),2)")
+		Rdf_Final = Rdf_Final.Define("jPt_jesRelPtHFUp", "pow(((FatJet_pt_jesRelativePtHFUp[jIndex] - jPt)/(2.0 * jPt)),2)")
+		Rdf_Final = Rdf_Final.Define("jPt_jesRelBalUp", "pow(((FatJet_pt_jesRelativeBalUp[jIndex] - jPt)/(2.0 * jPt)),2)")
+		Rdf_Final = Rdf_Final.Define("jPt_jesPionECALUp", "pow(((FatJet_pt_jesSinglePionECALUp[jIndex] - jPt)/(1.0 * jPt)),2)")
+		Rdf_Final = Rdf_Final.Define("jPt_jesPionHCALUp", "pow(((FatJet_pt_jesSinglePionHCALUp[jIndex] - jPt)/(1.0 * jPt)),2)")
+		
+		jes_mass_comment2 = '''
+
+		Rdf_Final = Rdf_Final.Define("jM_jesAbsBiasDown", "pow(((FatJet_msoftdrop_jesAbsoluteMPFBiasDown[jIndex] - jM_uncorr)/(1.0 * jM_uncorr)),2)")
+		Rdf_Final = Rdf_Final.Define("jM_jesAbsScaleDown", "pow(((FatJet_msoftdrop_jesAbsoluteScaleDown[jIndex] - jM_uncorr)/(1.0 * jM_uncorr)),2)")
+		Rdf_Final = Rdf_Final.Define("jM_jesFlavQCDDown", "pow(((FatJet_msoftdrop_jesFlavorQCDDown[jIndex] - jM_uncorr)/(1.0 * jM_uncorr)),2)")
+		Rdf_Final = Rdf_Final.Define("jM_jesFragDown", "pow(((FatJet_msoftdrop_jesFragmentationDown[jIndex] - jM_uncorr)/(1.0 * jM_uncorr)),2)")
+		Rdf_Final = Rdf_Final.Define("jM_jesPileDataMCDown", "pow(((FatJet_msoftdrop_jesPileUpDataMCDown[jIndex] - jM_uncorr)/(2.0 * jM_uncorr)),2)")
+		Rdf_Final = Rdf_Final.Define("jM_jesPilePtBBDown", "pow(((FatJet_msoftdrop_jesPileUpPtBBDown[jIndex] - jM_uncorr)/(2.0 * jM_uncorr)),2)")
+		Rdf_Final = Rdf_Final.Define("jM_jesPilePtEC1Down", "pow(((FatJet_msoftdrop_jesPileUpPtEC1Down[jIndex] - jM_uncorr)/(2.0 * jM_uncorr)),2)")
+		Rdf_Final = Rdf_Final.Define("jM_jesPilePtEC2Down", "pow(((FatJet_msoftdrop_jesPileUpPtEC2Down[jIndex] - jM_uncorr)/(2.0 * jM_uncorr)),2)")
+		Rdf_Final = Rdf_Final.Define("jM_jesPilePtHFDown", "pow(((FatJet_msoftdrop_jesPileUpPtHFDown[jIndex] - jM_uncorr)/(2.0 * jM_uncorr)),2)")
+		Rdf_Final = Rdf_Final.Define("jM_jesPilePtRefDown", "pow(((FatJet_msoftdrop_jesPileUpPtRefDown[jIndex] - jM_uncorr)/(2.0 * jM_uncorr)),2)")
+		Rdf_Final = Rdf_Final.Define("jM_jesRelFSRDown", "pow(((FatJet_msoftdrop_jesRelativeFSRDown[jIndex] - jM_uncorr)/(2.0 * jM_uncorr)),2)")
+		Rdf_Final = Rdf_Final.Define("jM_jesRelJERHFDown", "pow(((FatJet_msoftdrop_jesRelativeJERHFDown[jIndex] - jM_uncorr)/(2.0 * jM_uncorr)),2)")
+		Rdf_Final = Rdf_Final.Define("jM_jesRelPtBBDown", "pow(((FatJet_msoftdrop_jesRelativePtBBDown[jIndex] - jM_uncorr)/(2.0 * jM_uncorr)),2)")
+		Rdf_Final = Rdf_Final.Define("jM_jesRelPtHFDown", "pow(((FatJet_msoftdrop_jesRelativePtHFDown[jIndex] - jM_uncorr)/(2.0 * jM_uncorr)),2)")
+		Rdf_Final = Rdf_Final.Define("jM_jesRelBalDown", "pow(((FatJet_msoftdrop_jesRelativeBalDown[jIndex] - jM_uncorr)/(2.0 * jM_uncorr)),2)")
+		Rdf_Final = Rdf_Final.Define("jM_jesPionECALDown", "pow(((FatJet_msoftdrop_jesSinglePionECALDown[jIndex] - jM_uncorr)/(1.0 * jM_uncorr)),2)")
+		Rdf_Final = Rdf_Final.Define("jM_jesPionHCALDown", "pow(((FatJet_msoftdrop_jesSinglePionHCALDown[jIndex] - jM_uncorr)/(1.0 * jM_uncorr)),2)")
+		'''
+
+		Rdf_Final = Rdf_Final.Define("jPt_jesAbsBiasDown", "pow(((FatJet_pt_jesAbsoluteMPFBiasDown[jIndex] - jPt)/(1.0 * jPt)),2)")
+		Rdf_Final = Rdf_Final.Define("jPt_jesAbsScaleDown", "pow(((FatJet_pt_jesAbsoluteScaleDown[jIndex] - jPt)/(1.0 * jPt)),2)")
+		Rdf_Final = Rdf_Final.Define("jPt_jesFlavQCDDown", "pow(((FatJet_pt_jesFlavorQCDDown[jIndex] - jPt)/(1.0 * jPt)),2)")
+		Rdf_Final = Rdf_Final.Define("jPt_jesFragDown", "pow(((FatJet_pt_jesFragmentationDown[jIndex] - jPt)/(1.0 * jPt)),2)")
+		Rdf_Final = Rdf_Final.Define("jPt_jesPileDataMCDown", "pow(((FatJet_pt_jesPileUpDataMCDown[jIndex] - jPt)/(2.0 * jPt)),2)")
+		Rdf_Final = Rdf_Final.Define("jPt_jesPilePtBBDown", "pow(((FatJet_pt_jesPileUpPtBBDown[jIndex] - jPt)/(2.0 * jPt)),2)")
+		Rdf_Final = Rdf_Final.Define("jPt_jesPilePtEC1Down", "pow(((FatJet_pt_jesPileUpPtEC1Down[jIndex] - jPt)/(2.0 * jPt)),2)")
+		Rdf_Final = Rdf_Final.Define("jPt_jesPilePtEC2Down", "pow(((FatJet_pt_jesPileUpPtEC2Down[jIndex] - jPt)/(2.0 * jPt)),2)")
+		Rdf_Final = Rdf_Final.Define("jPt_jesPilePtHFDown", "pow(((FatJet_pt_jesPileUpPtHFDown[jIndex] - jPt)/(2.0 * jPt)),2)")
+		Rdf_Final = Rdf_Final.Define("jPt_jesPilePtRefDown", "pow(((FatJet_pt_jesPileUpPtRefDown[jIndex] - jPt)/(2.0 * jPt)),2)")
+		Rdf_Final = Rdf_Final.Define("jPt_jesRelFSRDown", "pow(((FatJet_pt_jesRelativeFSRDown[jIndex] - jPt)/(2.0 * jPt)),2)")
+		Rdf_Final = Rdf_Final.Define("jPt_jesRelJERHFDown", "pow(((FatJet_pt_jesRelativeJERHFDown[jIndex] - jPt)/(2.0 * jPt)),2)")
+		Rdf_Final = Rdf_Final.Define("jPt_jesRelPtBBDown", "pow(((FatJet_pt_jesRelativePtBBDown[jIndex] - jPt)/(2.0 * jPt)),2)")
+		Rdf_Final = Rdf_Final.Define("jPt_jesRelPtHFDown", "pow(((FatJet_pt_jesRelativePtHFDown[jIndex] - jPt)/(2.0 * jPt)),2)")
+		Rdf_Final = Rdf_Final.Define("jPt_jesRelBalDown", "pow(((FatJet_pt_jesRelativeBalDown[jIndex] - jPt)/(2.0 * jPt)),2)")
+		Rdf_Final = Rdf_Final.Define("jPt_jesPionECALDown", "pow(((FatJet_pt_jesSinglePionECALDown[jIndex] - jPt)/(1.0 * jPt)),2)")
+		Rdf_Final = Rdf_Final.Define("jPt_jesPionHCALDown", "pow(((FatJet_pt_jesSinglePionHCALDown[jIndex] - jPt)/(1.0 * jPt)),2)")
+
+
+#		Rdf_Final = Rdf_Final.Define("jM_jesUp_Delta", "jM_jesAbsBiasUp+jM_jesAbsScaleUp+jM_jesFlavQCDUp+jM_jesFragUp+jM_jesPileDataMCUp+jM_jesPilePtBBUp+jM_jesPilePtEC1Up+jM_jesPilePtEC2Up+jM_jesPilePtHFUp+jM_jesPilePtRefUp+jM_jesRelFSRUp+jM_jesRelJERHFUp+jM_jesRelPtBBUp+jM_jesRelPtHFUp+jM_jesRelBalUp+jM_jesPionECALUp+jM_jesPionHCALUp")
+		Rdf_Final = Rdf_Final.Define("jPt_jesUp_Delta", "jPt_jesAbsBiasUp+jPt_jesAbsScaleUp+jPt_jesFlavQCDUp+jPt_jesFragUp+jPt_jesPileDataMCUp+jPt_jesPilePtBBUp+jPt_jesPilePtEC1Up+jPt_jesPilePtEC2Up+jPt_jesPilePtHFUp+jPt_jesPilePtRefUp+jPt_jesRelFSRUp+jPt_jesRelJERHFUp+jPt_jesRelPtBBUp+jPt_jesRelPtHFUp+jPt_jesRelBalUp+jPt_jesPionECALUp+jPt_jesPionHCALUp")
+#		Rdf_Final = Rdf_Final.Define("jM_jesDown_Delta", "jM_jesAbsBiasDown+jM_jesAbsScaleDown+jM_jesFlavQCDDown+jM_jesFragDown+jM_jesPileDataMCDown+jM_jesPilePtBBDown+jM_jesPilePtEC1Down+jM_jesPilePtEC2Down+jM_jesPilePtHFDown+jM_jesPilePtRefDown+jM_jesRelFSRDown+jM_jesRelJERHFDown+jM_jesRelPtBBDown+jM_jesRelPtHFDown+jM_jesRelBalDown+jM_jesPionECALDown+jM_jesPionHCALDown")
+		Rdf_Final = Rdf_Final.Define("jPt_jesDown_Delta", "jPt_jesAbsBiasDown+jPt_jesAbsScaleDown+jPt_jesFlavQCDDown+jPt_jesFragDown+jPt_jesPileDataMCDown+jPt_jesPilePtBBDown+jPt_jesPilePtEC1Down+jPt_jesPilePtEC2Down+jPt_jesPilePtHFDown+jPt_jesPilePtRefDown+jPt_jesRelFSRDown+jPt_jesRelJERHFDown+jPt_jesRelPtBBDown+jPt_jesRelPtHFDown+jPt_jesRelBalDown+jPt_jesPionECALDown+jPt_jesPionHCALDown")
+	
+
+		Rdf_Final = Rdf_Final.Define("jPt_jesUp", "jPt * (1.0 + sqrt(jPt_jesUp_Delta))")
+		Rdf_Final = Rdf_Final.Define("jPt_jesDown", "jPt * (1.0 - sqrt(jPt_jesDown_Delta))")
+		
+#		Rdf_Final = Rdf_Final.Define("jM_uncorr_jesUp", "jM_uncorr * (1.0 + sqrt(jM_jesUp_Delta))")
+#		Rdf_Final = Rdf_Final.Define("jM_jesUp", "jM_uncorr_jesUp*JMC_corr(jM_uncorr_jesUp,jPt_jesUp,jEta)")
+#		Rdf_Final = Rdf_Final.Define("jM_uncorr_jesDown", "jM_uncorr * (1.0 - sqrt(jM_jesDown_Delta))")
+#		Rdf_Final = Rdf_Final.Define("jM_jesDown", "jM_uncorr_jesDown*JMC_corr(jM_uncorr_jesDown,jPt_jesDown,jEta)")
+
+		Rdf_Final = Rdf_Final.Define("jM_uncorr_jesUp", "jM_uncorr * (jPt_jesUp / jPt)")
+		Rdf_Final = Rdf_Final.Define("jM_jesUp", "jM * (jPt_jesUp / jPt)")
+		Rdf_Final = Rdf_Final.Define("jM_uncorr_jesDown", "jM_uncorr * (jPt_jesDown / jPt)")
+		Rdf_Final = Rdf_Final.Define("jM_jesDown", "jM * (jPt_jesDown / jPt)")
+
+
+
+	Rdf_Pass = Rdf_Final.Filter("n2ddt<0", "N2DDT Passing Cut")
 	pass_events += float(Rdf_Pass.Count().GetValue())
 	pass_pass += float(Rdf_Pass.Count().GetValue())
 	pass_pass_weight += float(Rdf_Pass.Count().GetValue())*float(sample[1])
 
 
-	Rdf_Fail = Rdf_Final.Filter("n2ddt>0")
+	Rdf_Fail = Rdf_Final.Filter("n2ddt>0", "N2DDT Failing Cut")
 	fail_events += float(Rdf_Fail.Count().GetValue())
 	fail_pass += float(Rdf_Fail.Count().GetValue())
 	fail_pass_weight += float(Rdf_Fail.Count().GetValue())*float(sample[1])
@@ -377,13 +614,13 @@ def DataPro(sample, fname, cut_hist, percentage=20):
 	t2.SetXTitle("Softdrop Mass")
 	h2.Add(t2)
 
-        t2_1 = Rdf_Final.Histo1D(("t2_1", "Thin Softdrop Mass", 100, 0, 200), "jM", "weight")
+        t2_1 = Rdf_Final.Histo1D(("t2_1", "Thin Softdrop Mass", 200, 0, 200), "jM", "weight")
         t2_1 = t2_1.Clone()
         t2_1.SetTitle("Thin Softdrop Mass")
         t2_1.SetXTitle("Softdrop Mass")
         h2_1.Add(t2_1)
 
-        t2_2 = Rdf_Final.Histo1D(("t2_2", "Thin (Uncorrected) Softdrop Mass", 100, 0, 200), "jM_uncorr", "weight")
+        t2_2 = Rdf_Final.Histo1D(("t2_2", "Thin (Uncorrected) Softdrop Mass", 200, 0, 200), "jM_uncorr", "weight")
         t2_2 = t2_2.Clone()
         t2_2.SetTitle("Thin (Uncorrected) Softdrop Mass")
         t2_2.SetXTitle("Softdrop Mass")
@@ -401,7 +638,7 @@ def DataPro(sample, fname, cut_hist, percentage=20):
 	t5.SetXTitle("pT")
 	h5.Add(t5)
 
-        t5_1 = Rdf_Final.Histo1D(("t5_1", "Thin Jet pT", 2000, 0, 2000), "jPt", "weight")
+        t5_1 = Rdf_Final.Histo1D(("t5_1", "Thin Jet pT", 400, 0, 2000), "jPt", "weight")
         t5_1 = t5_1.Clone()
         t5_1.SetTitle("Thin Jet pT")
         t5_1.SetXTitle("pT")
@@ -438,13 +675,13 @@ def DataPro(sample, fname, cut_hist, percentage=20):
 	q1.SetXTitle("Softdrop Mass")
 	p1.Add(q1)
 	
-        q1_1 = Rdf_Pass.Histo1D(("q1_1", "Thin Passing Softdrop Mass", 100, 0, 200), "jM", "weight")
+        q1_1 = Rdf_Pass.Histo1D(("q1_1", "Thin Passing Softdrop Mass", 200, 0, 200), "jM", "weight")
         q1_1 = q1_1.Clone()
         q1_1.SetTitle("Passing Softdrop Mass")
         q1_1.SetXTitle("Softdrop Mass")
         p1_1.Add(q1_1)
 
-        q1_2 = Rdf_Pass.Histo1D(("q1_2", "Thin (Uncorrected) Passing Softdrop Mass", 100, 0, 200), "jM_uncorr", "weight")
+        q1_2 = Rdf_Pass.Histo1D(("q1_2", "Thin (Uncorrected) Passing Softdrop Mass", 200, 0, 200), "jM_uncorr", "weight")
         q1_2 = q1_2.Clone()
         q1_2.SetTitle("Thin (Uncorrected) Passing Softdrop Mass")
         q1_2.SetXTitle("Softdrop Mass")
@@ -461,6 +698,12 @@ def DataPro(sample, fname, cut_hist, percentage=20):
 	q3.SetTitle("Passing Jet pT")
 	q3.SetXTitle("Jet pT")
 	p3.Add(q3)
+	
+	q3_1 = Rdf_Pass.Histo1D(("q3_1", "THin Passing Jet pT", 400, 0, 2000), "jPt", "weight")
+	q3_1 = q3_1.Clone()
+	q3_1.SetTitle("Thin Passing Jet pT")
+	q3_1.SetXTitle("Jet pT")
+	p3_1.Add(q3_1)
 		
 	q4 = Rdf_Pass.Histo1D(("q4", "Passing Rho", 28, -8, -1), "Rho", "weight")
 	q4 = q4.Clone()
@@ -482,42 +725,42 @@ def DataPro(sample, fname, cut_hist, percentage=20):
 		
 	u1 = Rdf_Fail.Histo1D(("u1", "Failing Softdrop Mass", 40, 0, 200), "jM", "weight")
 	u1 = u1.Clone()
-#		u1.Scale(1/9.0)
 	u1.SetTitle("Failing Softdrop Mass")
 	u1.SetXTitle("Softdrop Mass")
 	f1.Add(u1)
 
-        u1_1 = Rdf_Fail.Histo1D(("u1_1", "Failing Softdrop Mass", 100, 0, 200), "jM", "weight")
+        u1_1 = Rdf_Fail.Histo1D(("u1_1", "Failing Softdrop Mass", 200, 0, 200), "jM", "weight")
         u1_1 = u1_1.Clone()
-#               u1.Scale(1/9.0)
         u1_1.SetTitle("Failing Softdrop Mass")
         u1_1.SetXTitle("Softdrop Mass")
         f1_1.Add(u1_1)
 	
-        u1_2 = Rdf_Fail.Histo1D(("u1_2", "Thin (Uncorrected) Failing Softdrop Mass", 100, 0, 200), "jM_uncorr", "weight")
+        u1_2 = Rdf_Fail.Histo1D(("u1_2", "Thin (Uncorrected) Failing Softdrop Mass", 200, 0, 200), "jM_uncorr", "weight")
         u1_2 = u1_2.Clone()
-#               u1.Scale(1/9.0)
         u1_2.SetTitle("Thin (Uncorrected) Failing Softdrop Mass")
         u1_2.SetXTitle("Softdrop Mass")
         f1_2.Add(u1_2)
 	
 	u2 = Rdf_Fail.Histo1D(("u2", "Failing Photon pT", 100, 0, 2000), "pPt", "weight")
 	u2 = u2.Clone()
-#		u2.Scale(1/9.0)
 	u2.SetTitle("Failing Photon pT")
 	u2.SetXTitle("Photon pT")
 	f2.Add(u2)
 		
 	u3 = Rdf_Fail.Histo1D(("u3", "Failing Jet pT", 40, 0, 2000), "jPt", "weight")
 	u3 = u3.Clone()
-#		u3.Scale(1/9.0)
 	u3.SetTitle("Failing Jet pT")
 	u3.SetXTitle("Jet pT")
 	f3.Add(u3)
+	
+	u3_1 = Rdf_Fail.Histo1D(("u3_1", "Thin Failing Jet pT", 400, 0, 2000), "jPt", "weight")
+	u3_1 = u3_1.Clone()
+	u3_1.SetTitle("Thin Failing Jet pT")
+	u3_1.SetXTitle("Jet pT")
+	f3_1.Add(u3_1)
 		
 	u4 = Rdf_Fail.Histo1D(("u4", "Failing Rho", 28, -8, -1), "Rho", "weight")
 	u4 = u4.Clone()
-#		u4.Scale(1/9.0)
 	u4.SetTitle("Failing Rho")
 	u4.SetXTitle("Rho")
 	f4.Add(u4)
@@ -682,6 +925,9 @@ def DataPro(sample, fname, cut_hist, percentage=20):
         j46_w = j46_w.Clone()
         h46_w.Add(j46_w)
 
+	j47 = Rdf_Final.Histo1D(("j47", "Number of Good Reconstructed Primary Verticies", 70, 0, 70), "PV_Good", "weight")
+	j47 = j47.Clone()
+	h47.Add(j47)
 
         j50 = Rdf_Final.Histo1D(("j50", "AK4 Jet Eta", 70, -3.5, 3.5), "j4eta", "weight")
         j50 = j50.Clone()
@@ -737,11 +983,645 @@ def DataPro(sample, fname, cut_hist, percentage=20):
 	j90 = Rdf_Final.Histo1D(("j90", "AK4 Jet pT", 200, 0, 2000), "jPt_AK4", "weight")
         j90 = j90.Clone()
         h90.Add(j90)
+	
+	# Systematics Histograms
+        if sample[3] == "mc" or sample[3] == "GJ" or sample[3] == "QCD":
+		t2_puUp = Rdf_Final.Histo1D(("t2_puUp", "Softdrop Mass PileUp Up", 40, 0, 200), "jM", "weight_Up")
+		t2_puUp = t2_puUp.Clone()
+		t2_puUp.SetTitle("Softdrop Mass PileUp Up")
+		t2_puUp.SetXTitle("Softdrop Mass")
+		h2_puUp.Add(t2_puUp)
+
+        	t2_1_puUp = Rdf_Final.Histo1D(("t2_1_puUp", "Thin Softdrop Mass PileUp Up", 200, 0, 200), "jM", "weight_Up")
+        	t2_1_puUp = t2_1_puUp.Clone()
+        	t2_1_puUp.SetTitle("Thin Softdrop Mass PileUp Up")
+        	t2_1_puUp.SetXTitle("Softdrop Mass")
+        	h2_1_puUp.Add(t2_1_puUp)
+
+        	t2_2_puUp = Rdf_Final.Histo1D(("t2_2_puUp", "Thin (Uncorrected) Softdrop Mass PileUp Up", 200, 0, 200), "jM_uncorr", "weight_Up")
+        	t2_2_puUp = t2_2_puUp.Clone()
+        	t2_2_puUp.SetTitle("Thin (Uncorrected) Softdrop Mass PileUp Up")
+        	t2_2_puUp.SetXTitle("Softdrop Mass")
+        	h2_2_puUp.Add(t2_2_puUp)
 		
+		t5_puUp = Rdf_Final.Histo1D(("t5_puUp", "Jet pT PileUp Up", 40, 0, 2000), "jPt", "weight_Up")
+		t5_puUp = t5_puUp.Clone()
+		t5_puUp.SetTitle("Jet pT PileUp Up")
+		t5_puUp.SetXTitle("pT")
+		h5_puUp.Add(t5_puUp)
+
+        	t5_1_puUp = Rdf_Final.Histo1D(("t5_1_puUp", "Thin Jet pT PileUp Up", 400, 0, 2000), "jPt", "weight_Up")
+        	t5_1_puUp = t5_1_puUp.Clone()
+        	t5_1_puUp.SetTitle("Thin Jet pT PileUp Up")
+        	t5_1_puUp.SetXTitle("pT")
+        	h5_1_puUp.Add(t5_1_puUp)
+
+		t6_puUp = Rdf_Final.Histo1D(("t6_puUp", "Number of Good Reconstructed Primary Verticies PileUp Up", 70, 0, 70), "PV_Good", "weight_Up")
+		t6_puUp = t6_puUp.Clone()
+		h6_puUp.Add(t6_puUp)
+
+		t2_puDown = Rdf_Final.Histo1D(("t2_puDown", "Softdrop Mass PileUp Down", 40, 0, 200), "jM", "weight_Down")
+		t2_puDown = t2_puDown.Clone()
+		t2_puDown.SetTitle("Softdrop Mass PileUp Down")
+		t2_puDown.SetXTitle("Softdrop Mass")
+		h2_puDown.Add(t2_puDown)
+
+        	t2_1_puDown = Rdf_Final.Histo1D(("t2_1_puDown", "Thin Softdrop Mass PileUp Down", 200, 0, 200), "jM", "weight_Down")
+        	t2_1_puDown = t2_1_puDown.Clone()
+        	t2_1_puDown.SetTitle("Thin Softdrop Mass PileUp Down")
+        	t2_1_puDown.SetXTitle("Softdrop Mass")
+        	h2_1_puDown.Add(t2_1_puDown)
+
+        	t2_2_puDown = Rdf_Final.Histo1D(("t2_2_puDown", "Thin (Uncorrected) Softdrop Mass PileUp Down", 200, 0, 200), "jM_uncorr", "weight_Down")
+        	t2_2_puDown = t2_2_puDown.Clone()
+        	t2_2_puDown.SetTitle("Thin (Uncorrected) Softdrop Mass PileUp Down")
+        	t2_2_puDown.SetXTitle("Softdrop Mass")
+        	h2_2_puDown.Add(t2_2_puDown)
+		
+		t5_puDown = Rdf_Final.Histo1D(("t5_puDown", "Jet pT PileUp Down", 40, 0, 2000), "jPt", "weight_Down")
+		t5_puDown = t5_puDown.Clone()
+		t5_puDown.SetTitle("Jet pT PileUp Down")
+		t5_puDown.SetXTitle("pT")
+		h5_puDown.Add(t5_puDown)
+
+        	t5_1_puDown = Rdf_Final.Histo1D(("t5_1_puDown", "Thin Jet pT PileUp Down", 400, 0, 2000), "jPt", "weight_Down")
+        	t5_1_puDown = t5_1_puDown.Clone()
+        	t5_1_puDown.SetTitle("Thin Jet pT PileUp Down")
+        	t5_1_puDown.SetXTitle("pT")
+        	h5_1_puDown.Add(t5_1_puDown)
+		
+		t6_puDown = Rdf_Final.Histo1D(("t6_puDown", "Number of Good Reconstructed Primary Verticies PileUp Down", 70, 0, 70), "PV_Good", "weight_Down")
+		t6_puDown = t6_puDown.Clone()
+		h6_puDown.Add(t6_puDown)
+		
+		t2_jerUp = Rdf_Final.Histo1D(("t2_jerUp", "Softdrop Mass JER Up", 40, 0, 200), "jM_jerUp", "weight")
+		t2_jerUp = t2_jerUp.Clone()
+		t2_jerUp.SetTitle("Softdrop Mass JER Up")
+		t2_jerUp.SetXTitle("Softdrop Mass")
+		h2_jerUp.Add(t2_jerUp)
+
+        	t2_1_jerUp = Rdf_Final.Histo1D(("t2_1_jerUp", "Thin Softdrop Mass JER Up", 200, 0, 200), "jM_jerUp", "weight")
+        	t2_1_jerUp = t2_1_jerUp.Clone()
+        	t2_1_jerUp.SetTitle("Thin Softdrop Mass JER Up")
+        	t2_1_jerUp.SetXTitle("Softdrop Mass")
+        	h2_1_jerUp.Add(t2_1_jerUp)
+
+        	t2_2_jerUp = Rdf_Final.Histo1D(("t2_2_jerUp", "Thin (Uncorrected) Softdrop Mass JER Up", 200, 0, 200), "jM_uncorr_jerUp", "weight")
+        	t2_2_jerUp = t2_2_jerUp.Clone()
+        	t2_2_jerUp.SetTitle("Thin (Uncorrected) Softdrop Mass JER Up")
+        	t2_2_jerUp.SetXTitle("Softdrop Mass")
+        	h2_2_jerUp.Add(t2_2_jerUp)
+		
+		t5_jerUp = Rdf_Final.Histo1D(("t5_jerUp", "Jet pT JER Up", 40, 0, 2000), "jPt_jerUp", "weight")
+		t5_jerUp = t5_jerUp.Clone()
+		t5_jerUp.SetTitle("Jet pT JER Up")
+		t5_jerUp.SetXTitle("pT")
+		h5_jerUp.Add(t5_jerUp)
+
+        	t5_1_jerUp = Rdf_Final.Histo1D(("t5_1_jerUp", "Thin Jet pT JER Up", 400, 0, 2000), "jPt_jerUp", "weight")
+        	t5_1_jerUp = t5_1_jerUp.Clone()
+        	t5_1_jerUp.SetTitle("Thin Jet pT JER Up")
+        	t5_1_jerUp.SetXTitle("pT")
+        	h5_1_jerUp.Add(t5_1_jerUp)
+
+		t2_jerDown = Rdf_Final.Histo1D(("t2_jerDown", "Softdrop Mass JER Down", 40, 0, 200), "jM_jerDown", "weight")
+		t2_jerDown = t2_jerDown.Clone()
+		t2_jerDown.SetTitle("Softdrop Mass JER Down")
+		t2_jerDown.SetXTitle("Softdrop Mass")
+		h2_jerDown.Add(t2_jerDown)
+
+        	t2_1_jerDown = Rdf_Final.Histo1D(("t2_1_jerDown", "Thin Softdrop Mass JER Down", 200, 0, 200), "jM_jerDown", "weight")
+        	t2_1_jerDown = t2_1_jerDown.Clone()
+        	t2_1_jerDown.SetTitle("Thin Softdrop Mass JER Down")
+        	t2_1_jerDown.SetXTitle("Softdrop Mass")
+        	h2_1_jerDown.Add(t2_1_jerDown)
+
+        	t2_2_jerDown = Rdf_Final.Histo1D(("t2_2_jerDown", "Thin (Uncorrected) Softdrop Mass JER Down", 200, 0, 200), "jM_uncorr_jerDown", "weight")
+        	t2_2_jerDown = t2_2_jerDown.Clone()
+        	t2_2_jerDown.SetTitle("Thin (Uncorrected) Softdrop Mass JER Down")
+        	t2_2_jerDown.SetXTitle("Softdrop Mass")
+        	h2_2_jerDown.Add(t2_2_jerDown)
+		
+		t5_jerDown = Rdf_Final.Histo1D(("t5_jerDown", "Jet pT JER Down", 40, 0, 2000), "jPt_jerDown", "weight")
+		t5_jerDown = t5_jerDown.Clone()
+		t5_jerDown.SetTitle("Jet pT JER Down")
+		t5_jerDown.SetXTitle("pT")
+		h5_jerDown.Add(t5_jerDown)
+
+        	t5_1_jerDown = Rdf_Final.Histo1D(("t5_1_jerDown", "Thin Jet pT JER Down", 400, 0, 2000), "jPt_jerDown", "weight")
+        	t5_1_jerDown = t5_1_jerDown.Clone()
+        	t5_1_jerDown.SetTitle("Thin Jet pT JER Down")
+        	t5_1_jerDown.SetXTitle("pT")
+        	h5_1_jerDown.Add(t5_1_jerDown)
+		
+		
+		t2_jesUp = Rdf_Final.Histo1D(("t2_jesUp", "Softdrop Mass JES Up", 40, 0, 200), "jM_jesUp", "weight")
+		t2_jesUp = t2_jesUp.Clone()
+		t2_jesUp.SetTitle("Softdrop Mass JES Up")
+		t2_jesUp.SetXTitle("Softdrop Mass")
+		h2_jesUp.Add(t2_jesUp)
+
+        	t2_1_jesUp = Rdf_Final.Histo1D(("t2_1_jesUp", "Thin Softdrop Mass JES Up", 200, 0, 200), "jM_jesUp", "weight")
+        	t2_1_jesUp = t2_1_jesUp.Clone()
+        	t2_1_jesUp.SetTitle("Thin Softdrop Mass JES Up")
+        	t2_1_jesUp.SetXTitle("Softdrop Mass")
+        	h2_1_jesUp.Add(t2_1_jesUp)
+
+        	t2_2_jesUp = Rdf_Final.Histo1D(("t2_2_jesUp", "Thin (Uncorrected) Softdrop Mass JES Up", 200, 0, 200), "jM_uncorr_jesUp", "weight")
+        	t2_2_jesUp = t2_2_jesUp.Clone()
+        	t2_2_jesUp.SetTitle("Thin (Uncorrected) Softdrop Mass JES Up")
+        	t2_2_jesUp.SetXTitle("Softdrop Mass")
+        	h2_2_jesUp.Add(t2_2_jesUp)
+		
+		t5_jesUp = Rdf_Final.Histo1D(("t5_jesUp", "Jet pT JES Up", 40, 0, 2000), "jPt_jesUp", "weight")
+		t5_jesUp = t5_jesUp.Clone()
+		t5_jesUp.SetTitle("Jet pT JES Up")
+		t5_jesUp.SetXTitle("pT")
+		h5_jesUp.Add(t5_jesUp)
+
+        	t5_1_jesUp = Rdf_Final.Histo1D(("t5_1_jesUp", "Thin Jet pT JES Up", 400, 0, 2000), "jPt_jesUp", "weight")
+        	t5_1_jesUp = t5_1_jesUp.Clone()
+        	t5_1_jesUp.SetTitle("Thin Jet pT JES Up")
+        	t5_1_jesUp.SetXTitle("pT")
+        	h5_1_jesUp.Add(t5_1_jesUp)
+
+		t2_jesDown = Rdf_Final.Histo1D(("t2_jesDown", "Softdrop Mass JES Down", 40, 0, 200), "jM_jesDown", "weight")
+		t2_jesDown = t2_jesDown.Clone()
+		t2_jesDown.SetTitle("Softdrop Mass JES Down")
+		t2_jesDown.SetXTitle("Softdrop Mass")
+		h2_jesDown.Add(t2_jesDown)
+
+        	t2_1_jesDown = Rdf_Final.Histo1D(("t2_1_jesDown", "Thin Softdrop Mass JES Down", 200, 0, 200), "jM_jesDown", "weight")
+        	t2_1_jesDown = t2_1_jesDown.Clone()
+        	t2_1_jesDown.SetTitle("Thin Softdrop Mass JES Down")
+        	t2_1_jesDown.SetXTitle("Softdrop Mass")
+        	h2_1_jesDown.Add(t2_1_jesDown)
+
+        	t2_2_jesDown = Rdf_Final.Histo1D(("t2_2_jesDown", "Thin (Uncorrected) Softdrop Mass JES Down", 200, 0, 200), "jM_uncorr_jesDown", "weight")
+        	t2_2_jesDown = t2_2_jesDown.Clone()
+        	t2_2_jesDown.SetTitle("Thin (Uncorrected) Softdrop Mass JES Down")
+        	t2_2_jesDown.SetXTitle("Softdrop Mass")
+        	h2_2_jesDown.Add(t2_2_jesDown)
+		
+		t5_jesDown = Rdf_Final.Histo1D(("t5_jesDown", "Jet pT JES Down", 40, 0, 2000), "jPt_jesDown", "weight")
+		t5_jesDown = t5_jesDown.Clone()
+		t5_jesDown.SetTitle("Jet pT JES Down")
+		t5_jesDown.SetXTitle("pT")
+		h5_jesDown.Add(t5_jesDown)
+
+        	t5_1_jesDown = Rdf_Final.Histo1D(("t5_1_jesDown", "Thin Jet pT JES Down", 400, 0, 2000), "jPt_jesDown", "weight")
+        	t5_1_jesDown = t5_1_jesDown.Clone()
+        	t5_1_jesDown.SetTitle("Thin Jet pT JES Down")
+        	t5_1_jesDown.SetXTitle("pT")
+        	h5_1_jesDown.Add(t5_1_jesDown)
+		
+		
+		q1_puUp = Rdf_Pass.Histo1D(("q1_puUp", "Passing Softdrop Mass PileUp Up", 40, 0, 200), "jM", "weight_Up")
+		q1_puUp = q1_puUp.Clone()
+		q1_puUp.SetTitle("Passing Softdrop Mass PileUp Up")
+		q1_puUp.SetXTitle("Softdrop Mass")
+		p1_puUp.Add(q1_puUp)
+	
+	        q1_1_puUp = Rdf_Pass.Histo1D(("q1_1_puUp", "Thin Passing Softdrop Mass PileUp Up", 200, 0, 200), "jM", "weight_Up")
+	        q1_1_puUp = q1_1_puUp.Clone()
+	        q1_1_puUp.SetTitle("Passing Softdrop Mass PileUp Up")
+       		q1_1_puUp.SetXTitle("Softdrop Mass")
+        	p1_1_puUp.Add(q1_1_puUp)
+
+        	q1_2_puUp = Rdf_Pass.Histo1D(("q1_2_puUp", "Thin (Uncorrected) Passing Softdrop Mass PileUp Up", 200, 0, 200), "jM_uncorr", "weight_Up")
+        	q1_2_puUp = q1_2_puUp.Clone()
+        	q1_2_puUp.SetTitle("Thin (Uncorrected) Passing Softdrop Mass PileUp Up")
+        	q1_2_puUp.SetXTitle("Softdrop Mass")
+        	p1_2_puUp.Add(q1_2_puUp)
+		
+		q3_puUp = Rdf_Pass.Histo1D(("q3_puUp", "Passing Jet pT PileUp Up", 40, 0, 2000), "jPt", "weight_Up")
+		q3_puUp = q3_puUp.Clone()
+		q3_puUp.SetTitle("Passing Jet pT")
+		q3_puUp.SetXTitle("Jet pT")
+		p3_puUp.Add(q3_puUp)
+	
+		q3_1_puUp = Rdf_Pass.Histo1D(("q3_1_puUp", "Thin Passing Jet pT PileUp Up", 400, 0, 2000), "jPt", "weight_Up")
+		q3_1_puUp = q3_1_puUp.Clone()
+		q3_1_puUp.SetTitle("Thin Passing Jet pT PileUp Up")
+		q3_1_puUp.SetXTitle("Jet pT")
+		p3_1_puUp.Add(q3_1_puUp)
+		
+		u1_puUp = Rdf_Fail.Histo1D(("u1_puUp", "Failing Softdrop Mass PileUp Up", 40, 0, 200), "jM", "weight_Up")
+		u1_puUp = u1_puUp.Clone()
+		u1_puUp.SetTitle("Failing Softdrop Mass PileUp Up")
+		u1_puUp.SetXTitle("Softdrop Mass PileUp Up")
+		f1_puUp.Add(u1_puUp)
+
+	        u1_1_puUp = Rdf_Fail.Histo1D(("u1_1_puUp", "Failing Softdrop Mass PileUp Up", 200, 0, 200), "jM", "weight_Up")
+	        u1_1_puUp = u1_1_puUp.Clone()
+	        u1_1_puUp.SetTitle("Failing Softdrop Mass PileUp Up")
+	        u1_1_puUp.SetXTitle("Softdrop Mass")
+	        f1_1_puUp.Add(u1_1_puUp)
+	
+	        u1_2_puUp = Rdf_Fail.Histo1D(("u1_2_puUp", "Thin (Uncorrected) Failing Softdrop Mass PileUp Up", 200, 0, 200), "jM_uncorr", "weight_Up")
+	        u1_2_puUp = u1_2_puUp.Clone()
+	        u1_2_puUp.SetTitle("Thin (Uncorrected) Failing Softdrop Mass PileUp Up")
+	        u1_2_puUp.SetXTitle("Softdrop Mass")
+	        f1_2_puUp.Add(u1_2_puUp)
+
+		u3_puUp = Rdf_Fail.Histo1D(("u3_puUp", "Failing Jet pT PileUp Up", 40, 0, 2000), "jPt", "weight_Up")
+		u3_puUp = u3_puUp.Clone()
+		u3_puUp.SetTitle("Failing Jet pT PileUp Up")
+		u3_puUp.SetXTitle("Jet pT")
+		f3_puUp.Add(u3_puUp)
+	
+		u3_1_puUp = Rdf_Fail.Histo1D(("u3_1_puUp", "Thin Failing Jet pT PileUp Up", 400, 0, 2000), "jPt", "weight_Up")
+		u3_1_puUp = u3_1_puUp.Clone()
+		u3_1_puUp.SetTitle("Thin Failing Jet pT PileUp Up")
+		u3_1_puUp.SetXTitle("Jet pT")
+		f3_1_puUp.Add(u3_1_puUp)
+
+
+		q1_puDown = Rdf_Pass.Histo1D(("q1_puDown", "Passing Softdrop Mass PileUp Down", 40, 0, 200), "jM", "weight_Down")
+		q1_puDown = q1_puDown.Clone()
+		q1_puDown.SetTitle("Passing Softdrop Mass PileUp Down")
+		q1_puDown.SetXTitle("Softdrop Mass")
+		p1_puDown.Add(q1_puDown)
+	
+	        q1_1_puDown = Rdf_Pass.Histo1D(("q1_1_puDown", "Thin Passing Softdrop Mass PileUp Down", 200, 0, 200), "jM", "weight_Down")
+	        q1_1_puDown = q1_1_puDown.Clone()
+	        q1_1_puDown.SetTitle("Passing Softdrop Mass PileUp Down")
+       		q1_1_puDown.SetXTitle("Softdrop Mass")
+        	p1_1_puDown.Add(q1_1_puDown)
+
+        	q1_2_puDown = Rdf_Pass.Histo1D(("q1_2_puDown", "Thin (Uncorrected) Passing Softdrop Mass PileUp Down", 200, 0, 200), "jM_uncorr", "weight_Down")
+        	q1_2_puDown = q1_2_puDown.Clone()
+        	q1_2_puDown.SetTitle("Thin (Uncorrected) Passing Softdrop Mass PileUp Down")
+        	q1_2_puDown.SetXTitle("Softdrop Mass")
+        	p1_2_puDown.Add(q1_2_puDown)
+		
+		q3_puDown = Rdf_Pass.Histo1D(("q3_puDown", "Passing Jet pT PileUp Down", 40, 0, 2000), "jPt", "weight_Down")
+		q3_puDown = q3_puDown.Clone()
+		q3_puDown.SetTitle("Passing Jet pT")
+		q3_puDown.SetXTitle("Jet pT")
+		p3_puDown.Add(q3_puDown)
+	
+		q3_1_puDown = Rdf_Pass.Histo1D(("q3_1_puDown", "Thin Passing Jet pT PileUp Down", 400, 0, 2000), "jPt", "weight_Down")
+		q3_1_puDown = q3_1_puDown.Clone()
+		q3_1_puDown.SetTitle("Thin Passing Jet pT PileUp Down")
+		q3_1_puDown.SetXTitle("Jet pT")
+		p3_1_puDown.Add(q3_1_puDown)
+		
+		u1_puDown = Rdf_Fail.Histo1D(("u1_puDown", "Failing Softdrop Mass PileUp Down", 40, 0, 200), "jM", "weight_Down")
+		u1_puDown = u1_puDown.Clone()
+		u1_puDown.SetTitle("Failing Softdrop Mass PileUp Down")
+		u1_puDown.SetXTitle("Softdrop Mass PileUp Down")
+		f1_puDown.Add(u1_puDown)
+
+	        u1_1_puDown = Rdf_Fail.Histo1D(("u1_1_puDown", "Failing Softdrop Mass PileUp Down", 200, 0, 200), "jM", "weight_Down")
+	        u1_1_puDown = u1_1_puDown.Clone()
+	        u1_1_puDown.SetTitle("Failing Softdrop Mass PileUp Down")
+	        u1_1_puDown.SetXTitle("Softdrop Mass")
+	        f1_1_puDown.Add(u1_1_puDown)
+	
+	        u1_2_puDown = Rdf_Fail.Histo1D(("u1_2_puDown", "Thin (Uncorrected) Failing Softdrop Mass PileUp Down", 200, 0, 200), "jM_uncorr", "weight_Down")
+	        u1_2_puDown = u1_2_puDown.Clone()
+	        u1_2_puDown.SetTitle("Thin (Uncorrected) Failing Softdrop Mass PileUp Down")
+	        u1_2_puDown.SetXTitle("Softdrop Mass")
+	        f1_2_puDown.Add(u1_2_puDown)
+
+		u3_puDown = Rdf_Fail.Histo1D(("u3_puDown", "Failing Jet pT PileUp Down", 40, 0, 2000), "jPt", "weight_Down")
+		u3_puDown = u3_puDown.Clone()
+		u3_puDown.SetTitle("Failing Jet pT PileUp Down")
+		u3_puDown.SetXTitle("Jet pT")
+		f3_puDown.Add(u3_puDown)
+	
+		u3_1_puDown = Rdf_Fail.Histo1D(("u3_1_puDown", "Thin Failing Jet pT PileUp Down", 400, 0, 2000), "jPt", "weight_Down")
+		u3_1_puDown = u3_1_puDown.Clone()
+		u3_1_puDown.SetTitle("Thin Failing Jet pT PileUp Down")
+		u3_1_puDown.SetXTitle("Jet pT")
+		f3_1_puDown.Add(u3_1_puDown)
+
+
+		q1_jerUp = Rdf_Pass.Histo1D(("q1_jerUp", "Passing Softdrop Mass JER Up", 40, 0, 200), "jM_jerUp", "weight")
+		q1_jerUp = q1_jerUp.Clone()
+		q1_jerUp.SetTitle("Passing Softdrop Mass JER Up")
+		q1_jerUp.SetXTitle("Softdrop Mass")
+		p1_jerUp.Add(q1_jerUp)
+	
+	        q1_1_jerUp = Rdf_Pass.Histo1D(("q1_1_jerUp", "Thin Passing Softdrop Mass JER Up", 200, 0, 200), "jM_jerUp", "weight")
+	        q1_1_jerUp = q1_1_jerUp.Clone()
+	        q1_1_jerUp.SetTitle("Passing Softdrop Mass JER Up")
+       		q1_1_jerUp.SetXTitle("Softdrop Mass")
+        	p1_1_jerUp.Add(q1_1_jerUp)
+
+        	q1_2_jerUp = Rdf_Pass.Histo1D(("q1_2_jerUp", "Thin (Uncorrected) Passing Softdrop Mass JER Up", 200, 0, 200), "jM_uncorr_jerUp", "weight")
+        	q1_2_jerUp = q1_2_jerUp.Clone()
+        	q1_2_jerUp.SetTitle("Thin (Uncorrected) Passing Softdrop Mass JER Up")
+        	q1_2_jerUp.SetXTitle("Softdrop Mass")
+        	p1_2_jerUp.Add(q1_2_jerUp)
+		
+		q3_jerUp = Rdf_Pass.Histo1D(("q3_jerUp", "Passing Jet pT JER Up", 40, 0, 2000), "jPt_jerUp", "weight")
+		q3_jerUp = q3_jerUp.Clone()
+		q3_jerUp.SetTitle("Passing Jet pT")
+		q3_jerUp.SetXTitle("Jet pT")
+		p3_jerUp.Add(q3_jerUp)
+	
+		q3_1_jerUp = Rdf_Pass.Histo1D(("q3_1_jerUp", "Thin Passing Jet pT JER Up", 400, 0, 2000), "jPt_jerUp", "weight")
+		q3_1_jerUp = q3_1_jerUp.Clone()
+		q3_1_jerUp.SetTitle("Thin Passing Jet pT JER Up")
+		q3_1_jerUp.SetXTitle("Jet pT")
+		p3_1_jerUp.Add(q3_1_jerUp)
+		
+		u1_jerUp = Rdf_Fail.Histo1D(("u1_jerUp", "Failing Softdrop Mass JER Up", 40, 0, 200), "jM_jerUp", "weight")
+		u1_jerUp = u1_jerUp.Clone()
+		u1_jerUp.SetTitle("Failing Softdrop Mass JER Up")
+		u1_jerUp.SetXTitle("Softdrop Mass JER Up")
+		f1_jerUp.Add(u1_jerUp)
+
+	        u1_1_jerUp = Rdf_Fail.Histo1D(("u1_1_jerUp", "Failing Softdrop Mass JER Up", 200, 0, 200), "jM_jerUp", "weight")
+	        u1_1_jerUp = u1_1_jerUp.Clone()
+	        u1_1_jerUp.SetTitle("Failing Softdrop Mass JER Up")
+	        u1_1_jerUp.SetXTitle("Softdrop Mass")
+	        f1_1_jerUp.Add(u1_1_jerUp)
+	
+	        u1_2_jerUp = Rdf_Fail.Histo1D(("u1_2_jerUp", "Thin (Uncorrected) Failing Softdrop Mass JER Up", 200, 0, 200), "jM_uncorr_jerUp", "weight")
+	        u1_2_jerUp = u1_2_jerUp.Clone()
+	        u1_2_jerUp.SetTitle("Thin (Uncorrected) Failing Softdrop Mass JER Up")
+	        u1_2_jerUp.SetXTitle("Softdrop Mass")
+	        f1_2_jerUp.Add(u1_2_jerUp)
+
+		u3_jerUp = Rdf_Fail.Histo1D(("u3_jerUp", "Failing Jet pT JER Up", 40, 0, 2000), "jPt_jerUp", "weight")
+		u3_jerUp = u3_jerUp.Clone()
+		u3_jerUp.SetTitle("Failing Jet pT JER Up")
+		u3_jerUp.SetXTitle("Jet pT")
+		f3_jerUp.Add(u3_jerUp)
+	
+		u3_1_jerUp = Rdf_Fail.Histo1D(("u3_1_jerUp", "Thin Failing Jet pT JER Up", 400, 0, 2000), "jPt_jerUp", "weight")
+		u3_1_jerUp = u3_1_jerUp.Clone()
+		u3_1_jerUp.SetTitle("Thin Failing Jet pT JER Up")
+		u3_1_jerUp.SetXTitle("Jet pT")
+		f3_1_jerUp.Add(u3_1_jerUp)
+
+
+		q1_jerDown = Rdf_Pass.Histo1D(("q1_jerDown", "Passing Softdrop Mass JER Down", 40, 0, 200), "jM_jerDown", "weight")
+		q1_jerDown = q1_jerDown.Clone()
+		q1_jerDown.SetTitle("Passing Softdrop Mass JER Down")
+		q1_jerDown.SetXTitle("Softdrop Mass")
+		p1_jerDown.Add(q1_jerDown)
+	
+	        q1_1_jerDown = Rdf_Pass.Histo1D(("q1_1_jerDown", "Thin Passing Softdrop Mass JER Down", 200, 0, 200), "jM_jerDown", "weight")
+	        q1_1_jerDown = q1_1_jerDown.Clone()
+	        q1_1_jerDown.SetTitle("Passing Softdrop Mass JER Down")
+       		q1_1_jerDown.SetXTitle("Softdrop Mass")
+        	p1_1_jerDown.Add(q1_1_jerDown)
+
+        	q1_2_jerDown = Rdf_Pass.Histo1D(("q1_2_jerDown", "Thin (Uncorrected) Passing Softdrop Mass JER Down", 200, 0, 200), "jM_uncorr_jerDown", "weight")
+        	q1_2_jerDown = q1_2_jerDown.Clone()
+        	q1_2_jerDown.SetTitle("Thin (Uncorrected) Passing Softdrop Mass JER Down")
+        	q1_2_jerDown.SetXTitle("Softdrop Mass")
+        	p1_2_jerDown.Add(q1_2_jerDown)
+		
+		q3_jerDown = Rdf_Pass.Histo1D(("q3_jerDown", "Passing Jet pT JER Down", 40, 0, 2000), "jPt_jerDown", "weight")
+		q3_jerDown = q3_jerDown.Clone()
+		q3_jerDown.SetTitle("Passing Jet pT")
+		q3_jerDown.SetXTitle("Jet pT")
+		p3_jerDown.Add(q3_jerDown)
+	
+		q3_1_jerDown = Rdf_Pass.Histo1D(("q3_1_jerDown", "Thin Passing Jet pT JER Down", 400, 0, 2000), "jPt_jerDown", "weight")
+		q3_1_jerDown = q3_1_jerDown.Clone()
+		q3_1_jerDown.SetTitle("Thin Passing Jet pT JER Down")
+		q3_1_jerDown.SetXTitle("Jet pT")
+		p3_1_jerDown.Add(q3_1_jerDown)
+		
+		u1_jerDown = Rdf_Fail.Histo1D(("u1_jerDown", "Failing Softdrop Mass JER Down", 40, 0, 200), "jM_jerDown", "weight")
+		u1_jerDown = u1_jerDown.Clone()
+		u1_jerDown.SetTitle("Failing Softdrop Mass JER Down")
+		u1_jerDown.SetXTitle("Softdrop Mass JER Down")
+		f1_jerDown.Add(u1_jerDown)
+
+	        u1_1_jerDown = Rdf_Fail.Histo1D(("u1_1_jerDown", "Failing Softdrop Mass JER Down", 200, 0, 200), "jM_jerDown", "weight")
+	        u1_1_jerDown = u1_1_jerDown.Clone()
+	        u1_1_jerDown.SetTitle("Failing Softdrop Mass JER Down")
+	        u1_1_jerDown.SetXTitle("Softdrop Mass")
+	        f1_1_jerDown.Add(u1_1_jerDown)
+	
+	        u1_2_jerDown = Rdf_Fail.Histo1D(("u1_2_jerDown", "Thin (Uncorrected) Failing Softdrop Mass JER Down", 200, 0, 200), "jM_uncorr_jerDown", "weight")
+	        u1_2_jerDown = u1_2_jerDown.Clone()
+	        u1_2_jerDown.SetTitle("Thin (Uncorrected) Failing Softdrop Mass JER Down")
+	        u1_2_jerDown.SetXTitle("Softdrop Mass")
+	        f1_2_jerDown.Add(u1_2_jerDown)
+
+		u3_jerDown = Rdf_Fail.Histo1D(("u3_jerDown", "Failing Jet pT JER Down", 40, 0, 2000), "jPt_jerDown", "weight")
+		u3_jerDown = u3_jerDown.Clone()
+		u3_jerDown.SetTitle("Failing Jet pT JER Down")
+		u3_jerDown.SetXTitle("Jet pT")
+		f3_jerDown.Add(u3_jerDown)
+	
+		u3_1_jerDown = Rdf_Fail.Histo1D(("u3_1_jerDown", "Thin Failing Jet pT JER Down", 400, 0, 2000), "jPt_jerDown", "weight")
+		u3_1_jerDown = u3_1_jerDown.Clone()
+		u3_1_jerDown.SetTitle("Thin Failing Jet pT JER Down")
+		u3_1_jerDown.SetXTitle("Jet pT")
+		f3_1_jerDown.Add(u3_1_jerDown)
+
+
+		q1_jesUp = Rdf_Pass.Histo1D(("q1_jesUp", "Passing Softdrop Mass JER Up", 40, 0, 200), "jM_jesUp", "weight")
+		q1_jesUp = q1_jesUp.Clone()
+		q1_jesUp.SetTitle("Passing Softdrop Mass JER Up")
+		q1_jesUp.SetXTitle("Softdrop Mass")
+		p1_jesUp.Add(q1_jesUp)
+	
+	        q1_1_jesUp = Rdf_Pass.Histo1D(("q1_1_jesUp", "Thin Passing Softdrop Mass JER Up", 200, 0, 200), "jM_jesUp", "weight")
+	        q1_1_jesUp = q1_1_jesUp.Clone()
+	        q1_1_jesUp.SetTitle("Passing Softdrop Mass JER Up")
+       		q1_1_jesUp.SetXTitle("Softdrop Mass")
+        	p1_1_jesUp.Add(q1_1_jesUp)
+
+        	q1_2_jesUp = Rdf_Pass.Histo1D(("q1_2_jesUp", "Thin (Uncorrected) Passing Softdrop Mass JER Up", 200, 0, 200), "jM_uncorr_jesUp", "weight")
+        	q1_2_jesUp = q1_2_jesUp.Clone()
+        	q1_2_jesUp.SetTitle("Thin (Uncorrected) Passing Softdrop Mass JER Up")
+        	q1_2_jesUp.SetXTitle("Softdrop Mass")
+        	p1_2_jesUp.Add(q1_2_jesUp)
+		
+		q3_jesUp = Rdf_Pass.Histo1D(("q3_jesUp", "Passing Jet pT JER Up", 40, 0, 2000), "jPt_jesUp", "weight")
+		q3_jesUp = q3_jesUp.Clone()
+		q3_jesUp.SetTitle("Passing Jet pT")
+		q3_jesUp.SetXTitle("Jet pT")
+		p3_jesUp.Add(q3_jesUp)
+	
+		q3_1_jesUp = Rdf_Pass.Histo1D(("q3_1_jesUp", "Thin Passing Jet pT JER Up", 400, 0, 2000), "jPt_jesUp", "weight")
+		q3_1_jesUp = q3_1_jesUp.Clone()
+		q3_1_jesUp.SetTitle("Thin Passing Jet pT JER Up")
+		q3_1_jesUp.SetXTitle("Jet pT")
+		p3_1_jesUp.Add(q3_1_jesUp)
+		
+		u1_jesUp = Rdf_Fail.Histo1D(("u1_jesUp", "Failing Softdrop Mass JER Up", 40, 0, 200), "jM_jesUp", "weight")
+		u1_jesUp = u1_jesUp.Clone()
+		u1_jesUp.SetTitle("Failing Softdrop Mass JER Up")
+		u1_jesUp.SetXTitle("Softdrop Mass JER Up")
+		f1_jesUp.Add(u1_jesUp)
+
+	        u1_1_jesUp = Rdf_Fail.Histo1D(("u1_1_jesUp", "Failing Softdrop Mass JER Up", 200, 0, 200), "jM_jesUp", "weight")
+	        u1_1_jesUp = u1_1_jesUp.Clone()
+	        u1_1_jesUp.SetTitle("Failing Softdrop Mass JER Up")
+	        u1_1_jesUp.SetXTitle("Softdrop Mass")
+	        f1_1_jesUp.Add(u1_1_jesUp)
+	
+	        u1_2_jesUp = Rdf_Fail.Histo1D(("u1_2_jesUp", "Thin (Uncorrected) Failing Softdrop Mass JER Up", 200, 0, 200), "jM_uncorr_jesUp", "weight")
+	        u1_2_jesUp = u1_2_jesUp.Clone()
+	        u1_2_jesUp.SetTitle("Thin (Uncorrected) Failing Softdrop Mass JER Up")
+	        u1_2_jesUp.SetXTitle("Softdrop Mass")
+	        f1_2_jesUp.Add(u1_2_jesUp)
+
+		u3_jesUp = Rdf_Fail.Histo1D(("u3_jesUp", "Failing Jet pT JER Up", 40, 0, 2000), "jPt_jesUp", "weight")
+		u3_jesUp = u3_jesUp.Clone()
+		u3_jesUp.SetTitle("Failing Jet pT JER Up")
+		u3_jesUp.SetXTitle("Jet pT")
+		f3_jesUp.Add(u3_jesUp)
+	
+		u3_1_jesUp = Rdf_Fail.Histo1D(("u3_1_jesUp", "Thin Failing Jet pT JER Up", 400, 0, 2000), "jPt_jesUp", "weight")
+		u3_1_jesUp = u3_1_jesUp.Clone()
+		u3_1_jesUp.SetTitle("Thin Failing Jet pT JER Up")
+		u3_1_jesUp.SetXTitle("Jet pT")
+		f3_1_jesUp.Add(u3_1_jesUp)
+
+
+		q1_jesDown = Rdf_Pass.Histo1D(("q1_jesDown", "Passing Softdrop Mass JER Down", 40, 0, 200), "jM_jesDown", "weight")
+		q1_jesDown = q1_jesDown.Clone()
+		q1_jesDown.SetTitle("Passing Softdrop Mass JER Down")
+		q1_jesDown.SetXTitle("Softdrop Mass")
+		p1_jesDown.Add(q1_jesDown)
+	
+	        q1_1_jesDown = Rdf_Pass.Histo1D(("q1_1_jesDown", "Thin Passing Softdrop Mass JER Down", 200, 0, 200), "jM_jesDown", "weight")
+	        q1_1_jesDown = q1_1_jesDown.Clone()
+	        q1_1_jesDown.SetTitle("Passing Softdrop Mass JER Down")
+       		q1_1_jesDown.SetXTitle("Softdrop Mass")
+        	p1_1_jesDown.Add(q1_1_jesDown)
+
+        	q1_2_jesDown = Rdf_Pass.Histo1D(("q1_2_jesDown", "Thin (Uncorrected) Passing Softdrop Mass JER Down", 200, 0, 200), "jM_uncorr_jesDown", "weight")
+        	q1_2_jesDown = q1_2_jesDown.Clone()
+        	q1_2_jesDown.SetTitle("Thin (Uncorrected) Passing Softdrop Mass JER Down")
+        	q1_2_jesDown.SetXTitle("Softdrop Mass")
+        	p1_2_jesDown.Add(q1_2_jesDown)
+		
+		q3_jesDown = Rdf_Pass.Histo1D(("q3_jesDown", "Passing Jet pT JER Down", 40, 0, 2000), "jPt_jesDown", "weight")
+		q3_jesDown = q3_jesDown.Clone()
+		q3_jesDown.SetTitle("Passing Jet pT")
+		q3_jesDown.SetXTitle("Jet pT")
+		p3_jesDown.Add(q3_jesDown)
+	
+		q3_1_jesDown = Rdf_Pass.Histo1D(("q3_1_jesDown", "Thin Passing Jet pT JER Down", 400, 0, 2000), "jPt_jesDown", "weight")
+		q3_1_jesDown = q3_1_jesDown.Clone()
+		q3_1_jesDown.SetTitle("Thin Passing Jet pT JER Down")
+		q3_1_jesDown.SetXTitle("Jet pT")
+		p3_1_jesDown.Add(q3_1_jesDown)
+		
+		u1_jesDown = Rdf_Fail.Histo1D(("u1_jesDown", "Failing Softdrop Mass JER Down", 40, 0, 200), "jM_jesDown", "weight")
+		u1_jesDown = u1_jesDown.Clone()
+		u1_jesDown.SetTitle("Failing Softdrop Mass JER Down")
+		u1_jesDown.SetXTitle("Softdrop Mass JER Down")
+		f1_jesDown.Add(u1_jesDown)
+
+	        u1_1_jesDown = Rdf_Fail.Histo1D(("u1_1_jesDown", "Failing Softdrop Mass JER Down", 200, 0, 200), "jM_jesDown", "weight")
+	        u1_1_jesDown = u1_1_jesDown.Clone()
+	        u1_1_jesDown.SetTitle("Failing Softdrop Mass JER Down")
+	        u1_1_jesDown.SetXTitle("Softdrop Mass")
+	        f1_1_jesDown.Add(u1_1_jesDown)
+	
+	        u1_2_jesDown = Rdf_Fail.Histo1D(("u1_2_jesDown", "Thin (Uncorrected) Failing Softdrop Mass JER Down", 200, 0, 200), "jM_uncorr_jesDown", "weight")
+	        u1_2_jesDown = u1_2_jesDown.Clone()
+	        u1_2_jesDown.SetTitle("Thin (Uncorrected) Failing Softdrop Mass JER Down")
+	        u1_2_jesDown.SetXTitle("Softdrop Mass")
+	        f1_2_jesDown.Add(u1_2_jesDown)
+
+		u3_jesDown = Rdf_Fail.Histo1D(("u3_jesDown", "Failing Jet pT JER Down", 40, 0, 2000), "jPt_jesDown", "weight")
+		u3_jesDown = u3_jesDown.Clone()
+		u3_jesDown.SetTitle("Failing Jet pT JER Down")
+		u3_jesDown.SetXTitle("Jet pT")
+		f3_jesDown.Add(u3_jesDown)
+	
+		u3_1_jesDown = Rdf_Fail.Histo1D(("u3_1_jesDown", "Thin Failing Jet pT JER Down", 400, 0, 2000), "jPt_jesDown", "weight")
+		u3_1_jesDown = u3_1_jesDown.Clone()
+		u3_1_jesDown.SetTitle("Thin Failing Jet pT JER Down")
+		u3_1_jesDown.SetXTitle("Jet pT")
+		f3_1_jesDown.Add(u3_1_jesDown)
+
+
+
+		j41_w_puUp = Rdf_Pass.Histo2D(("pt_soft_pass_wide6_wide_puUp", "Passing Jet pT vs. Softdrop Mass PileUp Up", 7, widebins6, 40, 0, 200), "jPt", "jM", "weight_Up")
+	        j41_w_puUp = j41_w_puUp.Clone()
+	        h41_w_puUp.Add(j41_w_puUp)
+
+	        j42_w_puUp = Rdf_Final.Histo2D(("pt_soft_tot_wide6_wide_puUp", "Total Jet pT vs. Softdrop Mass PileUp Up", 7, widebins6, 40, 0, 200), "jPt", "jM", "weight_Up")
+	        j42_w_puUp = j42_w_puUp.Clone()
+	        h42_w_puUp.Add(j42_w_puUp)
+
+	        j43_w_puUp = Rdf_Fail.Histo2D(("pt_soft_pass_wide6_wide_puUp", "Failing Jet pT vs. Softdrop Mass PileUp Up", 7, widebins6, 40, 0, 200), "jPt", "jM", "weight_Up")
+	        j43_w_puUp = j43_w_puUp.Clone()
+	        h43_w_puUp.Add(j43_w_puUp)
+
+		j41_w_puDown = Rdf_Pass.Histo2D(("pt_soft_pass_wide6_wide_puDown", "Passing Jet pT vs. Softdrop Mass PileUp Down", 7, widebins6, 40, 0, 200), "jPt", "jM", "weight_Down")
+	        j41_w_puDown = j41_w_puDown.Clone()
+	        h41_w_puDown.Add(j41_w_puDown)
+
+	        j42_w_puDown = Rdf_Final.Histo2D(("pt_soft_tot_wide6_wide_puDown", "Total Jet pT vs. Softdrop Mass PileUp Down", 7, widebins6, 40, 0, 200), "jPt", "jM", "weight_Down")
+	        j42_w_puDown = j42_w_puDown.Clone()
+	        h42_w_puDown.Add(j42_w_puDown)
+
+	        j43_w_puDown = Rdf_Fail.Histo2D(("pt_soft_pass_wide6_wide_puDown", "Failing Jet pT vs. Softdrop Mass PileUp Down", 7, widebins6, 40, 0, 200), "jPt", "jM", "weight_Down")
+	        j43_w_puDown = j43_w_puDown.Clone()
+	        h43_w_puDown.Add(j43_w_puDown)
+
+
+		j41_w_jerUp = Rdf_Pass.Histo2D(("pt_soft_pass_wide6_wide_jerUp", "Passing Jet pT vs. Softdrop Mass JER Up", 7, widebins6, 40, 0, 200), "jPt_jerUp", "jM_jerUp", "weight")
+	        j41_w_jerUp = j41_w_jerUp.Clone()
+	        h41_w_jerUp.Add(j41_w_jerUp)
+
+	        j42_w_jerUp = Rdf_Final.Histo2D(("pt_soft_tot_wide6_wide_jerUp", "Total Jet pT vs. Softdrop Mass JER Up", 7, widebins6, 40, 0, 200), "jPt_jerUp", "jM_jerUp", "weight")
+	        j42_w_jerUp = j42_w_jerUp.Clone()
+	        h42_w_jerUp.Add(j42_w_jerUp)
+
+	        j43_w_jerUp = Rdf_Fail.Histo2D(("pt_soft_pass_wide6_wide_jerUp", "Failing Jet pT vs. Softdrop Mass JER Up", 7, widebins6, 40, 0, 200), "jPt_jerUp", "jM_jerUp", "weight")
+	        j43_w_jerUp = j43_w_jerUp.Clone()
+	        h43_w_jerUp.Add(j43_w_jerUp)
+
+		j41_w_jerDown = Rdf_Pass.Histo2D(("pt_soft_pass_wide6_wide_jerDown", "Passing Jet pT vs. Softdrop Mass JER Down", 7, widebins6, 40, 0, 200), "jPt_jerDown", "jM_jerDown", "weight")
+	        j41_w_jerDown = j41_w_jerDown.Clone()
+	        h41_w_jerDown.Add(j41_w_jerDown)
+
+	        j42_w_jerDown = Rdf_Final.Histo2D(("pt_soft_tot_wide6_wide_jerDown", "Total Jet pT vs. Softdrop Mass JER Down", 7, widebins6, 40, 0, 200), "jPt_jerDown", "jM_jerDown", "weight")
+	        j42_w_jerDown = j42_w_jerDown.Clone()
+	        h42_w_jerDown.Add(j42_w_jerDown)
+
+	        j43_w_jerDown = Rdf_Fail.Histo2D(("pt_soft_pass_wide6_wide_jerDown", "Failing Jet pT vs. Softdrop Mass JER Down", 7, widebins6, 40, 0, 200), "jPt_jerDown", "jM_jerDown", "weight")
+	        j43_w_jerDown = j43_w_jerDown.Clone()
+	        h43_w_jerDown.Add(j43_w_jerDown)
+		
+		j41_w_jesUp = Rdf_Pass.Histo2D(("pt_soft_pass_wide6_wide_jesUp", "Passing Jet pT vs. Softdrop Mass JES Up", 7, widebins6, 40, 0, 200), "jPt_jesUp", "jM_jesUp", "weight")
+	        j41_w_jesUp = j41_w_jesUp.Clone()
+	        h41_w_jesUp.Add(j41_w_jesUp)
+
+	        j42_w_jesUp = Rdf_Final.Histo2D(("pt_soft_tot_wide6_wide_jesUp", "Total Jet pT vs. Softdrop Mass JES Up", 7, widebins6, 40, 0, 200), "jPt_jesUp", "jM_jesUp", "weight")
+	        j42_w_jesUp = j42_w_jesUp.Clone()
+	        h42_w_jesUp.Add(j42_w_jesUp)
+
+	        j43_w_jesUp = Rdf_Fail.Histo2D(("pt_soft_pass_wide6_wide_jesUp", "Failing Jet pT vs. Softdrop Mass JES Up", 7, widebins6, 40, 0, 200), "jPt_jesUp", "jM_jesUp", "weight")
+	        j43_w_jesUp = j43_w_jesUp.Clone()
+	        h43_w_jesUp.Add(j43_w_jesUp)
+
+		j41_w_jesDown = Rdf_Pass.Histo2D(("pt_soft_pass_wide6_wide_jesDown", "Passing Jet pT vs. Softdrop Mass JES Down", 7, widebins6, 40, 0, 200), "jPt_jesDown", "jM_jesDown", "weight")
+	        j41_w_jesDown = j41_w_jesDown.Clone()
+	        h41_w_jesDown.Add(j41_w_jesDown)
+
+	        j42_w_jesDown = Rdf_Final.Histo2D(("pt_soft_tot_wide6_wide_jesDown", "Total Jet pT vs. Softdrop Mass JES Down", 7, widebins6, 40, 0, 200), "jPt_jesDown", "jM_jesDown", "weight")
+	        j42_w_jesDown = j42_w_jesDown.Clone()
+	        h42_w_jesDown.Add(j42_w_jesDown)
+
+	        j43_w_jesDown = Rdf_Fail.Histo2D(("pt_soft_pass_wide6_wide_jesDown", "Failing Jet pT vs. Softdrop Mass JES Down", 7, widebins6, 40, 0, 200), "jPt_jesDown", "jM_jesDown", "weight")
+	        j43_w_jesDown = j43_w_jesDown.Clone()
+	        h43_w_jesDown.Add(j43_w_jesDown)
+
+
+
 	print(str(nocut)+" Events Before Cuts in "+fname+" Sample")		
+	print(str(trig_pass)+" Events After Trigger Cuts in "+fname+" Sample")		
 	print(str(npcut)+" Events After nPho>0 in in "+fname+" Sample")		
 	print(str(njcut)+" Events After nFatJet>0 in "+fname+" Sample")		
-	print(str(trigcut)+" Events After Trigger Cuts in "+fname+" Sample")		
 	print(str(pcut)+" Events After Photon Cuts in "+fname+" Sample")		
 	print(str(jcut)+" Events After Jet Cuts in "+fname+" Sample")		
 	print(str(final)+" Events After Final Cuts in "+fname+" Sample")		
@@ -770,7 +1650,19 @@ def DataPro(sample, fname, cut_hist, percentage=20):
 	print("Passing Events: "+str(pass_pass/total_events * 100)+"%")
 	print("Failing Events: "+str(fail_pass/total_events * 100)+"%")
 	
-	print("Passing Fraction: "+str(pass_pass_weight/(pass_pass_weight+fail_pass_weight)))
+#	print("Passing Fraction: "+str(pass_pass_weight/(pass_pass_weight+fail_pass_weight)))
+
+	rep_final = Rdf_Final.Report()
+	rep_pass = Rdf_Pass.Report()
+	rep_fail = Rdf_Fail.Report()
+
+	print("Final Report")
+	rep_final.Print()
+	print("Pass Report")
+	rep_pass.Print()
+	print("Fail Report")
+	rep_fail.Print()
+
 
 
 	h1.SetTitle("N2")
@@ -992,6 +1884,9 @@ def DataPro(sample, fname, cut_hist, percentage=20):
         h46_w.SetXTitle("Jet pT")
         ofile.WriteObject(h46_w, "jet_pt_soft_fail_wide7_wide")
 
+        h47.SetTitle("Number of Good Reconstructed Primary Verticies")
+        h47.SetXTitle("Good Primary Verticies")
+        ofile.WriteObject(h47, "npvs_Good")
 
         h50.SetTitle("AK4 Jet Eta")
         h50.SetXTitle("Eta")
@@ -1074,6 +1969,11 @@ def DataPro(sample, fname, cut_hist, percentage=20):
 	p3.SetTitle("Passing Jet pT")
 	p3.SetXTitle("Jet pT")
 	ofile.WriteObject(p3, "pass_jet_pt")
+	
+	p3_1.SetTitle("Thin Passing Jet pT")
+	p3_1.SetXTitle("Jet pT")
+	ofile.WriteObject(p3_1, "thin_pass_jet_pt")
+	
 
 	p4.SetTitle("Passing Rho")
 	p4.SetXTitle("Rho")
@@ -1106,6 +2006,10 @@ def DataPro(sample, fname, cut_hist, percentage=20):
 	f3.SetTitle("Failing Jet pT")
 	f3.SetXTitle("Jet pT")
 	ofile.WriteObject(f3, "fail_jet_pt")
+	
+	f3_1.SetTitle("Thin Failing Jet pT")
+	f3_1.SetXTitle("Jet pT")
+	ofile.WriteObject(f3_1, "thin_fail_jet_pt")
 
 	f4.SetTitle("Failing Rho")
 	f4.SetXTitle("Rho")
@@ -1118,7 +2022,473 @@ def DataPro(sample, fname, cut_hist, percentage=20):
 	f6.SetTitle("Failing Jet Eta")
 	f6.SetXTitle("Jet Eta")
 	ofile.WriteObject(f6, "fail_jet_eta")
+	
+	# Saving Systematics Histograms
+        if sample[3] == "mc" or sample[3] == "GJ" or sample[3] == "QCD":
+		h2_puUp.SetTitle("Softdrop Mass PileUp Up")
+		h2_puUp.SetXTitle("Softdrop Mass")
+		ofile.WriteObject(h2_puUp, "softdrop_puUp")
 
+        	h2_1_puUp.SetTitle("Thin Softdrop Mass PileUp Up")
+        	h2_1_puUp.SetXTitle("Softdrop Mass")
+        	ofile.WriteObject(h2_1_puUp, "thin_softdrop_puUp")
+
+        	h2_2_puUp.SetTitle("Thin (Uncorrected) Softdrop Mass PileUp Up")
+        	h2_2_puUp.SetXTitle("Softdrop Mass")
+        	ofile.WriteObject(h2_2_puUp, "thin_uncorr_softdrop_puUp")
+	
+		h5_puUp.SetTitle("Jet pT PileUp Up")
+		h5_puUp.SetXTitle("Jet pT")
+		ofile.WriteObject(h5_puUp, "jet_pt_puUp")
+
+		h5_1_puUp.SetTitle("Thin Jet pT PileUp Up")
+		h5_1_puUp.SetXTitle("Jet pT")
+        	ofile.WriteObject(h5_1_puUp, "thin_jet_pt_puUp")
+        
+		h6_puUp.SetTitle("Number of Good Reconstructed Primary Verticies PileUp Up")
+        	h6_puUp.SetXTitle("Good Primary Verticies")
+        	ofile.WriteObject(h6_puUp, "npvs_Good_puUp")
+	
+		p1_puUp.SetTitle("Passing Softdrop Mass PileUp Up")
+		p1_puUp.SetXTitle("Softdrop Mass")
+		ofile.WriteObject(p1_puUp, "pass_soft_puUp")
+
+	        p1_1_puUp.SetTitle("Thin Passing Softdrop Mass PileUp Up")
+	        p1_1_puUp.SetXTitle("Softdrop Mass")
+	        ofile.WriteObject(p1_1_puUp, "pass_soft_thin_puUp")
+
+	        p1_2_puUp.SetTitle("Thin (Uncorrected) Passing Softdrop Mass PileUp Up")
+	        p1_2_puUp.SetXTitle("Softdrop Mass")
+	        ofile.WriteObject(p1_2_puUp, "pass_soft_uncorr_thin_puUp")
+	
+		p3_puUp.SetTitle("Passing Jet pT PileUp Up")
+		p3_puUp.SetXTitle("Jet pT")
+		ofile.WriteObject(p3_puUp, "pass_jet_pt_puUp")
+	
+		p3_1_puUp.SetTitle("Thin Passing Jet pT PileUp Up")
+		p3_1_puUp.SetXTitle("Jet pT")
+		ofile.WriteObject(p3_1_puUp, "thin_pass_jet_pt_puUp")
+
+		f1_puUp.SetTitle("Failing Softdrop Mass PileUp Up")
+		f1_puUp.SetXTitle("Softdrop Mass")
+		ofile.WriteObject(f1_puUp, "fail_soft_puUp")
+
+		f1_1_puUp.SetTitle("Failing Softdrop Mass PileUp Up")
+	        f1_1_puUp.SetXTitle("Softdrop Mass")
+	        ofile.WriteObject(f1_1_puUp, "fail_soft_thin_puUp")
+
+	        f1_2_puUp.SetTitle("Thin (Uncorrected) Failing Softdrop Mass PileUp Up")
+	        f1_2_puUp.SetXTitle("Softdrop Mass")
+	        ofile.WriteObject(f1_2_puUp, "fail_soft_uncorr_thin_puUp")
+	
+		f3_puUp.SetTitle("Failing Jet pT PileUp Up")
+		f3_puUp.SetXTitle("Jet pT")
+		ofile.WriteObject(f3_puUp, "fail_jet_pt_puUp")
+	
+		f3_1_puUp.SetTitle("Thin Failing Jet pT PileUp Up")
+		f3_1_puUp.SetXTitle("Jet pT")
+		ofile.WriteObject(f3_1_puUp, "thin_fail_jet_pt_puUp")
+		
+		h41_w_puUp.SetTitle("Passing Jet pT vs. Softdrop Mass PileUp Up")
+        	h41_w_puUp.SetYTitle("Softdrop Mass")
+        	h41_w_puUp.SetXTitle("Jet pT")
+        	ofile.WriteObject(h41_w_puUp, "jet_pt_soft_pass_wide6_wide_puUp")
+
+        	h42_w_puUp.SetTitle("Total Jet pT vs. Softdrop Mass PileUp Up")
+        	h42_w_puUp.SetYTitle("Softdrop Mass")
+        	h42_w_puUp.SetXTitle("Jet pT")
+        	ofile.WriteObject(h42_w_puUp, "jet_pt_soft_total_wide6_wide_puUp")
+
+        	h43_w_puUp.SetTitle("Failing Jet pT vs. Softdrop Mass PileUp Up")
+        	h43_w_puUp.SetYTitle("Softdrop Mass")
+        	h43_w_puUp.SetXTitle("Jet pT")
+        	ofile.WriteObject(h43_w_puUp, "jet_pt_soft_fail_wide6_wide_puUp")
+		
+		
+		h2_puDown.SetTitle("Softdrop Mass PileUp Down")
+		h2_puDown.SetXTitle("Softdrop Mass")
+		ofile.WriteObject(h2_puDown, "softdrop_puDown")
+
+        	h2_1_puDown.SetTitle("Thin Softdrop Mass PileUp Down")
+        	h2_1_puDown.SetXTitle("Softdrop Mass")
+        	ofile.WriteObject(h2_1_puDown, "thin_softdrop_puDown")
+
+        	h2_2_puDown.SetTitle("Thin (Uncorrected) Softdrop Mass PileUp Down")
+        	h2_2_puDown.SetXTitle("Softdrop Mass")
+        	ofile.WriteObject(h2_2_puDown, "thin_uncorr_softdrop_puDown")
+	
+		h5_puDown.SetTitle("Jet pT PileUp Down")
+		h5_puDown.SetXTitle("Jet pT")
+		ofile.WriteObject(h5_puDown, "jet_pt_puDown")
+
+		h5_1_puDown.SetTitle("Thin Jet pT PileUp Down")
+		h5_1_puDown.SetXTitle("Jet pT")
+        	ofile.WriteObject(h5_1_puDown, "thin_jet_pt_puDown")
+	
+		h6_puDown.SetTitle("Number of Good Reconstructed Primary Verticies PileUp Down")
+        	h6_puDown.SetXTitle("Good Primary Verticies")
+        	ofile.WriteObject(h6_puDown, "npvs_Good_puDown")
+		
+		p1_puDown.SetTitle("Passing Softdrop Mass PileUp Down")
+		p1_puDown.SetXTitle("Softdrop Mass")
+		ofile.WriteObject(p1_puDown, "pass_soft_puDown")
+
+	        p1_1_puDown.SetTitle("Thin Passing Softdrop Mass PileUp Down")
+	        p1_1_puDown.SetXTitle("Softdrop Mass")
+	        ofile.WriteObject(p1_1_puDown, "pass_soft_thin_puDown")
+
+	        p1_2_puDown.SetTitle("Thin (Uncorrected) Passing Softdrop Mass PileUp Down")
+	        p1_2_puDown.SetXTitle("Softdrop Mass")
+	        ofile.WriteObject(p1_2_puDown, "pass_soft_uncorr_thin_puDown")
+	
+		p3_puDown.SetTitle("Passing Jet pT PileUp Down")
+		p3_puDown.SetXTitle("Jet pT")
+		ofile.WriteObject(p3_puDown, "pass_jet_pt_puDown")
+	
+		p3_1_puDown.SetTitle("Thin Passing Jet pT PileUp Down")
+		p3_1_puDown.SetXTitle("Jet pT")
+		ofile.WriteObject(p3_1_puDown, "thin_pass_jet_pt_puDown")
+
+		f1_puDown.SetTitle("Failing Softdrop Mass PileUp Down")
+		f1_puDown.SetXTitle("Softdrop Mass")
+		ofile.WriteObject(f1_puDown, "fail_soft_puDown")
+
+		f1_1_puDown.SetTitle("Failing Softdrop Mass PileUp Down")
+	        f1_1_puDown.SetXTitle("Softdrop Mass")
+	        ofile.WriteObject(f1_1_puDown, "fail_soft_thin_puDown")
+
+	        f1_2_puDown.SetTitle("Thin (Uncorrected) Failing Softdrop Mass PileUp Down")
+	        f1_2_puDown.SetXTitle("Softdrop Mass")
+	        ofile.WriteObject(f1_2_puDown, "fail_soft_uncorr_thin_puDown")
+	
+		f3_puDown.SetTitle("Failing Jet pT PileUp Down")
+		f3_puDown.SetXTitle("Jet pT")
+		ofile.WriteObject(f3_puDown, "fail_jet_pt_puDown")
+	
+		f3_1_puDown.SetTitle("Thin Failing Jet pT PileUp Down")
+		f3_1_puDown.SetXTitle("Jet pT")
+		ofile.WriteObject(f3_1_puDown, "thin_fail_jet_pt_puDown")
+		
+		h41_w_puDown.SetTitle("Passing Jet pT vs. Softdrop Mass PileUp Down")
+        	h41_w_puDown.SetYTitle("Softdrop Mass")
+        	h41_w_puDown.SetXTitle("Jet pT")
+        	ofile.WriteObject(h41_w_puDown, "jet_pt_soft_pass_wide6_wide_puDown")
+
+        	h42_w_puDown.SetTitle("Total Jet pT vs. Softdrop Mass PileUp Down")
+        	h42_w_puDown.SetYTitle("Softdrop Mass")
+        	h42_w_puDown.SetXTitle("Jet pT")
+        	ofile.WriteObject(h42_w_puDown, "jet_pt_soft_total_wide6_wide_puDown")
+
+        	h43_w_puDown.SetTitle("Failing Jet pT vs. Softdrop Mass PileUp Down")
+        	h43_w_puDown.SetYTitle("Softdrop Mass")
+        	h43_w_puDown.SetXTitle("Jet pT")
+        	ofile.WriteObject(h43_w_puDown, "jet_pt_soft_fail_wide6_wide_puDown")
+		
+		
+		h2_jerUp.SetTitle("Softdrop Mass JER Up")
+		h2_jerUp.SetXTitle("Softdrop Mass")
+		ofile.WriteObject(h2_jerUp, "softdrop_jerUp")
+
+        	h2_1_jerUp.SetTitle("Thin Softdrop Mass JER Up")
+        	h2_1_jerUp.SetXTitle("Softdrop Mass")
+        	ofile.WriteObject(h2_1_jerUp, "thin_softdrop_jerUp")
+
+        	h2_2_jerUp.SetTitle("Thin (Uncorrected) Softdrop Mass JER Up")
+        	h2_2_jerUp.SetXTitle("Softdrop Mass")
+        	ofile.WriteObject(h2_2_jerUp, "thin_uncorr_softdrop_jerUp")
+	
+		h5_jerUp.SetTitle("Jet pT JER Up")
+		h5_jerUp.SetXTitle("Jet pT")
+		ofile.WriteObject(h5_jerUp, "jet_pt_jerUp")
+
+		h5_1_jerUp.SetTitle("Thin Jet pT JER Up")
+		h5_1_jerUp.SetXTitle("Jet pT")
+        	ofile.WriteObject(h5_1_jerUp, "thin_jet_pt_jerUp")
+	
+		p1_jerUp.SetTitle("Passing Softdrop Mass JER Up")
+		p1_jerUp.SetXTitle("Softdrop Mass")
+		ofile.WriteObject(p1_jerUp, "pass_soft_jerUp")
+
+	        p1_1_jerUp.SetTitle("Thin Passing Softdrop Mass JER Up")
+	        p1_1_jerUp.SetXTitle("Softdrop Mass")
+	        ofile.WriteObject(p1_1_jerUp, "pass_soft_thin_jerUp")
+
+	        p1_2_jerUp.SetTitle("Thin (Uncorrected) Passing Softdrop Mass JER Up")
+	        p1_2_jerUp.SetXTitle("Softdrop Mass")
+	        ofile.WriteObject(p1_2_jerUp, "pass_soft_uncorr_thin_jerUp")
+	
+		p3_jerUp.SetTitle("Passing Jet pT JER Up")
+		p3_jerUp.SetXTitle("Jet pT")
+		ofile.WriteObject(p3_jerUp, "pass_jet_pt_jerUp")
+	
+		p3_1_jerUp.SetTitle("Thin Passing Jet pT JER Up")
+		p3_1_jerUp.SetXTitle("Jet pT")
+		ofile.WriteObject(p3_1_jerUp, "thin_pass_jet_pt_jerUp")
+
+		f1_jerUp.SetTitle("Failing Softdrop Mass JER Up")
+		f1_jerUp.SetXTitle("Softdrop Mass")
+		ofile.WriteObject(f1_jerUp, "fail_soft_jerUp")
+
+		f1_1_jerUp.SetTitle("Failing Softdrop Mass JER Up")
+	        f1_1_jerUp.SetXTitle("Softdrop Mass")
+	        ofile.WriteObject(f1_1_jerUp, "fail_soft_thin_jerUp")
+
+	        f1_2_jerUp.SetTitle("Thin (Uncorrected) Failing Softdrop Mass JER Up")
+	        f1_2_jerUp.SetXTitle("Softdrop Mass")
+	        ofile.WriteObject(f1_2_jerUp, "fail_soft_uncorr_thin_jerUp")
+	
+		f3_jerUp.SetTitle("Failing Jet pT JER Up")
+		f3_jerUp.SetXTitle("Jet pT")
+		ofile.WriteObject(f3_jerUp, "fail_jet_pt_jerUp")
+	
+		f3_1_jerUp.SetTitle("Thin Failing Jet pT JER Up")
+		f3_1_jerUp.SetXTitle("Jet pT")
+		ofile.WriteObject(f3_1_jerUp, "thin_fail_jet_pt_jerUp")
+		
+		h41_w_jerUp.SetTitle("Passing Jet pT vs. Softdrop Mass JER Up")
+        	h41_w_jerUp.SetYTitle("Softdrop Mass")
+        	h41_w_jerUp.SetXTitle("Jet pT")
+        	ofile.WriteObject(h41_w_jerUp, "jet_pt_soft_pass_wide6_wide_jerUp")
+
+        	h42_w_jerUp.SetTitle("Total Jet pT vs. Softdrop Mass JER Up")
+        	h42_w_jerUp.SetYTitle("Softdrop Mass")
+        	h42_w_jerUp.SetXTitle("Jet pT")
+        	ofile.WriteObject(h42_w_jerUp, "jet_pt_soft_total_wide6_wide_jerUp")
+
+        	h43_w_jerUp.SetTitle("Failing Jet pT vs. Softdrop Mass JER Up")
+        	h43_w_jerUp.SetYTitle("Softdrop Mass")
+        	h43_w_jerUp.SetXTitle("Jet pT")
+        	ofile.WriteObject(h43_w_jerUp, "jet_pt_soft_fail_wide6_wide_jerUp")
+		
+		
+		h2_jerDown.SetTitle("Softdrop Mass JER Down")
+		h2_jerDown.SetXTitle("Softdrop Mass")
+		ofile.WriteObject(h2_jerDown, "softdrop_jerDown")
+
+        	h2_1_jerDown.SetTitle("Thin Softdrop Mass JER Down")
+        	h2_1_jerDown.SetXTitle("Softdrop Mass")
+        	ofile.WriteObject(h2_1_jerDown, "thin_softdrop_jerDown")
+
+        	h2_2_jerDown.SetTitle("Thin (Uncorrected) Softdrop Mass JER Down")
+        	h2_2_jerDown.SetXTitle("Softdrop Mass")
+        	ofile.WriteObject(h2_2_jerDown, "thin_uncorr_softdrop_jerDown")
+	
+		h5_jerDown.SetTitle("Jet pT JER Down")
+		h5_jerDown.SetXTitle("Jet pT")
+		ofile.WriteObject(h5_jerDown, "jet_pt_jerDown")
+
+		h5_1_jerDown.SetTitle("Thin Jet pT JER Down")
+		h5_1_jerDown.SetXTitle("Jet pT")
+        	ofile.WriteObject(h5_1_jerDown, "thin_jet_pt_jerDown")
+	
+		p1_jerDown.SetTitle("Passing Softdrop Mass JER Down")
+		p1_jerDown.SetXTitle("Softdrop Mass")
+		ofile.WriteObject(p1_jerDown, "pass_soft_jerDown")
+
+	        p1_1_jerDown.SetTitle("Thin Passing Softdrop Mass JER Down")
+	        p1_1_jerDown.SetXTitle("Softdrop Mass")
+	        ofile.WriteObject(p1_1_jerDown, "pass_soft_thin_jerDown")
+
+	        p1_2_jerDown.SetTitle("Thin (Uncorrected) Passing Softdrop Mass JER Down")
+	        p1_2_jerDown.SetXTitle("Softdrop Mass")
+	        ofile.WriteObject(p1_2_jerDown, "pass_soft_uncorr_thin_jerDown")
+	
+		p3_jerDown.SetTitle("Passing Jet pT JER Down")
+		p3_jerDown.SetXTitle("Jet pT")
+		ofile.WriteObject(p3_jerDown, "pass_jet_pt_jerDown")
+	
+		p3_1_jerDown.SetTitle("Thin Passing Jet pT JER Down")
+		p3_1_jerDown.SetXTitle("Jet pT")
+		ofile.WriteObject(p3_1_jerDown, "thin_pass_jet_pt_jerDown")
+
+		f1_jerDown.SetTitle("Failing Softdrop Mass JER Down")
+		f1_jerDown.SetXTitle("Softdrop Mass")
+		ofile.WriteObject(f1_jerDown, "fail_soft_jerDown")
+
+		f1_1_jerDown.SetTitle("Failing Softdrop Mass JER Down")
+	        f1_1_jerDown.SetXTitle("Softdrop Mass")
+	        ofile.WriteObject(f1_1_jerDown, "fail_soft_thin_jerDown")
+
+	        f1_2_jerDown.SetTitle("Thin (Uncorrected) Failing Softdrop Mass JER Down")
+	        f1_2_jerDown.SetXTitle("Softdrop Mass")
+	        ofile.WriteObject(f1_2_jerDown, "fail_soft_uncorr_thin_jerDown")
+	
+		f3_jerDown.SetTitle("Failing Jet pT JER Down")
+		f3_jerDown.SetXTitle("Jet pT")
+		ofile.WriteObject(f3_jerDown, "fail_jet_pt_jerDown")
+	
+		f3_1_jerDown.SetTitle("Thin Failing Jet pT JER Down")
+		f3_1_jerDown.SetXTitle("Jet pT")
+		ofile.WriteObject(f3_1_jerDown, "thin_fail_jet_pt_jerDown")
+		
+		h41_w_jerDown.SetTitle("Passing Jet pT vs. Softdrop Mass JER Down")
+        	h41_w_jerDown.SetYTitle("Softdrop Mass")
+        	h41_w_jerDown.SetXTitle("Jet pT")
+        	ofile.WriteObject(h41_w_jerDown, "jet_pt_soft_pass_wide6_wide_jerDown")
+
+        	h42_w_jerDown.SetTitle("Total Jet pT vs. Softdrop Mass JER Down")
+        	h42_w_jerDown.SetYTitle("Softdrop Mass")
+        	h42_w_jerDown.SetXTitle("Jet pT")
+        	ofile.WriteObject(h42_w_jerDown, "jet_pt_soft_total_wide6_wide_jerDown")
+
+        	h43_w_jerDown.SetTitle("Failing Jet pT vs. Softdrop Mass JER Down")
+        	h43_w_jerDown.SetYTitle("Softdrop Mass")
+        	h43_w_jerDown.SetXTitle("Jet pT")
+        	ofile.WriteObject(h43_w_jerDown, "jet_pt_soft_fail_wide6_wide_jerDown")
+		
+		
+		h2_jesUp.SetTitle("Softdrop Mass JES Up")
+		h2_jesUp.SetXTitle("Softdrop Mass")
+		ofile.WriteObject(h2_jesUp, "softdrop_jesUp")
+
+        	h2_1_jesUp.SetTitle("Thin Softdrop Mass JES Up")
+        	h2_1_jesUp.SetXTitle("Softdrop Mass")
+        	ofile.WriteObject(h2_1_jesUp, "thin_softdrop_jesUp")
+
+        	h2_2_jesUp.SetTitle("Thin (Uncorrected) Softdrop Mass JES Up")
+        	h2_2_jesUp.SetXTitle("Softdrop Mass")
+        	ofile.WriteObject(h2_2_jesUp, "thin_uncorr_softdrop_jesUp")
+	
+		h5_jesUp.SetTitle("Jet pT JES Up")
+		h5_jesUp.SetXTitle("Jet pT")
+		ofile.WriteObject(h5_jesUp, "jet_pt_jesUp")
+
+		h5_1_jesUp.SetTitle("Thin Jet pT JES Up")
+		h5_1_jesUp.SetXTitle("Jet pT")
+        	ofile.WriteObject(h5_1_jesUp, "thin_jet_pt_jesUp")
+	
+		p1_jesUp.SetTitle("Passing Softdrop Mass JES Up")
+		p1_jesUp.SetXTitle("Softdrop Mass")
+		ofile.WriteObject(p1_jesUp, "pass_soft_jesUp")
+
+	        p1_1_jesUp.SetTitle("Thin Passing Softdrop Mass JES Up")
+	        p1_1_jesUp.SetXTitle("Softdrop Mass")
+	        ofile.WriteObject(p1_1_jesUp, "pass_soft_thin_jesUp")
+
+	        p1_2_jesUp.SetTitle("Thin (Uncorrected) Passing Softdrop Mass JES Up")
+	        p1_2_jesUp.SetXTitle("Softdrop Mass")
+	        ofile.WriteObject(p1_2_jesUp, "pass_soft_uncorr_thin_jesUp")
+	
+		p3_jesUp.SetTitle("Passing Jet pT JES Up")
+		p3_jesUp.SetXTitle("Jet pT")
+		ofile.WriteObject(p3_jesUp, "pass_jet_pt_jesUp")
+	
+		p3_1_jesUp.SetTitle("Thin Passing Jet pT JES Up")
+		p3_1_jesUp.SetXTitle("Jet pT")
+		ofile.WriteObject(p3_1_jesUp, "thin_pass_jet_pt_jesUp")
+
+		f1_jesUp.SetTitle("Failing Softdrop Mass JES Up")
+		f1_jesUp.SetXTitle("Softdrop Mass")
+		ofile.WriteObject(f1_jesUp, "fail_soft_jesUp")
+
+		f1_1_jesUp.SetTitle("Failing Softdrop Mass JES Up")
+	        f1_1_jesUp.SetXTitle("Softdrop Mass")
+	        ofile.WriteObject(f1_1_jesUp, "fail_soft_thin_jesUp")
+
+	        f1_2_jesUp.SetTitle("Thin (Uncorrected) Failing Softdrop Mass JES Up")
+	        f1_2_jesUp.SetXTitle("Softdrop Mass")
+	        ofile.WriteObject(f1_2_jesUp, "fail_soft_uncorr_thin_jesUp")
+	
+		f3_jesUp.SetTitle("Failing Jet pT JES Up")
+		f3_jesUp.SetXTitle("Jet pT")
+		ofile.WriteObject(f3_jesUp, "fail_jet_pt_jesUp")
+	
+		f3_1_jesUp.SetTitle("Thin Failing Jet pT JES Up")
+		f3_1_jesUp.SetXTitle("Jet pT")
+		ofile.WriteObject(f3_1_jesUp, "thin_fail_jet_pt_jesUp")
+		
+		h41_w_jesUp.SetTitle("Passing Jet pT vs. Softdrop Mass JES Up")
+        	h41_w_jesUp.SetYTitle("Softdrop Mass")
+        	h41_w_jesUp.SetXTitle("Jet pT")
+        	ofile.WriteObject(h41_w_jesUp, "jet_pt_soft_pass_wide6_wide_jesUp")
+
+        	h42_w_jesUp.SetTitle("Total Jet pT vs. Softdrop Mass JES Up")
+        	h42_w_jesUp.SetYTitle("Softdrop Mass")
+        	h42_w_jesUp.SetXTitle("Jet pT")
+        	ofile.WriteObject(h42_w_jesUp, "jet_pt_soft_total_wide6_wide_jesUp")
+
+        	h43_w_jesUp.SetTitle("Failing Jet pT vs. Softdrop Mass JES Up")
+        	h43_w_jesUp.SetYTitle("Softdrop Mass")
+        	h43_w_jesUp.SetXTitle("Jet pT")
+        	ofile.WriteObject(h43_w_jesUp, "jet_pt_soft_fail_wide6_wide_jesUp")
+		
+		
+		h2_jesDown.SetTitle("Softdrop Mass JES Down")
+		h2_jesDown.SetXTitle("Softdrop Mass")
+		ofile.WriteObject(h2_jesDown, "softdrop_jesDown")
+
+        	h2_1_jesDown.SetTitle("Thin Softdrop Mass JES Down")
+        	h2_1_jesDown.SetXTitle("Softdrop Mass")
+        	ofile.WriteObject(h2_1_jesDown, "thin_softdrop_jesDown")
+
+        	h2_2_jesDown.SetTitle("Thin (Uncorrected) Softdrop Mass JES Down")
+        	h2_2_jesDown.SetXTitle("Softdrop Mass")
+        	ofile.WriteObject(h2_2_jesDown, "thin_uncorr_softdrop_jesDown")
+	
+		h5_jesDown.SetTitle("Jet pT JES Down")
+		h5_jesDown.SetXTitle("Jet pT")
+		ofile.WriteObject(h5_jesDown, "jet_pt_jesDown")
+
+		h5_1_jesDown.SetTitle("Thin Jet pT JES Down")
+		h5_1_jesDown.SetXTitle("Jet pT")
+        	ofile.WriteObject(h5_1_jesDown, "thin_jet_pt_jesDown")
+	
+		p1_jesDown.SetTitle("Passing Softdrop Mass JES Down")
+		p1_jesDown.SetXTitle("Softdrop Mass")
+		ofile.WriteObject(p1_jesDown, "pass_soft_jesDown")
+
+	        p1_1_jesDown.SetTitle("Thin Passing Softdrop Mass JES Down")
+	        p1_1_jesDown.SetXTitle("Softdrop Mass")
+	        ofile.WriteObject(p1_1_jesDown, "pass_soft_thin_jesDown")
+
+	        p1_2_jesDown.SetTitle("Thin (Uncorrected) Passing Softdrop Mass JES Down")
+	        p1_2_jesDown.SetXTitle("Softdrop Mass")
+	        ofile.WriteObject(p1_2_jesDown, "pass_soft_uncorr_thin_jesDown")
+	
+		p3_jesDown.SetTitle("Passing Jet pT JES Down")
+		p3_jesDown.SetXTitle("Jet pT")
+		ofile.WriteObject(p3_jesDown, "pass_jet_pt_jesDown")
+	
+		p3_1_jesDown.SetTitle("Thin Passing Jet pT JES Down")
+		p3_1_jesDown.SetXTitle("Jet pT")
+		ofile.WriteObject(p3_1_jesDown, "thin_pass_jet_pt_jesDown")
+
+		f1_jesDown.SetTitle("Failing Softdrop Mass JES Down")
+		f1_jesDown.SetXTitle("Softdrop Mass")
+		ofile.WriteObject(f1_jesDown, "fail_soft_jesDown")
+
+		f1_1_jesDown.SetTitle("Failing Softdrop Mass JES Down")
+	        f1_1_jesDown.SetXTitle("Softdrop Mass")
+	        ofile.WriteObject(f1_1_jesDown, "fail_soft_thin_jesDown")
+
+	        f1_2_jesDown.SetTitle("Thin (Uncorrected) Failing Softdrop Mass JES Down")
+	        f1_2_jesDown.SetXTitle("Softdrop Mass")
+	        ofile.WriteObject(f1_2_jesDown, "fail_soft_uncorr_thin_jesDown")
+	
+		f3_jesDown.SetTitle("Failing Jet pT JES Down")
+		f3_jesDown.SetXTitle("Jet pT")
+		ofile.WriteObject(f3_jesDown, "fail_jet_pt_jesDown")
+	
+		f3_1_jesDown.SetTitle("Thin Failing Jet pT JES Down")
+		f3_1_jesDown.SetXTitle("Jet pT")
+		ofile.WriteObject(f3_1_jesDown, "thin_fail_jet_pt_jesDown")
+		
+		h41_w_jesDown.SetTitle("Passing Jet pT vs. Softdrop Mass JES Down")
+        	h41_w_jesDown.SetYTitle("Softdrop Mass")
+        	h41_w_jesDown.SetXTitle("Jet pT")
+        	ofile.WriteObject(h41_w_jesDown, "jet_pt_soft_pass_wide6_wide_jesDown")
+
+        	h42_w_jesDown.SetTitle("Total Jet pT vs. Softdrop Mass JES Down")
+        	h42_w_jesDown.SetYTitle("Softdrop Mass")
+        	h42_w_jesDown.SetXTitle("Jet pT")
+        	ofile.WriteObject(h42_w_jesDown, "jet_pt_soft_total_wide6_wide_jesDown")
+
+        	h43_w_jesDown.SetTitle("Failing Jet pT vs. Softdrop Mass JES Down")
+        	h43_w_jesDown.SetYTitle("Softdrop Mass")
+        	h43_w_jesDown.SetXTitle("Jet pT")
+        	ofile.WriteObject(h43_w_jesDown, "jet_pt_soft_fail_wide6_wide_jesDown")
+		
+		
 
 	weighting = float(sample[1])
 	#No cut, 10% cut, nphoton cut, njet cut, photon pT cut, jet pT cut, photon eta cut, jet eta cut, photon ID cut, Jet ID cut, Softdrop cut, Trigger cut, N2 cut, rho cut, dR cut, final, passing, failing

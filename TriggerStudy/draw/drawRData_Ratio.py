@@ -234,6 +234,7 @@ class drawRData:
 		for n in range(self.effOR_data_graph.GetN()):
 			if self.effOR_data_graph.GetY()[n] > 0 and self.effOR_mc_graph.GetY()[n] > 0:
 				self.effOR_ratio_graph.SetPoint(n, self.effOR_data_graph.GetX()[n], self.effOR_data_graph.GetY()[n]/self.effOR_mc_graph.GetY()[n])
+				print("OR Ratio Bin #"+str(n)+", X value="+str(self.effOR_data_graph.GetX()[n])+": "+str(self.effOR_data_graph.GetY()[n]/self.effOR_mc_graph.GetY()[n]))
 				self.effOR_ratio_graph.SetPointError(n, self.effOR_data_graph.GetErrorXlow(n), self.effOR_data_graph.GetErrorXhigh(n), error2(self.effOR_data_graph.GetY()[n], self.effOR_mc_graph.GetY()[n], self.effOR_data_graph.GetErrorYlow(n), self.effOR_mc_graph.GetErrorYlow(n)), error2(self.effOR_data_graph.GetY()[n], self.effOR_mc_graph.GetY()[n], self.effOR_data_graph.GetErrorYlow(n), self.effOR_mc_graph.GetErrorYlow(n)))
 			if self.eff110_data_graph.GetY()[n] > 0 and self.eff110_mc_graph.GetY()[n] > 0:
 				self.eff110_ratio_graph.SetPoint(n, self.eff110_data_graph.GetX()[n], self.eff110_data_graph.GetY()[n]/self.eff110_mc_graph.GetY()[n])
@@ -287,6 +288,16 @@ class drawRData:
 #		line1.SetLineWidth(2)
 		line1.SetLineStyle(7)
 		line1.Draw("same")
+		line2 = TLine(0, 1.0, 1100, 1.0)
+		line2.SetLineColor(kBlue)
+#		line2.SetLineWidth(2)
+		line2.SetLineStyle(7)
+		line2.Draw("same")
+		line3 = TLine(0, 0.95, 1100, 0.95)
+		line3.SetLineColor(kRed)
+#		line3.SetLineWidth(2)
+		line3.SetLineStyle(7)
+		line3.Draw("same")
 		#gPad.SetLogy()
 		c1.SaveAs("./"+name+".png")
 		#c1.SaveAs("./"+name+".root")

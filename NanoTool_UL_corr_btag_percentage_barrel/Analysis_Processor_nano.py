@@ -308,8 +308,8 @@ def DataPro(sample, fname, cut_hist, percentage=20):
 	Rdf_cflow = Rdf_cflow.Define("jIndex", "jet_index_define(nselectedPatJetsAK8PFPuppi, selectedPatJetsAK8PFPuppi_pt_nom, selectedPatJetsAK8PFPuppi_eta, selectedPatJetsAK8PFPuppi_msoftdrop_raw, selectedPatJetsAK8PFPuppi_jetId)")
 	Rdf_cflow = Rdf_cflow.Define("pIndex", "photon_index_define(nPhoton, Photon_pt, Photon_eta, Photon_cutBased)")
 
-#	Rdf_cflow = Rdf_cflow.Filter("selectedPatJetsAK8PFPuppi_n2b1[jIndex]")
-	Rdf_cflow = Rdf_cflow.Filter("selectedPatJetsAK8PFPuppi_ak8PFJetsPuppiSoftDropValueMap_nb1AK8PuppiSoftDropN2[jIndex]")
+	Rdf_cflow = Rdf_cflow.Filter("selectedPatJetsAK8PFPuppi_n2b1[jIndex]")
+#	Rdf_cflow = Rdf_cflow.Filter("selectedPatJetsAK8PFPuppi_ak8PFJetsPuppiSoftDropValueMap_nb1AK8PuppiSoftDropN2[jIndex]")
 	n2_pass += float(Rdf_cflow.Count().GetValue())
 
 	Rdf_cflow = Rdf_cflow.Define("Rho", "rho(selectedPatJetsAK8PFPuppi_pt_nom[jIndex], selectedPatJetsAK8PFPuppi_msoftdrop_raw[jIndex])")
@@ -371,15 +371,19 @@ def DataPro(sample, fname, cut_hist, percentage=20):
 
 
 
-	Rdf = Rdf.Define("jM_uncorr", "selectedPatJetsAK8PFPuppi_msoftdrop_raw[jIndex]")
+#	Rdf = Rdf.Define("jM_uncorr", "selectedPatJetsAK8PFPuppi_msoftdrop_raw[jIndex]")
+	if sample[3] == "data":
+		Rdf = Rdf.Define("jM_uncorr", "selectedPatJetsAK8PFPuppi_msoftdrop_raw[jIndex]")
+	else:
+		Rdf = Rdf.Define("jM_uncorr", "selectedPatJetsAK8PFPuppi_msoftdrop_raw[jIndex]*selectedPatJetsAK8PFPuppi_corr_JER[jIndex]")
 	Rdf = Rdf.Define("jEta", "selectedPatJetsAK8PFPuppi_eta[jIndex]")
 	Rdf = Rdf.Define("jPhi", "selectedPatJetsAK8PFPuppi_phi[jIndex]")
 	Rdf = Rdf.Define("jPt", "selectedPatJetsAK8PFPuppi_pt_nom[jIndex]")
 	Rdf = Rdf.Define("pPt", "Photon_pt[pIndex]")
 	Rdf = Rdf.Define("pEta", "Photon_eta[pIndex]")
 	Rdf = Rdf.Define("pPhi", "Photon_phi[pIndex]")
-#	Rdf = Rdf.Define("N2", "selectedPatJetsAK8PFPuppi_n2b1[jIndex]")
-	Rdf = Rdf.Define("N2", "selectedPatJetsAK8PFPuppi_ak8PFJetsPuppiSoftDropValueMap_nb1AK8PuppiSoftDropN2[jIndex]")
+	Rdf = Rdf.Define("N2", "selectedPatJetsAK8PFPuppi_n2b1[jIndex]")
+#	Rdf = Rdf.Define("N2", "selectedPatJetsAK8PFPuppi_ak8PFJetsPuppiSoftDropValueMap_nb1AK8PuppiSoftDropN2[jIndex]")
 	Rdf = Rdf.Define("jID", "selectedPatJetsAK8PFPuppi_jetId[jIndex]")
 	Rdf = Rdf.Define("jM", "jM_uncorr*JMC_corr(jM_uncorr,jPt,jEta)")
 	Rdf = Rdf.Define("n2ddt", "ddt(jPt, jM, N2)")
