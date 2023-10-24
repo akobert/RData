@@ -299,7 +299,7 @@ def DataPro(sample, fname, cut_hist, percentage=20):
         j57_1 = j57_1.Clone()
         h57_1.Add(j57_1)
 
-        Rdf_Final = Rdf.Filter("MET_mPt > 220")
+        Rdf_Final = Rdf_Final.Filter("MET_mPt > 220")
 
         final += float(Rdf_Final.Count().GetValue())
 #	print(final)	

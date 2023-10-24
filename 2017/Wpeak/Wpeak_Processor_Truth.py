@@ -127,6 +127,11 @@ def DataPro(sample, fname, cut_hist, percentage=20):
 	h91 = TH1F("h91", "Muon pT", 100, 0, 1000)
         h91_1 = TH1F("h91_1", "Thin Muon pT", 1000, 0, 1000)
 	h92 = TH1F("h92", "Muon Eta", 70, -3.5, 3.5)
+	
+	#GEN Info for matched boson
+	h100 = TH1F("h100", "GEN Matched Boson Mass", 200, 0, 200)
+	h101 = TH1F("h101", "GEN Matched Boson pdgID", 60, 0, 60)
+	h102 = TH1F("h102", "GEN Matched Boson deltaR to AK8 Jet", 100, 0, 1.0)
 
 	p1 = TH1F("p1", "passing softdrop mass", 40, 0, 200)
         p1_1 = TH1F("p1_1", "thin passing softdrop mass", 100, 0, 200)
@@ -302,7 +307,7 @@ def DataPro(sample, fname, cut_hist, percentage=20):
         j57_1 = j57_1.Clone()
         h57_1.Add(j57_1)
 
-        Rdf_Final = Rdf.Filter("MET_mPt > 220")
+        Rdf_Final = Rdf_Final.Filter("MET_mPt > 220")
 
         final += float(Rdf_Final.Count().GetValue())
 #	print(final)	
@@ -313,10 +318,13 @@ def DataPro(sample, fname, cut_hist, percentage=20):
         Rdf_Final = Rdf_Final.Define("GEN_pt", "GenPart_pt")
         Rdf_Final = Rdf_Final.Define("GEN_mass", "GenPart_mass")
         Rdf_Final = Rdf_Final.Define("GEN_pdgID", "GenPart_pdgId")
-	Rdf_Final = Rdf_Final.Define("bosons", "boson_match(nGenPart, GEN_eta, GEN_phi, jEta, jPhi, GEN_pt, GEN_mass, jPt, jM, GEN_pdgID)[0]")
+	Rdf_Final = Rdf_Final.Define("boson_ID", "boson_match(nGenPart, GEN_eta, GEN_phi, jEta, jPhi, GEN_pt, GEN_mass, jPt, jM, GEN_pdgID)[0]") #Stores -1 if no-match
 
 	#If no bosons are matched to jet skip event
-        Rdf_Final = Rdf_Final.Filter("bosons >= 0")
+        Rdf_Final = Rdf_Final.Filter("boson_ID >= 0")
+        Rdf_Final = Rdf_Final.Define("GEN_mass_matched", "GenPart_mass[boson_ID]")	#mass of matched boson
+        Rdf_Final = Rdf_Final.Define("GEN_pdgID_matched", "abs(GenPart_pdgId[boson_ID])")	#pdgID of matched boson
+        Rdf_Final = Rdf_Final.Define("GEN_dR_matched", "deltaR(jEta, GEN_eta[boson_ID], jPhi, GEN_phi[boson_ID])")	#dR of matched boson and AK8 jet
         
 	final_truth += float(Rdf_Final.Count().GetValue())
 
@@ -684,6 +692,19 @@ def DataPro(sample, fname, cut_hist, percentage=20):
 	j92 = Rdf_Final.Histo1D(("j92", "Muon Eta", 70, -3.5, 3.5), "mEta", "weight")
         j92 = j92.Clone()
         h92.Add(j92)
+
+	j100 = Rdf_Final.Histo1D(("j100", "GEN Matched Boson Mass", 200, 0, 200), "GEN_mass_matched", "weight")
+        j100 = j100.Clone()
+        h100.Add(j100)
+
+	j101 = Rdf_Final.Histo1D(("j101", "GEN Matched Boson pdgID", 60, 0, 60), "GEN_pdgID_matched", "weight")
+        j101 = j101.Clone()
+        h101.Add(j101)
+	
+	j102 = Rdf_Final.Histo1D(("j102", "GEN Matched Boson DeltaR", 100, 0, 1), "GEN_dR_matched", "weight")
+        j102 = j102.Clone()
+        h102.Add(j102)
+
 	
 	print(str(nocut)+" Events Before Cuts in "+fname+" Sample")		
 	print(str(npcut)+" Events After nPho>0 in in "+fname+" Sample")		
@@ -938,6 +959,15 @@ def DataPro(sample, fname, cut_hist, percentage=20):
 	
 	h92.SetXTitle("Muon Eta")
 	ofile.WriteObject(h92, "muon_eta")
+	
+	h100.SetXTitle("GEN Matched Boson Mass")
+	ofile.WriteObject(h100, "GEN_matched_mass")
+	
+	h101.SetXTitle("GEN Matched Boson pdgID")
+	ofile.WriteObject(h101, "GEN_matched_pdgID")
+	
+	h102.SetXTitle("GEN Matched Boson deltaR to AK8 Jet")
+	ofile.WriteObject(h102, "GEN_matched_dR")
 
 	p1.SetTitle("Passing Softdrop Mass")
 	p1.SetXTitle("Softdrop Mass")
